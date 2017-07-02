@@ -1,0 +1,43 @@
+{
+  "name": "wordpress-api",
+  "version": "1.0.4",
+  "description": "Wordpress API",
+  "main": "dist/Index.js",
+  "homepage": "https://github.com/dderevjanik/wordpress-api",
+  "author": {
+    "name": "Daniel Derevjanik",
+    "email": "daniel.derevjanik@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dderevjanik/wordpress-api.git"
+  },
+  "keywords": [
+    "wordpress",
+    "api",
+    "wordpress-rest",
+    "typescript"
+  ],
+  "typescript": {
+    "definition": "dist/Index.d.ts"
+  },
+  "types": "dist/Index.d.ts",
+  "typings": "dist/Index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsc --watch",
+    "build": "tsc",
+    "lint": "tslint -c tslint.json --fix 'lib/**/*.ts'"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "ts-lint": "^4.5.1",
+    "typescript": "^2.4.1"
+  },
+  "dependencies": {
+    "@types/chalk": "^0.4.31",
+    "@types/node": "^8.0.4",
+    "axios": "^0.16.2",
+    "chalk": "^1.1.3"
+  }
+}
