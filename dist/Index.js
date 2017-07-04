@@ -39,13 +39,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = require("axios");
 var chalk_1 = require("chalk");
 var QueryString = require("querystring");
+/**
+ * Path to REST API endpoint
+ */
 var REST_API_PATH = '/wp-json/wp/v2';
 /**
  * Connect to wordpress api
  * @param host - url to wordpress
  * @throws {BadHost}
  */
-var connect = function (host) { return __awaiter(_this, void 0, void 0, function () {
+var connect = function (host, hooks) { return __awaiter(_this, void 0, void 0, function () {
     var _this = this;
     var API_URL, e_1, msg;
     return __generator(this, function (_a) {
@@ -61,7 +64,7 @@ var connect = function (host) { return __awaiter(_this, void 0, void 0, function
                 return [3 /*break*/, 4];
             case 3:
                 e_1 = _a.sent();
-                msg = chalk_1.red('BadHost: no response from rest api endpoint ' + chalk_1.underline(API_URL));
+                msg = chalk_1.red('BadHost: no response from REST API endpoint ' + chalk_1.underline(API_URL));
                 throw new Error(msg);
             case 4: return [2 /*return*/, {
                     /**
@@ -89,7 +92,7 @@ var connect = function (host) { return __awaiter(_this, void 0, void 0, function
                         return __generator(this, function (_a) {
                             switch (_a.label) {
                                 case 0:
-                                    url = "http://" + API_URL + "/posts/" + postId;
+                                    url = API_URL + "/posts/" + postId;
                                     return [4 /*yield*/, axios_1.default.get(API_URL + "/posts/" + postId)];
                                 case 1:
                                     response = _a.sent();
@@ -108,7 +111,7 @@ var connect = function (host) { return __awaiter(_this, void 0, void 0, function
                             switch (_a.label) {
                                 case 0:
                                     queryString = QueryString.stringify(options);
-                                    return [4 /*yield*/, axios_1.default.get(API_URL + "'/posts/'" + queryString)];
+                                    return [4 /*yield*/, axios_1.default.get(API_URL + "/posts" + queryString)];
                                 case 1:
                                     response = _a.sent();
                                     return [2 /*return*/, response.data];
@@ -144,9 +147,10 @@ var connect = function (host) { return __awaiter(_this, void 0, void 0, function
             case 0: return [4 /*yield*/, connect('http://localhost:8080/wordpress')];
             case 1:
                 wpaApi = _a.sent();
-                return [4 /*yield*/, wpaApi.getPost(1)];
+                return [4 /*yield*/, wpaApi.getPosts({})];
             case 2:
                 post = _a.sent();
+                console.log(post);
                 process.exit();
                 return [2 /*return*/];
         }

@@ -1,22 +1,27 @@
 import axios from 'axios';
 import { red, underline } from 'chalk';
 import * as QueryString from 'querystring';
+import { ConnectHook } from './interfaces/IConnectHook';
 import { DeletePost, ListPosts, Post, RetrievePost } from './Posts';
 
+/**
+ * Path to REST API endpoint
+ */
 const REST_API_PATH = '/wp-json/wp/v2';
 
 /**
  * Connect to wordpress api
  * @param host - url to wordpress
+ * @param hooks - hooks for modify requests/responses, useful for custom authentication
  * @throws {BadHost}
  */
-const connect = async (host: string) => {
+const connect = async (host: string, hooks?: ConnectHook) => {
     const API_URL = host + REST_API_PATH;
 
     try {
         await axios.get(API_URL);
     } catch (e) {
-        const msg = red('BadHost: no response from rest api endpoint ' + underline(API_URL));
+        const msg = red('BadHost: no response from REST API endpoint ' + underline(API_URL));
         throw new Error(msg);
     }
 
@@ -36,7 +41,7 @@ const connect = async (host: string) => {
          * @returns {Post} post with postId
          */
         getPost: async (postId: number): Promise<Post> => {
-            const url = `http://${API_URL}/posts/${postId}`;
+            const url = `${API_URL}/posts/${postId}`;
             const response = await axios.get(`${API_URL}/posts/${postId}`);
             return response.data as Post;
         },
@@ -46,9 +51,9 @@ const connect = async (host: string) => {
          * @param options - options to retrieve a posts
          * @returns {Post[]} array of Posts
          */
-        getPosts: async (options: RetrievePost): Promise<Post[]> => {
+        getPosts: async (options: ListPosts): Promise<Post[]> => {
             const queryString = QueryString.stringify(options);
-            const response = await axios.get(`${API_URL}'/posts/'${queryString}`);
+            const response = await axios.get(`${API_URL}/posts${queryString}`);
             return response.data as Post[];
         },
 
@@ -66,6 +71,7 @@ const connect = async (host: string) => {
 
 (async () => {
     const wpaApi = await connect('http://localhost:8080/wordpress');
-    const post = await wpaApi.getPost(1);
+    const post = await wpaApi.getPosts({});
+    console.log(post);
     process.exit();
 })();
