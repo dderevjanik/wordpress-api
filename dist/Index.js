@@ -37,6 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = require("axios");
+var authenicate = require("wordpress-jwt-auth");
 var chalk_1 = require("chalk");
 var QueryString = require("querystring");
 var REST_API_PATH = '/wp-json/wp/v2';
@@ -108,7 +109,7 @@ var connect = function (host) { return __awaiter(_this, void 0, void 0, function
                             switch (_a.label) {
                                 case 0:
                                     queryString = QueryString.stringify(options);
-                                    return [4 /*yield*/, axios_1.default.get(API_URL + "'/posts/'" + queryString)];
+                                    return [4 /*yield*/, axios_1.default.get(API_URL + "'/posts?'" + queryString)];
                                 case 1:
                                     response = _a.sent();
                                     return [2 /*return*/, response.data];
@@ -126,27 +127,69 @@ var connect = function (host) { return __awaiter(_this, void 0, void 0, function
                             switch (_a.label) {
                                 case 0:
                                     queryString = QueryString.stringify(options);
-                                    return [4 /*yield*/, axios_1.default.put(API_URL + "/posts/" + queryString)];
+                                    return [4 /*yield*/, axios_1.default.put(API_URL + "/posts?" + queryString)];
                                 case 1:
                                     response = _a.sent();
                                     return [2 /*return*/];
                             }
                         });
                     }); },
+                    /**
+                     * Create new user
+                     * @param options - options to create a user
+                     */
+                    registerUser: function (options) { return __awaiter(_this, void 0, void 0, function () {
+                        var conn, token, authHeader, val, queryString, response;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, authenicate.connect('http://localhost:8080/wordpress')];
+                                case 1:
+                                    conn = _a.sent();
+                                    console.log('http://localhost:8080/wordpress');
+                                    return [4 /*yield*/, conn.generateToken('root', 'rootS1237984aaa4d')];
+                                case 2:
+                                    token = _a.sent();
+                                    authHeader = { headers: { Authorization: "Bearer " + token.token } };
+                                    return [4 /*yield*/, conn.validateToken(token.token)];
+                                case 3:
+                                    val = _a.sent();
+                                    queryString = QueryString.stringify(options);
+                                    console.log(API_URL + "/users?" + queryString);
+                                    return [4 /*yield*/, axios_1.default.post(API_URL + "/users?" + queryString, {}, authHeader)];
+                                case 4:
+                                    response = _a.sent();
+                                    return [2 /*return*/, response];
+                            }
+                        });
+                    }); }
                 }];
         }
     });
 }); };
 (function () { return __awaiter(_this, void 0, void 0, function () {
-    var wpaApi, post;
+    var wpaApi, newUser, e_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0: return [4 /*yield*/, connect('http://localhost:8080/wordpress')];
             case 1:
                 wpaApi = _a.sent();
-                return [4 /*yield*/, wpaApi.getPost(1)];
+                _a.label = 2;
             case 2:
-                post = _a.sent();
+                _a.trys.push([2, 4, , 5]);
+                return [4 /*yield*/, wpaApi.registerUser({
+                        email: 'newEmail3@gmail.com',
+                        password: 'pass',
+                        username: 'user3'
+                    })];
+            case 3:
+                newUser = _a.sent();
+                return [3 /*break*/, 5];
+            case 4:
+                e_2 = _a.sent();
+                console.log(e_2);
+                return [3 /*break*/, 5];
+            case 5:
+                console.log(newUser);
                 process.exit();
                 return [2 /*return*/];
         }
