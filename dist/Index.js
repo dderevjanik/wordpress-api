@@ -99,6 +99,7 @@ var connect = function (host, hooks) {
                          */
                         posts: Posts_1.Posts(API_URL, makeRequest),
                         /**
+                
                          * define all methods with wp pages
                          */
                         pages: Pages_1.Pages(API_URL),

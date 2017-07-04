@@ -36,13 +36,13 @@ const connect = async (host: string, hooks: ConnectHook = {}) => {
     }
 
     return {
-
         /**
          * define all methods with wp posts
          */
         posts: Posts(API_URL, makeRequest),
 
         /**
+
          * define all methods with wp pages
          */
         pages: Pages(API_URL),
@@ -65,5 +65,6 @@ const connect = async (host: string, hooks: ConnectHook = {}) => {
     });
     // create post
     console.log('Authenticated');
+
     process.exit();
 })();
