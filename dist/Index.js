@@ -1,4 +1,12 @@
 "use strict";
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -38,10 +46,10 @@ var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = require("axios");
 var chalk_1 = require("chalk");
-var QueryString = require("querystring");
-/**
- * Path to REST API endpoint
- */
+var wordpress_jwt_auth_1 = require("wordpress-jwt-auth"); // DEV
+var Pages_1 = require("./Pages");
+var Posts_1 = require("./Posts");
+var Users_1 = require("./Users");
 var REST_API_PATH = '/wp-json/wp/v2';
 /**
  * Connect to wordpress api
@@ -61,10 +69,7 @@ var connect = function (host, hooks) {
                     beforeRequest = hooks.beforeRequest, afterResponse = hooks.afterResponse;
                     hookedRequest = beforeRequest
                         ? function (requestConfig) { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
-                            switch (_a.label) {
-                                case 0: return [4 /*yield*/, axios_1.default(beforeRequest(requestConfig))];
-                                case 1: return [2 /*return*/, _a.sent()];
-                            }
+                            return [2 /*return*/, axios_1.default(beforeRequest(requestConfig))];
                         }); }); }
                         : axios_1.default;
                     makeRequest = afterResponse
@@ -80,7 +85,7 @@ var connect = function (host, hooks) {
                     _a.label = 1;
                 case 1:
                     _a.trys.push([1, 3, , 4]);
-                    return [4 /*yield*/, axios_1.default.get(API_URL)];
+                    return [4 /*yield*/, makeRequest({ method: 'GET', url: API_URL })];
                 case 2:
                     _a.sent();
                     return [3 /*break*/, 4];
@@ -89,87 +94,31 @@ var connect = function (host, hooks) {
                     msg = chalk_1.red('BadHost: no response from REST API endpoint ' + chalk_1.underline(API_URL));
                     throw new Error(msg);
                 case 4: return [2 /*return*/, {
-                        /**
-                         * Remove a post
-                         * @param postId - post id to remove
-                         * @param options - remove options
-                         */
-                        deletePost: function (postId, options) { return __awaiter(_this, void 0, void 0, function () {
-                            return __generator(this, function (_a) {
-                                switch (_a.label) {
-                                    case 0: return [4 /*yield*/, axios_1.default.delete(API_URL)];
-                                    case 1:
-                                        _a.sent();
-                                        return [2 /*return*/];
-                                }
-                            });
-                        }); },
-                        /**
-                         * Get specific post with id
-                         * @param postId - post id
-                         * @returns {Post} post with postId
-                         */
-                        getPost: function (postId) { return __awaiter(_this, void 0, void 0, function () {
-                            var url, response;
-                            return __generator(this, function (_a) {
-                                switch (_a.label) {
-                                    case 0:
-                                        url = API_URL + "/posts/" + postId;
-                                        return [4 /*yield*/, axios_1.default.get(API_URL + "/posts/" + postId)];
-                                    case 1:
-                                        response = _a.sent();
-                                        return [2 /*return*/, response.data];
-                                }
-                            });
-                        }); },
-                        /**
-                         * Get all posts
-                         * @param options - options to retrieve a posts
-                         * @returns {Post[]} array of Posts
-                         */
-                        getPosts: function (options) { return __awaiter(_this, void 0, void 0, function () {
-                            var queryString, response;
-                            return __generator(this, function (_a) {
-                                switch (_a.label) {
-                                    case 0:
-                                        queryString = QueryString.stringify(options);
-                                        return [4 /*yield*/, axios_1.default.get(API_URL + "'/posts?'" + queryString)];
-                                    case 1:
-                                        response = _a.sent();
-                                        return [2 /*return*/, response.data];
-                                }
-                            });
-                        }); },
-                        /**
-                         * Update a specific post
-                         * @param postId - which post to update
-                         * @param options - options to update a post
-                         */
-                        updatePost: function (postId, options) { return __awaiter(_this, void 0, void 0, function () {
-                            var queryString, response;
-                            return __generator(this, function (_a) {
-                                switch (_a.label) {
-                                    case 0:
-                                        queryString = QueryString.stringify(options);
-                                        return [4 /*yield*/, axios_1.default.put(API_URL + "/posts?" + queryString)];
-                                    case 1:
-                                        response = _a.sent();
-                                        return [2 /*return*/];
-                                }
-                            });
-                        }); },
+                        pages: Pages_1.Pages(API_URL),
+                        posts: Posts_1.Posts(API_URL, makeRequest),
+                        users: Users_1.Users(API_URL),
                     }];
             }
         });
     });
 };
 (function () { return __awaiter(_this, void 0, void 0, function () {
-    var wpaApi;
+    var URL, token, authorization, wpaApi;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, connect('http://localhost:8080/wordpress')];
+            case 0:
+                URL = 'http://localhost:8080/wordpress';
+                return [4 /*yield*/, wordpress_jwt_auth_1.generateToken(URL, 'daniel', 'daniel')];
             case 1:
+                token = (_a.sent()).token;
+                authorization = "Bearer " + token;
+                return [4 /*yield*/, connect(URL, {
+                        beforeRequest: function (r) { return (__assign({}, r, { headers: __assign({}, r.headers, { Authorization: authorization }) })); },
+                    })];
+            case 2:
                 wpaApi = _a.sent();
+                // create post
+                console.log('Authenticated');
                 process.exit();
                 return [2 /*return*/];
         }
