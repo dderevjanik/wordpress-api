@@ -314,12 +314,12 @@ export interface UpdateUser {
     /**
      * Password for the user (never included).
      */
-    password: string
+    password?: string
 
     /**
      * Meta fields.
      */
-    meta: {}
+    meta?: {}
 }
 
 export interface DeleteUser {

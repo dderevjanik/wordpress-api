@@ -65,15 +65,24 @@ var connect = function (host) { return __awaiter(_this, void 0, void 0, function
                 msg = chalk_1.red('BadHost: no response from rest api endpoint ' + chalk_1.underline(API_URL));
                 throw new Error(msg);
             case 4: return [2 /*return*/, {
+                    /**
+                     * define all methods with wp posts
+                     */
                     posts: Posts_1.Posts(API_URL),
+                    /**
+                     * define all methods with wp pages
+                     */
                     pages: Pages_1.Pages(API_URL),
+                    /**
+                     * define all methods with wp users
+                     */
                     users: Users_1.Users(API_URL),
                 }];
         }
     });
 }); };
 (function () { return __awaiter(_this, void 0, void 0, function () {
-    var wpaApi, newUser, e_2;
+    var wpaApi, updatedUser, e_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0: return [4 /*yield*/, connect('http://localhost:8080/wordpress')];
@@ -82,14 +91,10 @@ var connect = function (host) { return __awaiter(_this, void 0, void 0, function
                 _a.label = 2;
             case 2:
                 _a.trys.push([2, 4, , 5]);
-                return [4 /*yield*/, wpaApi.users.createUser({
-                        email: 'newEmail4@gmail.com',
-                        password: 'pass',
-                        username: 'user4'
-                    })];
+                return [4 /*yield*/, wpaApi.users.updateUser(2, { email: 'UpdatedEmail' })];
             case 3:
-                newUser = _a.sent();
-                console.log(newUser);
+                updatedUser = _a.sent();
+                console.log(updatedUser);
                 return [3 /*break*/, 5];
             case 4:
                 e_2 = _a.sent();

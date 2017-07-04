@@ -25,10 +25,19 @@ const connect = async (host: string) => {
     }
 
     return {
+        /**
+         * define all methods with wp posts
+         */
         posts: Posts(API_URL),
 
+        /**
+         * define all methods with wp pages
+         */
         pages: Pages(API_URL),
 
+        /**
+         * define all methods with wp users
+         */
         users: Users(API_URL),
     };
 };
@@ -38,14 +47,12 @@ const connect = async (host: string) => {
 
     // TODO: authenicate before create new user
     try {
-        // const somePOst = await wpaApi.posts.getPost(1);
-
-        const newUser = await wpaApi.users.createUser({
-            email: 'newEmail4@gmail.com',
-            password: 'pass',
-            username: 'user4'
-        })
-        console.log(newUser);
+        // const user = await wpaApi.users.getUser(2);
+        // console.log(user)
+        // const users = await wpaApi.users.getUsers({});
+        // console.log(users);
+        const updatedUser = await wpaApi.users.updateUser(2, { email: 'UpdatedEmail' });
+        console.log(updatedUser);
     }
     catch (e) {
         console.log(e);
