@@ -36,8 +36,20 @@ const connect = async (host: string, hooks: ConnectHook = {}) => {
     }
 
     return {
-        pages: Pages(API_URL),
+
+        /**
+         * define all methods with wp posts
+         */
         posts: Posts(API_URL, makeRequest),
+
+        /**
+         * define all methods with wp pages
+         */
+        pages: Pages(API_URL),
+
+        /**
+         * define all methods with wp users
+         */
         users: Users(API_URL),
     };
 };

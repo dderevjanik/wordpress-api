@@ -42,6 +42,52 @@ var authenicate = require("wordpress-jwt-auth");
 exports.Users = function (API_URL) {
     return {
         /**
+         * get specific user
+         * @param id - id of a user to get
+         */
+        getUser: function (userId) { return __awaiter(_this, void 0, void 0, function () {
+            var conn, token, authHeader, response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, authenicate.connect('http://localhost:8080/wordpress')];
+                    case 1:
+                        conn = _a.sent();
+                        return [4 /*yield*/, conn.generateToken('root', 'rootS1237984aaa4d')];
+                    case 2:
+                        token = _a.sent();
+                        authHeader = { headers: { Authorization: "Bearer " + token.token } };
+                        return [4 /*yield*/, axios_1.default.get(API_URL + "/users/" + userId, authHeader)];
+                    case 3:
+                        response = _a.sent();
+                        return [2 /*return*/, response.data];
+                }
+            });
+        }); },
+        /**
+         * Get all posts
+         * @param options - options to retrieve a posts
+         * @returns {Post[]} array of Posts
+         */
+        getUsers: function (options) { return __awaiter(_this, void 0, void 0, function () {
+            var conn, token, authHeader, queryString, response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, authenicate.connect('http://localhost:8080/wordpress')];
+                    case 1:
+                        conn = _a.sent();
+                        return [4 /*yield*/, conn.generateToken('root', 'rootS1237984aaa4d')];
+                    case 2:
+                        token = _a.sent();
+                        authHeader = { headers: { Authorization: "Bearer " + token.token } };
+                        queryString = QueryString.stringify(options);
+                        return [4 /*yield*/, axios_1.default.get(API_URL + "/users?" + queryString, authHeader)];
+                    case 3:
+                        response = _a.sent();
+                        return [2 /*return*/, response.data];
+                }
+            });
+        }); },
+        /**
          * Create new user
          * @param options - options to create a user
          */
@@ -52,20 +98,39 @@ exports.Users = function (API_URL) {
                     case 0: return [4 /*yield*/, authenicate.connect('http://localhost:8080/wordpress')];
                     case 1:
                         conn = _a.sent();
-                        console.log('http://localhost:8080/wordpress');
                         return [4 /*yield*/, conn.generateToken('root', 'rootS1237984aaa4d')];
                     case 2:
                         token = _a.sent();
                         authHeader = { headers: { Authorization: "Bearer " + token.token } };
                         queryString = QueryString.stringify(options);
-                        console.log(API_URL + "/users?" + queryString);
                         return [4 /*yield*/, axios_1.default.post(API_URL + "/users?" + queryString, {}, authHeader)];
                     case 3:
                         response = _a.sent();
                         return [2 /*return*/, response.data];
                 }
             });
-        }); }
+        }); },
+        updateUser: function (userId, options) { return __awaiter(_this, void 0, void 0, function () {
+            var conn, token, authHeader, queryString, url, response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, authenicate.connect('http://localhost:8080/wordpress')];
+                    case 1:
+                        conn = _a.sent();
+                        return [4 /*yield*/, conn.generateToken('root', 'rootS1237984aaa4d')];
+                    case 2:
+                        token = _a.sent();
+                        authHeader = { headers: { Authorization: "Bearer " + token.token } };
+                        queryString = QueryString.stringify(options);
+                        url = API_URL + "/users/" + userId + "?" + queryString;
+                        console.log(url);
+                        return [4 /*yield*/, axios_1.default.post(API_URL + "/users/" + userId + "/?" + queryString, {}, authHeader)];
+                    case 3:
+                        response = _a.sent();
+                        return [2 /*return*/, response.data];
+                }
+            });
+        }); },
     };
 };
 //# sourceMappingURL=Users.js.map

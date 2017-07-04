@@ -94,8 +94,17 @@ var connect = function (host, hooks) {
                     msg = chalk_1.red('BadHost: no response from REST API endpoint ' + chalk_1.underline(API_URL));
                     throw new Error(msg);
                 case 4: return [2 /*return*/, {
-                        pages: Pages_1.Pages(API_URL),
+                        /**
+                         * define all methods with wp posts
+                         */
                         posts: Posts_1.Posts(API_URL, makeRequest),
+                        /**
+                         * define all methods with wp pages
+                         */
+                        pages: Pages_1.Pages(API_URL),
+                        /**
+                         * define all methods with wp users
+                         */
                         users: Users_1.Users(API_URL),
                     }];
             }
