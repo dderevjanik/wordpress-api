@@ -1,6 +1,6 @@
-import { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { DeletePost, Post, RetrievePost } from './interface/Posts';
-export declare const Posts: (API_URL: string, makeRequest: (options: AxiosRequestConfig) => Promise<AxiosResponse>) => {
+import { RequestHandler } from './interface/RequestHandler';
+export declare const Posts: (API_URL: string, makeRequest: RequestHandler) => {
     createPost: (post: Post) => Promise<Post>;
     deletePost: (postId: number, options: DeletePost) => Promise<void>;
     getPost: (postId: number) => Promise<Post>;

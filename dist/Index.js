@@ -52,6 +52,13 @@ var Pages_1 = require("./Pages");
 var PostRevisions_1 = require("./PostRevisions");
 var Posts_1 = require("./Posts");
 var Users_1 = require("./Users");
+var Tags_1 = require("./Tags");
+var Comments_1 = require("./Comments");
+var Taxaomies_1 = require("./Taxaomies");
+var Media_1 = require("./Media");
+var PostTypes_1 = require("./PostTypes");
+var PostStatuses_1 = require("./PostStatuses");
+var Settings_1 = require("./Settings");
 var REST_API_PATH = '/wp-json/wp/v2';
 /**
  * Connect to wordpress api
@@ -97,32 +104,73 @@ var connect = function (host, hooks) {
                     throw new Error(msg);
                 case 4: return [2 /*return*/, {
                         /**
-                         * define all methods with wp posts
-                         */
-                        posts: Posts_1.Posts(API_URL, makeRequest),
-                        /**
-                         * define all methods with wp pages
-                         */
-                        pages: Pages_1.Pages(API_URL, makeRequest),
-                        /**
-                         * define all methods with wp users
-                         */
-                        users: Users_1.Users(API_URL, makeRequest),
-                        /**
                          * define all methods with categories
+                         * http://demo.wp-api.org/wp-json/wp/v2/categories
                          */
                         categories: Categories_1.Categories(API_URL, makeRequest),
                         /**
+                         * define all methods with wp pages
+                         * http://demo.wp-api.org/wp-json/wp/v2/pages
+                         */
+                        pages: Pages_1.Pages(API_URL, makeRequest),
+                        /**
                          * define all methods with post revisions
+                         * http://demo.wp-api.org/wp-json/wp/v2/posts/<parent_id>/revisions
                          */
                         postRevisions: PostRevisions_1.PostRevisions(API_URL, makeRequest),
+                        /**
+                         * define all methods with wp posts
+                         * http://demo.wp-api.org/wp-json/wp/v2/posts
+                         */
+                        posts: Posts_1.Posts(API_URL, makeRequest),
+                        /**
+                         * define all methods with wp users
+                         * http://demo.wp-api.org/wp-json/wp/v2/users
+                         */
+                        users: Users_1.Users(API_URL, makeRequest),
+                        /**
+                         * define all methods with wp tags
+                         * http://demo.wp-api.org/wp-json/wp/v2/tags
+                         */
+                        tags: Tags_1.Tags(API_URL, makeRequest),
+                        /**
+                         * define all methods with wp comments
+                         * http://demo.wp-api.org/wp-json/wp/v2/comments
+                         */
+                        comments: Comments_1.Comments(API_URL, makeRequest),
+                        /**
+                         * define all methods with wp taxaomies
+                         * http://demo.wp-api.org/wp-json/wp/v2/taxaomies
+                         */
+                        taxanomies: Taxaomies_1.Taxanomies(API_URL, makeRequest),
+                        /**
+                         * define all methods with wp media
+                         * http://demo.wp-api.org/wp-json/wp/v2/media
+                         */
+                        media: Media_1.Media(API_URL, makeRequest),
+                        /**
+                         * define all methods with wp post type
+                         * http://demo.wp-api.org/wp-json/wp/v2/media
+                         */
+                        postTypes: PostTypes_1.PostTypes(API_URL, makeRequest),
+                        /**
+                         * define all methods with wp post statuses
+                         * http://demo.wp-api.org/wp-json/wp/v2/statuses
+                         */
+                        postStatuses: PostStatuses_1.PostStatuses(API_URL, makeRequest),
+                        /**
+                         * define all methods with wp settings
+                         * specific settings for authenticated user
+                         * http://demo.wp-api.org/wp-json/wp/v2/settings
+                         */
+                        settings: Settings_1.Settings(API_URL, makeRequest),
                     }];
             }
         });
     });
 };
 (function () { return __awaiter(_this, void 0, void 0, function () {
-    var URL, token, authorization, wpaApi, user, updatedUser, newUser, deletedUser, page, pages, newPage, newPageId, updatedPage, deleted, category, categories, newCategory, updatedCategory, deletedCategory, e_2;
+    var URL, token, authorization, wpaApi;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -137,72 +185,118 @@ var connect = function (host, hooks) {
             case 2:
                 wpaApi = _a.sent();
                 console.log('Authenticated');
-                _a.label = 3;
-            case 3:
-                _a.trys.push([3, 18, , 19]);
-                return [4 /*yield*/, wpaApi.users.getUser(1)];
-            case 4:
-                user = _a.sent();
-                console.log(user);
-                return [4 /*yield*/, wpaApi.users.updateUser(2, { email: 'juraj@gmail.com', name: 'edit', first_name: 'updatedFirstName' })];
-            case 5:
-                updatedUser = _a.sent();
-                console.log(updatedUser);
-                return [4 /*yield*/, wpaApi.users.createUser({ email: 'newEmail@gmail.com', password: 'root', username: 'userName' })];
-            case 6:
-                newUser = _a.sent();
-                console.log(newUser);
-                return [4 /*yield*/, wpaApi.users.deleteUser(newUser.id, { force: true, reassign: {} })];
-            case 7:
-                deletedUser = _a.sent();
-                console.log(deletedUser);
-                return [4 /*yield*/, wpaApi.pages.getPage(2)];
-            case 8:
-                page = _a.sent();
-                console.log(page);
-                return [4 /*yield*/, wpaApi.pages.getPages({ author: 1 })];
-            case 9:
-                pages = _a.sent();
-                console.log(pages);
-                return [4 /*yield*/, wpaApi.pages.createPage({})];
-            case 10:
-                newPage = _a.sent();
-                newPageId = newPage.id;
-                return [4 /*yield*/, wpaApi.pages.updatePage(newPageId, { content: 'updatedContent' })];
-            case 11:
-                updatedPage = _a.sent();
-                console.log(updatedPage.content);
-                return [4 /*yield*/, wpaApi.pages.deletePage(newPageId)];
-            case 12:
-                deleted = _a.sent();
-                console.log(deleted);
-                return [4 /*yield*/, wpaApi.categories.getCategory(1)];
-            case 13:
-                category = _a.sent();
-                console.log(category);
-                return [4 /*yield*/, wpaApi.categories.getCategories({})];
-            case 14:
-                categories = _a.sent();
-                console.log(categories);
-                return [4 /*yield*/, wpaApi.categories.createCategory({ name: 'newCategory' })];
-            case 15:
-                newCategory = _a.sent();
-                console.log(newCategory.id);
-                return [4 /*yield*/, wpaApi.categories.updateCategory(newCategory.id, { name: 'updatedCategory' })];
-            case 16:
-                updatedCategory = _a.sent();
-                console.log(updatedCategory);
-                return [4 /*yield*/, wpaApi.categories.deleteCategory(updatedCategory.id, { force: true })];
-            case 17:
-                deletedCategory = _a.sent();
-                console.log(deletedCategory);
-                return [3 /*break*/, 19];
-            case 18:
-                e_2 = _a.sent();
-                console.log('oops, error');
-                console.log(e_2);
-                return [3 /*break*/, 19];
-            case 19:
+                /**
+                 * tests with console logs
+                 */
+                try {
+                    // /**
+                    //  * test user
+                    //  */
+                    // const user = await wpaApi.users.getUser(1);
+                    // console.log(user);
+                    // const updatedUser = await wpaApi.users.updateUser(2, { email: 'juraj@gmail.com', name: 'edit', first_name: 'updatedFirstName' });
+                    // console.log(updatedUser);
+                    // const newUser = await wpaApi.users.createUser({ email: 'newEmail@gmail.com', password: 'root', username: 'userName' });
+                    // console.log(newUser);
+                    // const deletedUser = await wpaApi.users.deleteUser(newUser.id, { force: true, reassign: {} });
+                    // console.log(deletedUser);
+                    // /**
+                    //  * test page
+                    //  */
+                    // const page = await wpaApi.pages.getPage(2);
+                    // console.log(page);
+                    // const pages = await wpaApi.pages.getPages({ author: 1 });
+                    // console.log(pages);
+                    // const newPage = await wpaApi.pages.createPage({});
+                    // const newPageId = newPage.id;
+                    // const updatedPage = await wpaApi.pages.updatePage(newPageId, { content: 'updatedContent' });
+                    // console.log(updatedPage.content);
+                    // const deleted = await wpaApi.pages.deletePage(newPageId);
+                    // console.log(deleted);
+                    // /**
+                    //  * test category
+                    //  */
+                    // const category = await wpaApi.categories.getCategory(1);
+                    // console.log(category);
+                    // const categories = await wpaApi.categories.getCategories({});
+                    // console.log(categories);
+                    // const newCategory = await wpaApi.categories.createCategory({ name: 'newCategory' });
+                    // console.log(newCategory.id);
+                    // const updatedCategory = await wpaApi.categories.updateCategory(newCategory.id, { name: 'updatedCategory' });
+                    // console.log(updatedCategory);
+                    // const deletedCategory = await wpaApi.categories.deleteCategory(updatedCategory.id, { force: true });
+                    // console.log(deletedCategory);
+                    // /**
+                    //  * test tags
+                    //  */
+                    // const createdTag1 = await wpaApi.tags.createTag({ name: 'tag1' });
+                    // const createdTag2 = await wpaApi.tags.createTag({ name: 'tag2' });
+                    // const tag = await wpaApi.tags.getTag(createdTag1.id);
+                    // console.log(tag);
+                    // const tags = await wpaApi.tags.getTags();
+                    // console.log(tags);
+                    // const updatedTag = await wpaApi.tags.updateTag(createdTag2.id, { name: 'updatedName' });
+                    // console.log(updatedTag);
+                    // const deletedTag1 = await wpaApi.tags.deleteTag(createdTag1.id);
+                    // console.log(deletedTag1);
+                    // const deletedTag2 = await wpaApi.tags.deleteTag(createdTag2.id);
+                    // console.log(deletedTag2);
+                    // // should be empty
+                    // console.log(await wpaApi.tags.getTags());
+                    // /**
+                    //  * test comments
+                    //  */
+                    // const comment = await wpaApi.comments.getComment(1);
+                    // console.log(comment);
+                    // const createdComment = await wpaApi.comments.createComment({ content: 'comment content', post: 1 });
+                    // console.log(createdComment);
+                    // const updatedComment = await wpaApi.comments.updateComment(createdComment.id, { content: 'updated content' });
+                    // console.log(updatedComment);
+                    // const deletedComment = await wpaApi.comments.deleteComment(updatedComment.id);
+                    // console.log(deletedComment);
+                    // /**
+                    //  * test taxaomy
+                    //  */
+                    // const taxanomies = await wpaApi.taxanomies.getTaxanomies();
+                    // console.log(taxanomies);
+                    // const taxanomy = await wpaApi.taxanomies.getTaxanomy(Object.keys(taxanomies)[0]);
+                    // console.log(taxanomy);
+                    // /**
+                    //  * test media
+                    //  */
+                    // const newMedia = await wpaApi.media.createMedia({});
+                    // console.log(newMedia);
+                    // const getMedia = await wpaApi.media.getMedia(newMedia.id);
+                    // console.log(getMedia);
+                    // const updatedMedia = await wpaApi.media.updateMedia(getMedia.id, { description: 'updated description' });
+                    // console.log(updatedMedia);
+                    // const deletedMedia = await wpaApi.media.deleteMedia(updatedMedia.id);
+                    // console.log(deletedMedia);
+                    // /**
+                    //  * test post types
+                    //  */
+                    // const postTypes = await wpaApi.postTypes.getTypes();
+                    // console.log(postTypes);
+                    // const postType = await wpaApi.postTypes.getType(Object.keys(postTypes)[0]);
+                    // console.log(postType);
+                    // /**
+                    // * test post statuses
+                    // */
+                    // const postStatuses = await wpaApi.postStatuses.getStatuses();
+                    // console.log(postStatuses);
+                    // const postStatus = await wpaApi.postStatuses.getStatus(Object.keys(postStatuses)[0]);
+                    // console.log(postStatus);
+                    // /**
+                    //  * test settings
+                    //  */
+                    // const settings = await wpaApi.settings.getAllSettings();
+                    // console.log(settings);
+                    // const updatedSettings = await wpaApi.settings.updateSettings({});
+                }
+                catch (e) {
+                    console.log('oops, error');
+                    console.log(e);
+                }
                 process.exit();
                 return [2 /*return*/];
         }
