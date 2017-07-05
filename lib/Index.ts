@@ -9,6 +9,7 @@ import { Posts } from './Posts';
 import { Users } from './Users';
 
 const REST_API_PATH = '/wp-json/wp/v2';
+
 /**
  * Connect to wordpress api
  * @param host - url to wordpress
@@ -51,6 +52,7 @@ const connect = async (host: string, hooks: ConnectHook = {}) => {
             ...r, headers: { ...r.headers, Authorization: authorization },
         }),
     });
+
     // create post
     console.log('Authenticated');
     process.exit();
