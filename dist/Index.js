@@ -50,6 +50,8 @@ var wordpress_jwt_auth_1 = require("wordpress-jwt-auth"); // DEV
 var Pages_1 = require("./Pages");
 var Posts_1 = require("./Posts");
 var Users_1 = require("./Users");
+var Categories_1 = require("./Categories");
+var PostRevisions_1 = require("./PostRevisions");
 var REST_API_PATH = '/wp-json/wp/v2';
 /**
  * Connect to wordpress api
@@ -94,21 +96,39 @@ var connect = function (host, hooks) {
                     msg = chalk_1.red('BadHost: no response from REST API endpoint ' + chalk_1.underline(API_URL));
                     throw new Error(msg);
                 case 4: return [2 /*return*/, {
-                        pages: Pages_1.Pages(API_URL),
+                        /**
+                         * define all methods with wp posts
+                         */
                         posts: Posts_1.Posts(API_URL, makeRequest),
-                        users: Users_1.Users(API_URL),
+                        /**
+                
+                         * define all methods with wp pages
+                         */
+                        pages: Pages_1.Pages(API_URL, makeRequest),
+                        /**
+                         * define all methods with wp users
+                         */
+                        users: Users_1.Users(API_URL, makeRequest),
+                        /**
+                         * define all methods with categories
+                         */
+                        categories: Categories_1.Categories(API_URL, makeRequest),
+                        /**
+                         * define all methods with post revisions
+                         */
+                        postRevisions: PostRevisions_1.PostRevisions(API_URL, makeRequest),
                     }];
             }
         });
     });
 };
 (function () { return __awaiter(_this, void 0, void 0, function () {
-    var URL, token, authorization, wpaApi;
+    var URL, token, authorization, wpaApi, user, updatedUser, newUser, deletedUser, page, pages, newPage, newPageId, updatedPage, deleted, category, categories, newCategory, updatedCategory, deletedCategory, e_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 URL = 'http://localhost:8080/wordpress';
-                return [4 /*yield*/, wordpress_jwt_auth_1.generateToken(URL, 'daniel', 'daniel')];
+                return [4 /*yield*/, wordpress_jwt_auth_1.generateToken(URL, 'root', 'root')];
             case 1:
                 token = (_a.sent()).token;
                 authorization = "Bearer " + token;
@@ -117,8 +137,73 @@ var connect = function (host, hooks) {
                     })];
             case 2:
                 wpaApi = _a.sent();
-                // create post
                 console.log('Authenticated');
+                _a.label = 3;
+            case 3:
+                _a.trys.push([3, 18, , 19]);
+                return [4 /*yield*/, wpaApi.users.getUser(1)];
+            case 4:
+                user = _a.sent();
+                console.log(user);
+                return [4 /*yield*/, wpaApi.users.updateUser(2, { email: 'juraj@gmail.com', name: 'edit', first_name: 'updatedFirstName' })];
+            case 5:
+                updatedUser = _a.sent();
+                console.log(updatedUser);
+                return [4 /*yield*/, wpaApi.users.createUser({ email: 'newEmail@gmail.com', password: 'root', username: 'userName' })];
+            case 6:
+                newUser = _a.sent();
+                console.log(newUser);
+                return [4 /*yield*/, wpaApi.users.deleteUser(newUser.id, { force: true, reassign: {} })];
+            case 7:
+                deletedUser = _a.sent();
+                console.log(deletedUser);
+                return [4 /*yield*/, wpaApi.pages.getPage(2)];
+            case 8:
+                page = _a.sent();
+                console.log(page);
+                return [4 /*yield*/, wpaApi.pages.getPages({ author: 1 })];
+            case 9:
+                pages = _a.sent();
+                console.log(pages);
+                return [4 /*yield*/, wpaApi.pages.createPage({})];
+            case 10:
+                newPage = _a.sent();
+                newPageId = newPage.id;
+                return [4 /*yield*/, wpaApi.pages.updatePage(newPageId, { content: 'updatedContent' })];
+            case 11:
+                updatedPage = _a.sent();
+                console.log(updatedPage.content);
+                return [4 /*yield*/, wpaApi.pages.deletePage(newPageId)];
+            case 12:
+                deleted = _a.sent();
+                console.log(deleted);
+                return [4 /*yield*/, wpaApi.categories.getCategory(1)];
+            case 13:
+                category = _a.sent();
+                console.log(category);
+                return [4 /*yield*/, wpaApi.categories.getCategories({})];
+            case 14:
+                categories = _a.sent();
+                console.log(categories);
+                return [4 /*yield*/, wpaApi.categories.createCategory({ name: 'newCategory' })];
+            case 15:
+                newCategory = _a.sent();
+                console.log(newCategory.id);
+                return [4 /*yield*/, wpaApi.categories.updateCategory(newCategory.id, { name: 'updatedCategory' })];
+            case 16:
+                updatedCategory = _a.sent();
+                console.log(updatedCategory);
+                return [4 /*yield*/, wpaApi.categories.deleteCategory(updatedCategory.id, { force: true })];
+            case 17:
+                deletedCategory = _a.sent();
+                console.log(deletedCategory);
+                return [3 /*break*/, 19];
+            case 18:
+                e_2 = _a.sent();
+                console.log('oops, error');
+                console.log(e_2);
+                return [3 /*break*/, 19];
+            case 19:
                 process.exit();
                 return [2 /*return*/];
         }

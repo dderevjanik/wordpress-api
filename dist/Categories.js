@@ -36,19 +36,36 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
-var QueryString = require("querystring");
-exports.Users = function (API_URL, makeRequest) {
-    var objectEndpoint = 'users';
+exports.Categories = function (API_URL, makeRequest) {
+    var objectEndpoint = 'categories';
     return {
         /**
-         * get specific user
-         * @param id - id of a user to get
+         * get specific category
+         * @param id - id of a category to get
          */
-        getUser: function (userId) { return __awaiter(_this, void 0, void 0, function () {
+        getCategory: function (id, options) {
+            if (options === void 0) { options = { context: 'view' }; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var response;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, makeRequest({ method: 'GET', url: API_URL + "/" + objectEndpoint + "/" + id, data: options })];
+                        case 1:
+                            response = _a.sent();
+                            return [2 /*return*/, response.data];
+                    }
+                });
+            });
+        },
+        /**
+         * Get all posts
+         * @param options - options to retrieve a categories
+         */
+        getCategories: function (options) { return __awaiter(_this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, makeRequest({ method: 'GET', url: API_URL + "/" + objectEndpoint + "/" + userId })];
+                    case 0: return [4 /*yield*/, makeRequest({ method: 'GET', url: API_URL + "/" + objectEndpoint, data: options })];
                     case 1:
                         response = _a.sent();
                         return [2 /*return*/, response.data];
@@ -56,29 +73,10 @@ exports.Users = function (API_URL, makeRequest) {
             });
         }); },
         /**
-         * Get all posts
-         * @param options - options to retrieve a posts
-         * @returns {Post[]} array of Posts
+         * Create new category
+         * @param options - options to create a category
          */
-        getUsers: function (options) { return __awaiter(_this, void 0, void 0, function () {
-            var queryString, response;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        queryString = QueryString.stringify(options);
-                        ;
-                        return [4 /*yield*/, makeRequest({ method: 'GET', url: API_URL + "/" + objectEndpoint + "}", data: options })];
-                    case 1:
-                        response = _a.sent();
-                        return [2 /*return*/, response.data];
-                }
-            });
-        }); },
-        /**
-         * Create new user
-         * @param options - options to create a user
-         */
-        createUser: function (options) { return __awaiter(_this, void 0, void 0, function () {
+        createCategory: function (options) { return __awaiter(_this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -90,14 +88,14 @@ exports.Users = function (API_URL, makeRequest) {
             });
         }); },
         /**
-         * Update existing user
-         * @param options - options to update a user
+         * Update existing category
+         * @param options - options to update a category
          */
-        updateUser: function (userId, options) { return __awaiter(_this, void 0, void 0, function () {
+        updateCategory: function (id, options) { return __awaiter(_this, void 0, void 0, function () {
             var response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, makeRequest({ method: 'POST', url: API_URL + "/" + objectEndpoint + "/" + userId, data: options })];
+                    case 0: return [4 /*yield*/, makeRequest({ method: 'POST', url: API_URL + "/" + objectEndpoint + "/" + id, data: options })];
                     case 1:
                         response = _a.sent();
                         return [2 /*return*/, response.data];
@@ -105,17 +103,17 @@ exports.Users = function (API_URL, makeRequest) {
             });
         }); },
         /**
-         * Delete existing user
-         * @param options - options to delete a user
-         * @default { force: true, reassign: true }
+         * Delete existing category
+         * @param options - options to delete a category
+         * @default { force: true }
          */
-        deleteUser: function (userId, options) {
-            if (options === void 0) { options = { force: true, reassign: {} }; }
+        deleteCategory: function (id, options) {
+            if (options === void 0) { options = { force: true }; }
             return __awaiter(_this, void 0, void 0, function () {
                 var response, deleted;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, makeRequest({ method: 'DELETE', url: API_URL + "/" + objectEndpoint + "/" + userId, data: options })];
+                        case 0: return [4 /*yield*/, makeRequest({ method: 'DELETE', url: API_URL + "/" + objectEndpoint + "/" + id, data: options })];
                         case 1:
                             response = _a.sent();
                             deleted = response.data.deleted;
@@ -126,4 +124,4 @@ exports.Users = function (API_URL, makeRequest) {
         },
     };
 };
-//# sourceMappingURL=Users.js.map
+//# sourceMappingURL=Categories.js.map
