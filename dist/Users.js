@@ -41,14 +41,56 @@ exports.Users = function (API_URL, makeRequest) {
     var objectEndpoint = 'users';
     return {
         /**
-         * get specific user
-         * @param id - id of a user to get
+         * Create new user
+         * @param options - options to create a user
          */
-        getUser: function (userId) { return __awaiter(_this, void 0, void 0, function () {
-            var response;
+        createUser: function (options) { return __awaiter(_this, void 0, void 0, function () {
+            var url, response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, makeRequest({ method: 'GET', url: API_URL + "/" + objectEndpoint + "/" + userId })];
+                    case 0:
+                        url = API_URL + "/" + objectEndpoint;
+                        return [4 /*yield*/, makeRequest({ method: 'POST', url: url, data: options })];
+                    case 1:
+                        response = _a.sent();
+                        return [2 /*return*/, response.data];
+                }
+            });
+        }); },
+        /**
+         * Delete existing user
+         * @param userId
+         * @param options - options to delete a user
+         * @default { force: true, reassign: true }
+         */
+        deleteUser: function (userId, options) {
+            if (options === void 0) { options = { force: true, reassign: {} }; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var url, response, deleted;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            url = API_URL + "/" + objectEndpoint + "/" + userId;
+                            return [4 /*yield*/, makeRequest({ method: 'DELETE', url: url, data: options })];
+                        case 1:
+                            response = _a.sent();
+                            deleted = response.data.deleted;
+                            return [2 /*return*/, deleted];
+                    }
+                });
+            });
+        },
+        /**
+         * get specific user
+         * @param userId - id of a user to get
+         */
+        getUser: function (userId) { return __awaiter(_this, void 0, void 0, function () {
+            var url, response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        url = API_URL + "/" + objectEndpoint + "/" + userId;
+                        return [4 /*yield*/, makeRequest({ method: 'GET', url: url })];
                     case 1:
                         response = _a.sent();
                         return [2 /*return*/, response.data];
@@ -61,28 +103,13 @@ exports.Users = function (API_URL, makeRequest) {
          * @returns {Post[]} array of Posts
          */
         getUsers: function (options) { return __awaiter(_this, void 0, void 0, function () {
-            var queryString, response;
+            var url, queryString, response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        url = API_URL + "/" + objectEndpoint + "}";
                         queryString = QueryString.stringify(options);
-                        ;
-                        return [4 /*yield*/, makeRequest({ method: 'GET', url: API_URL + "/" + objectEndpoint + "}", data: options })];
-                    case 1:
-                        response = _a.sent();
-                        return [2 /*return*/, response.data];
-                }
-            });
-        }); },
-        /**
-         * Create new user
-         * @param options - options to create a user
-         */
-        createUser: function (options) { return __awaiter(_this, void 0, void 0, function () {
-            var response;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, makeRequest({ method: 'POST', url: API_URL + "/" + objectEndpoint, data: options })];
+                        return [4 /*yield*/, makeRequest({ method: 'GET', url: url, data: options })];
                     case 1:
                         response = _a.sent();
                         return [2 /*return*/, response.data];
@@ -91,39 +118,22 @@ exports.Users = function (API_URL, makeRequest) {
         }); },
         /**
          * Update existing user
+         * @param userId
          * @param options - options to update a user
          */
         updateUser: function (userId, options) { return __awaiter(_this, void 0, void 0, function () {
-            var response;
+            var url, response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, makeRequest({ method: 'POST', url: API_URL + "/" + objectEndpoint + "/" + userId, data: options })];
+                    case 0:
+                        url = API_URL + "/" + objectEndpoint + "/" + userId;
+                        return [4 /*yield*/, makeRequest({ method: 'POST', url: url, data: options })];
                     case 1:
                         response = _a.sent();
                         return [2 /*return*/, response.data];
                 }
             });
         }); },
-        /**
-         * Delete existing user
-         * @param options - options to delete a user
-         * @default { force: true, reassign: true }
-         */
-        deleteUser: function (userId, options) {
-            if (options === void 0) { options = { force: true, reassign: {} }; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var response, deleted;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, makeRequest({ method: 'DELETE', url: API_URL + "/" + objectEndpoint + "/" + userId, data: options })];
-                        case 1:
-                            response = _a.sent();
-                            deleted = response.data.deleted;
-                            return [2 /*return*/, deleted];
-                    }
-                });
-            });
-        },
     };
 };
 //# sourceMappingURL=Users.js.map

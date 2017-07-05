@@ -4,39 +4,39 @@ export interface Category {
      * Read only
      * Context: view, embed, edit
      */
-    id: number
+    id: number;
 
     /**
      * integer	Number of published posts for the term.
      * Read only
      * Context: view, edit
      */
-    count: number
+    count: number;
 
     /**
      * string	HTML description of the term.
      * Context: view, edit
      */
-    description: string
+    description: string;
 
     /**
      * string, uri	URL of the term.
      * Read only
      * Context: view, embed, edit
      */
-    link: string
+    link: string;
 
     /**
      * string	HTML title for the term.
      * Context: view, embed, edit
      */
-    name: string
+    name: string;
 
     /**
      * string	An alphanumeric identifier for the term unique to its type.
      * Context: view, embed, edit
      */
-    slug: string
+    slug: string;
 
     /**
      * string	Type attribution for the term.
@@ -44,85 +44,85 @@ export interface Category {
      * Context: view, embed, edit
      * One of: category, post_tag, nav_menu, link_category, post_format
      */
-    taxonomy: string
+    taxonomy: string;
 
     /**
      * integer	The parent term ID.
      * Context: view, edit
      */
-    parent: number
+    parent: number;
 
     /**
      * object	Meta fields.
      * Context: view, edit
     */
-    meta: {}
+    meta: {};
 }
 
 export interface ListCategories {
     /**
      * Scope under which the request is made; determines fields present in response.
-     * Default: view
+     * @default: "view"
      * One of: view, embed, edit
      */
-    context?: string
+    context?: string;
 
     /**
      * Current page of the collection.
-     * Default: 1
+     * @default: 1
      */
-    page?: number
+    page?: number;
 
     /**
      * Maximum number of items to be returned in result set.
-     * Default: 10
+     * @default: 10
      */
-    per_page?: number
+    per_page?: number;
 
     /**
      * Limit results to those matching a string.
      * exclude	Ensure result set excludes specific IDs.
      */
-    search?: number
+    search?: number;
 
     /**
      * Limit result set to specific IDs.
      */
-    include?: number
+    include?: number;
 
     /**
      * Order sort attribute ascending or descending.
-     * Default: asc
      * One of: asc, desc
+     * @default: asc
      */
-    order?: string
+    order?: 'asc' | 'desc';
 
     /**
      * Sort collection by term attribute.
-     * Default: name
      * One of: id, include, name, slug, term_group, description, count
+     * @default: name
      */
-    orderby?: string
+    orderby?: 'id' | 'include' | 'name' | 'slug' | 'term_group' | 'description' | 'count';
 
     /**
      * Whether to hide terms not assigned to any posts.
      */
-    hide_empty?: boolean
+    hide_empty?: boolean;
 
     /**
      * Limit result set to terms assigned to a specific parent.
      */
-    parent?: number
+    parent?: number;
 
     /**
      * Limit result set to terms assigned to a specific post.
      */
-    post?: number
+    post?: number;
 
     /**
      * Limit result set to terms with a specific slug.
      */
-    slug?: string
+    slug?: string;
 }
 
 export interface GetCategory {
@@ -131,67 +131,67 @@ export interface GetCategory {
      * Default: view
      * One of: view, embed, edit
      */
-    context: string
+    context: string;
 }
 
 export interface CreateCategory {
     /**
      * HTML description of the term.
      */
-    description?: string
+    description?: string;
 
     /**
      * HTML title for the term.
-     * Required: true
+     * @required
      */
-    name: string
+    name: string;
 
     /**
      * An alphanumeric identifier for the term unique to its type.
      */
-    slug?: string
+    slug?: string;
 
     /**
      * The parent term ID.
      */
-    parent?: number
+    parent?: number;
 
     /**
      * Meta fields.
      */
-    meta?: {}
+    meta?: {};
 }
 
 export interface UpdateCategory {
     /**
      * description: string
      */
-    description?: string
+    description?: string;
 
     /**
      * HTML title for the term.
      */
-    name?: string
+    name?: string;
 
     /**
      * An alphanumeric identifier for the term unique to its type.
      */
-    slug?: string
+    slug?: string;
 
     /**
      * The parent term ID.
      */
-    parent?: number
+    parent?: number;
 
     /**
      * Meta fields.
      */
-    meta?: {}
+    meta?: {};
 }
 
 export interface DeleteCategory {
     /**
      * Required to be true, as terms do not support trashing.
      */
-    force?: boolean
+    force?: boolean;
 }

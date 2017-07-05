@@ -53,18 +53,18 @@ export interface Category {
 export interface ListCategories {
     /**
      * Scope under which the request is made; determines fields present in response.
-     * Default: view
+     * @default: "view"
      * One of: view, embed, edit
      */
     context?: string;
     /**
      * Current page of the collection.
-     * Default: 1
+     * @default: 1
      */
     page?: number;
     /**
      * Maximum number of items to be returned in result set.
-     * Default: 10
+     * @default: 10
      */
     per_page?: number;
     /**
@@ -78,16 +78,16 @@ export interface ListCategories {
     include?: number;
     /**
      * Order sort attribute ascending or descending.
-     * Default: asc
      * One of: asc, desc
+     * @default: asc
      */
-    order?: string;
+    order?: 'asc' | 'desc';
     /**
      * Sort collection by term attribute.
-     * Default: name
      * One of: id, include, name, slug, term_group, description, count
+     * @default: name
      */
-    orderby?: string;
+    orderby?: 'id' | 'include' | 'name' | 'slug' | 'term_group' | 'description' | 'count';
     /**
      * Whether to hide terms not assigned to any posts.
      */
@@ -120,7 +120,7 @@ export interface CreateCategory {
     description?: string;
     /**
      * HTML title for the term.
-     * Required: true
+     * @required
      */
     name: string;
     /**

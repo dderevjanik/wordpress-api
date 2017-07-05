@@ -41,11 +41,16 @@ exports.PostRevisions = function (API_URL, makeRequest) {
     return {
         /**
          * Remove a post revision
+         * @param parentId - parent Id
+         * @param id - revision wiht Id to remove
          */
         deletePostRevision: function (parentId, id) { return __awaiter(_this, void 0, void 0, function () {
+            var url;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, makeRequest({ method: 'DELETE', url: API_URL + "/posts/" + parentId + "/revisions/" + id })];
+                    case 0:
+                        url = API_URL + "/posts/" + parentId + "/revisions/" + id;
+                        return [4 /*yield*/, makeRequest({ method: 'DELETE', url: url })];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -54,14 +59,19 @@ exports.PostRevisions = function (API_URL, makeRequest) {
         }); },
         /**
          * Get specific post revision
+         * @param parentId
+         * @param id
+         * @param options
          */
         getPostRevision: function (parentId, id, options) {
             if (options === void 0) { options = { context: 'view' }; }
             return __awaiter(_this, void 0, void 0, function () {
-                var response;
+                var url, response;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, makeRequest({ method: 'GET', url: API_URL + "/posts/" + parentId + "/revisions/" + id, data: options })];
+                        case 0:
+                            url = API_URL + "/posts/" + parentId + "/revisions/" + id;
+                            return [4 /*yield*/, makeRequest({ method: 'GET', url: url, data: options })];
                         case 1:
                             response = _a.sent();
                             return [2 /*return*/, response.data];
@@ -71,16 +81,20 @@ exports.PostRevisions = function (API_URL, makeRequest) {
         },
         /**
          * Get all posts
+         * @param parentId
+         * @param id
          * @param options - options to retrieve a posts
          * @returns {Post[]} array of Posts
          */
         getPostRevisions: function (parentId, id, options) {
             if (options === void 0) { options = { context: 'view' }; }
             return __awaiter(_this, void 0, void 0, function () {
-                var response;
+                var url, response;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, makeRequest({ method: 'GET', url: API_URL + "/posts/" + parentId + "/revisions/" + id, data: options })];
+                        case 0:
+                            url = API_URL + "/posts/" + parentId + "/revisions/" + id;
+                            return [4 /*yield*/, makeRequest({ method: 'GET', url: url, data: options })];
                         case 1:
                             response = _a.sent();
                             return [2 /*return*/, response.data];

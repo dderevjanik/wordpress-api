@@ -1,12 +1,12 @@
 export interface User {
     /**
-     * integer	Unique identifier for the user.
-     * Read only
+     * Unique identifier for the user.
      * Context: embed, view, edit
+     * @readonly
      */
     id: number;
     /**
-     * string	Login name for the user.
+     * Login name for the user.
      * Context: edit
      */
     username: string;
@@ -81,20 +81,20 @@ export interface User {
     password: string;
     /**
      * object	All capabilities assigned to the user.
-     * Read only
      * Context: edit
+     * @readonly
      */
     capabilities: {};
     /**
      * object	Any extra capabilities assigned to the user.
-     * Read only
      * Context: edit
+     * @readonly
      */
     extra_capabilities: {};
     /**
      * object	Avatar URLs for the user.
-     * Read only
      * Context: embed, view, edit
+     * @readonly
      */
     avatar_urls: {};
     /**
@@ -106,18 +106,18 @@ export interface User {
 export interface ListUsers {
     /**
      * Scope under which the request is made; determines fields present in response.
-     * Default: view
      * One of: view, embed, edit
+     * @default: "view"
      */
-    context?: string;
+    context?: 'view' | 'embed' | 'edit';
     /**
      * Current page of the collection.
-     * Default: 1
+     * @default: 1
      */
     page?: number;
     /**
      * Maximum number of items to be returned in result set.
-     * Default: 10
+     * @default: 10
      */
     per_page?: number;
     /**
@@ -134,16 +134,16 @@ export interface ListUsers {
     /**
      * Offset the result set by a specific number of items.
      * order	Order sort attribute ascending or descending.
-     * Default: asc
      * One of: asc, desc
+     * @default: "asc"
      */
-    offset?: string;
+    offset?: 'asc' | 'desc';
     /**
      * Sort collection by object attribute.
-     * Default: name
      * One of: id, include, name, registered_date, slug, email, url
+     * @default: "name"
      */
-    orderby?: string;
+    orderby?: 'id' | 'include' | 'name' | 'registered_date' | 'slug' | 'email' | 'url';
     /**
      * Limit result set to users with a specific slug.
      */
@@ -156,7 +156,7 @@ export interface ListUsers {
 export interface CreateUser {
     /**
      * Login name for the user.
-     * Required: true
+     * @required
      */
     username: string;
     /**
@@ -173,7 +173,7 @@ export interface CreateUser {
     last_name?: string;
     /**
      * The email address for the user.
-     * Required: true
+     * @required
      */
     email: string;
     /**

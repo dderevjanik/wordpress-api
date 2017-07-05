@@ -4,54 +4,54 @@ export interface PostRevision {
      * The id for the author of the object.
      * Context: view
      */
-    author: number
+    author: number;
 
     /**
      * string,
      * datetime (ISO8601) 	The date the object was published.
      * Context: view
      */
-    date: string
+    date: string;
 
     /**
      * string,
      * datetime(ISO8601) 	The date the object was published, as GMT.
      * Context: view
      */
-    date_gmt: string
+    date_gmt: string;
 
     /**
      * string
      * GUID for the object, as it exists in the database.
      * Context: view
      */
-    guid: string
+    guid: string;
 
     /**
      * integer
      * Unique identifier for the object.
      * Context: view
      */
-    id: number
+    id: number;
 
     /**
      * string,
      * datetime(ISO8601) 	The date the object was last modified.
      * Context: view
      */
-    modified: string
+    modified: string;
 
     /**
      * string,datetime(ISO8601) 	The date the object was last modified, as GMT.
      * Context: view
      */
-    modified_gmt: string
+    modified_gmt: string;
 
     /**
      * integerThe id for the parent of the object.
      * Context: view
      */
-    parent: number
+    parent: number;
 
     /**
      * string
@@ -65,37 +65,37 @@ export interface PostRevision {
      * Title for the object, as it exists in the database.
      * Context: view
      */
-    title: string
+    title: string;
 
     /**
      * string
      * Content for the object, as it exists in the database.
      * Context: view
      */
-    content: string
+    content: string;
 
     /**
      * string
      * Excerpt for the object, as it exists in the database.
      * Context: view
      */
-    excerpt: string
+    excerpt: string;
 }
 
 export interface ListPostRevisions {
     /**
      * Scope under which the request is made; determines fields present in response.
-     * Default: view
      * One of: view
+     * @default: 'view'
      */
-    context: string
+    context: string;
 }
 
 export interface GetPostRevision {
     /**
      * 	Scope under which the request is made; determines fields present in response.
-     * Default: view
      * One of: view
+     * @default: "view"
      */
-    context: string
+    context: string;
 }

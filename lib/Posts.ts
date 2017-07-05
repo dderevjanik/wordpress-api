@@ -1,8 +1,9 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import * as QueryString from 'querystring';
 import { DeletePost, ListPosts, Post, RetrievePost } from './interface/Posts';
+import { RequestHandler } from './interface/RequestHandler';
 
-export const Posts = (API_URL: string, makeRequest: (options: AxiosRequestConfig) => Promise<AxiosResponse>) => {
+export const Posts = (API_URL: string, makeRequest: RequestHandler) => {
     const objectEndpoint = 'posts';
     return {
         /**

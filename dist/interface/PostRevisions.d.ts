@@ -73,16 +73,16 @@ export interface PostRevision {
 export interface ListPostRevisions {
     /**
      * Scope under which the request is made; determines fields present in response.
-     * Default: view
      * One of: view
+     * @default: 'view'
      */
     context: string;
 }
 export interface GetPostRevision {
     /**
      * 	Scope under which the request is made; determines fields present in response.
-     * Default: view
      * One of: view
+     * @default: "view"
      */
     context: string;
 }

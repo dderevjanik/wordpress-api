@@ -47,11 +47,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = require("axios");
 var chalk_1 = require("chalk");
 var wordpress_jwt_auth_1 = require("wordpress-jwt-auth"); // DEV
+var Categories_1 = require("./Categories");
 var Pages_1 = require("./Pages");
+var PostRevisions_1 = require("./PostRevisions");
 var Posts_1 = require("./Posts");
 var Users_1 = require("./Users");
-var Categories_1 = require("./Categories");
-var PostRevisions_1 = require("./PostRevisions");
 var REST_API_PATH = '/wp-json/wp/v2';
 /**
  * Connect to wordpress api
@@ -101,7 +101,6 @@ var connect = function (host, hooks) {
                          */
                         posts: Posts_1.Posts(API_URL, makeRequest),
                         /**
-                
                          * define all methods with wp pages
                          */
                         pages: Pages_1.Pages(API_URL, makeRequest),

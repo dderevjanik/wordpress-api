@@ -16,16 +16,16 @@ export interface Page {
     /**
      * object
      * The globally unique identifier for the object.
-     * Read only
      * Context: view, edit
+     * @readonly
      */
     guid: {};
 
     /**
      * integer
      * Unique identifier for the object.
-     * Read only
      * Context: view, edit, embed
+     * @readonly
      */
     id: number;
 
@@ -33,24 +33,24 @@ export interface Page {
      * string,
      * uri
      * URL to the object.
-     * Read only
      * Context: view, edit, embed
+     * @readonly
      */
     link: string;
 
     /**
      * string, datetime(ISO8601)
      * The date the object was last modified, in the site’s timezone.
-     * Read only
      * Context: view, edit
+     * @readonly
      */
     modified: string;
 
     /**
      * string, datetime(ISO8601)
      * The date the object was last modified, as GMT.
-     * Read only
      * Context: view, edit
+     * @readonly
      */
     modified_gmt: string;
 
@@ -67,13 +67,13 @@ export interface Page {
      * Context: edit
      * One of: publish, future, draft, pending, private
      */
-    status: string;
+    status: 'publish' | 'future' | 'draft' | 'pending' | 'private';
 
     /**
      * string
      * Type of Post for the object.
-     * Read only
      * Context: view, edit, embed
+     * @readonly
      */
     type: string;
 
@@ -160,20 +160,20 @@ export interface Page {
 export interface ListPages {
     /**
      * Scope under which the request is made; determines fields present in response.
-     * Default: view
      * One of: view, embed, edit
+     * @default "view"
      */
     context?: string;
 
     /**
      * Current page of the collection.
-     * Default: 1
+     * @default: 1
      */
     page?: number;
 
     /**
      * Maximum number of items to be returned in result set.
-     * Default: 10
+     * @default: 10
      */
     per_page?: number;
 
@@ -225,15 +225,15 @@ export interface ListPages {
 
     /**
      * Order sort attribute ascending or descending.
-     * Default: desc
      * One of: asc, desc
+     * @default: "desc"
      */
-    order?: string;
+    order?: 'asc' | 'desc';
 
     /**
      * Sort collection by object attribute.
-     * Default: date
      * One of: date, relevance, id, include, title, slug, menu_order
+     * @default: "date"
      */
     orderby?: string[];
 
@@ -254,10 +254,10 @@ export interface ListPages {
 
     /**
      * Limit result set to posts assigned a specific status; can be comma- delimited list of status types.
-     * Default: publish
      * One of: publish, future, draft, pending, private, trash, auto - draft, inherit, any
+     * @default: "publish"
      */
-    status?: string;
+    status?: 'publish' | 'future' | 'draft' | 'pending' | 'private' | 'trash' | 'auto' | 'draft' | 'inherit' | 'any';
 
     /**
      * Use WP Query arguments to modify the response; private query vars require appropriate authorization.
@@ -268,8 +268,8 @@ export interface ListPages {
 export interface GetPage {
     /**
      * Scope under which the request is made; determines fields present in response.
-     * Default: view
      * One of: view, embed, edit
+     * @default: "view"
      */
     context: string;
 
@@ -299,7 +299,7 @@ export interface CreatePage {
      * A named status for the object.
      * One of: publish, future, draft, pending, private
      */
-    status?: string;
+    status?: 'publish' | 'future' | 'draft' | 'pending' | 'private';
 
     /**
      * The id for the parent of the object.
@@ -335,13 +335,13 @@ export interface CreatePage {
      * Whether or not comments are open on the object.
      * One of: open, closed
      */
-    comment_status?: string;
+    comment_status?: 'open' | 'closed';
 
     /**
      * Whether or not the object can be pinged.
      * One of: open, closed
      */
-    ping_status?: string;
+    ping_status?: 'open' | 'closed';
 
     /**
      * The order of the object in relation to other object of its type.
@@ -379,7 +379,7 @@ export interface UpdatePage {
      * A named status for the object.
      * One of: publish, future, draft, pending, private
      */
-    status?: string;
+    status?: 'publish' | 'future' | 'draft' | 'pending' | 'private';
 
     /**
      * The id for the parent of the object.
@@ -415,13 +415,13 @@ export interface UpdatePage {
      * Whether or not comments are open on the object.
      * One of: open, closed
      */
-    comment_status?: string;
+    comment_status?: 'open' | 'closed';
 
     /**
      * Whether or not the object can be pinged
      * One of: open, closed
      */
-    ping_status?: string;
+    ping_status?: 'open' | 'closed';
 
     /**
      * The order of the object in relation to other object of its type.

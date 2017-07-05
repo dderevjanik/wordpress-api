@@ -41,63 +41,16 @@ exports.Pages = function (API_URL, makeRequest) {
     var objectEndpoint = 'pages';
     return {
         /**
-         * get specific page
-         * @param id - id of a page to get
-         */
-        getPage: function (pageId) { return __awaiter(_this, void 0, void 0, function () {
-            var response;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, makeRequest({ method: 'GET', url: API_URL + "/" + objectEndpoint + "/" + pageId })];
-                    case 1:
-                        response = _a.sent();
-                        return [2 /*return*/, response.data];
-                }
-            });
-        }); },
-        /**
-         * Get all posts
-         * @param options - options to retrieve a pages
-         * @returns {Post[]} array of pages
-         */
-        getPages: function (options) { return __awaiter(_this, void 0, void 0, function () {
-            var queryString, response;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        queryString = QueryString.stringify(options);
-                        ;
-                        return [4 /*yield*/, makeRequest({ method: 'GET', url: API_URL + "/" + objectEndpoint, data: options })];
-                    case 1:
-                        response = _a.sent();
-                        return [2 /*return*/, response.data];
-                }
-            });
-        }); },
-        /**
          * Create new page
          * @param options - options to create a page
          */
         createPage: function (options) { return __awaiter(_this, void 0, void 0, function () {
-            var response;
+            var url, response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, makeRequest({ method: 'POST', url: API_URL + "/" + objectEndpoint, data: options })];
-                    case 1:
-                        response = _a.sent();
-                        return [2 /*return*/, response.data];
-                }
-            });
-        }); },
-        /**
-         * Update existing page
-         * @param options - options to update a page
-         */
-        updatePage: function (pageId, options) { return __awaiter(_this, void 0, void 0, function () {
-            var response;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, makeRequest({ method: 'POST', url: API_URL + "/" + objectEndpoint + "/" + pageId, data: options })];
+                    case 0:
+                        url = API_URL + "/" + objectEndpoint;
+                        return [4 /*yield*/, makeRequest({ method: 'POST', url: url, data: options })];
                     case 1:
                         response = _a.sent();
                         return [2 /*return*/, response.data];
@@ -112,10 +65,12 @@ exports.Pages = function (API_URL, makeRequest) {
         deletePage: function (pageId, options) {
             if (options === void 0) { options = { force: true }; }
             return __awaiter(_this, void 0, void 0, function () {
-                var response, deleted;
+                var url, response, deleted;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, makeRequest({ method: 'DELETE', url: API_URL + "/" + objectEndpoint + "/" + pageId, data: options })];
+                        case 0:
+                            url = API_URL + "/" + objectEndpoint + "/" + pageId;
+                            return [4 /*yield*/, makeRequest({ method: 'DELETE', url: url, data: options })];
                         case 1:
                             response = _a.sent();
                             deleted = response.data.deleted;
@@ -124,6 +79,60 @@ exports.Pages = function (API_URL, makeRequest) {
                 });
             });
         },
+        /**
+         * get specific page
+         * @param pageId - id of a page to get
+         */
+        getPage: function (pageId) { return __awaiter(_this, void 0, void 0, function () {
+            var url, response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        url = API_URL + "/" + objectEndpoint + "/" + pageId;
+                        return [4 /*yield*/, makeRequest({ method: 'GET', url: url })];
+                    case 1:
+                        response = _a.sent();
+                        return [2 /*return*/, response.data];
+                }
+            });
+        }); },
+        /**
+         * Get all posts
+         * @param options - options to retrieve a pages
+         * @returns {Post[]} array of pages
+         */
+        getPages: function (options) { return __awaiter(_this, void 0, void 0, function () {
+            var queryString, url, response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        queryString = QueryString.stringify(options);
+                        url = API_URL + "/" + objectEndpoint;
+                        return [4 /*yield*/, makeRequest({ method: 'GET', url: url, data: options })];
+                    case 1:
+                        response = _a.sent();
+                        return [2 /*return*/, response.data];
+                }
+            });
+        }); },
+        /**
+         * Update existing page
+         * @param pageId - page id to update
+         * @param options - options to update a page
+         */
+        updatePage: function (pageId, options) { return __awaiter(_this, void 0, void 0, function () {
+            var url, response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        url = API_URL + "/" + objectEndpoint + "/" + pageId;
+                        return [4 /*yield*/, makeRequest({ method: 'POST', url: url, data: options })];
+                    case 1:
+                        response = _a.sent();
+                        return [2 /*return*/, response.data];
+                }
+            });
+        }); },
     };
 };
 //# sourceMappingURL=Pages.js.map
