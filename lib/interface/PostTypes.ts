@@ -5,7 +5,7 @@ export interface PostType {
      * Read only
      * Context: edit
      */
-    capabilities: {}[]
+    capabilities: Array<{}>;
 
     /**
      * string
@@ -13,7 +13,7 @@ export interface PostType {
      * Read only
      * Context: view, edit
      */
-    description: string
+    description: string;
 
     /**
      * boolean
@@ -21,7 +21,7 @@ export interface PostType {
      * Read only
      * Context: view, edit
      */
-    hierarchical: boolean
+    hierarchical: boolean;
 
     /**
      * object
@@ -29,7 +29,7 @@ export interface PostType {
      * Read only
      * Context: edit
      */
-    labels: {}
+    labels: {};
 
     /**
      * string
@@ -37,7 +37,7 @@ export interface PostType {
      * Read only
      * Context: view, edit, embed
      */
-    name: string
+    name: string;
 
     /**
      * string
@@ -45,7 +45,7 @@ export interface PostType {
      * Read only
      * Context: view, edit, embed
      */
-    slug: string
+    slug: string;
 }
 
 export interface ListTypes {
@@ -54,7 +54,7 @@ export interface ListTypes {
      * Default: view
      * One of: view, embed, edit
      */
-    context?: string
+    context?: string;
 }
 
 export interface GetType {
@@ -63,5 +63,5 @@ export interface GetType {
      * Default: view
      * One of: view, embed, edit
      */
-    context?: string
+    context?: string;
 }

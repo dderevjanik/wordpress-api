@@ -1,21 +1,24 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import * as QueryString from 'querystring';
-import { Setting } from './interface/Settings';
 import { RequestHandler } from './interface/RequestHandler';
+import { Setting } from './interface/Settings';
 
 export const Settings = (API_URL: string, makeRequest: RequestHandler) => {
     const objectEndpoint = 'settings';
     return {
         /**
-         *Get all settings
+         * Get all settings
          */
         getAllSettings: async () => {
-            const response = await makeRequest({ method: 'POST', url: `${API_URL}/${objectEndpoint}` });
+            const url = `${API_URL}/${objectEndpoint}`;
+            const response = await makeRequest({ method: 'POST', url });
             return response.data as Setting;
         },
 
         updateSettings: async (options: Setting) => {
-            throw Error("Not implemented in rest api");
+            const url = `${API_URL}/${objectEndpoint}`;
+            const response = await makeRequest({ method: 'POST', url });
+            return response.data as Setting;
         },
     };
 };

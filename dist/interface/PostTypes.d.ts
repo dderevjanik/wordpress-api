@@ -5,7 +5,7 @@ export interface PostType {
      * Read only
      * Context: edit
      */
-    capabilities: {}[];
+    capabilities: Array<{}>;
     /**
      * string
      * A human- readable description of the resource.

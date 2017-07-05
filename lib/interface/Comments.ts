@@ -5,42 +5,42 @@ export interface Comment {
      * Read only
      * Context: view, edit, embed
      */
-    id: number
+    id: number;
 
     /**
      * integer
      * The id of the user object, if author was a user.
      * Context: view, edit, embed
      */
-    author: number
+    author: number;
 
     /**
      * string,
      * email 	Email address for the object author.
      * Context: edit
      */
-    author_email: string
+    author_email: string;
 
     /**
      * string,
      * ipv4 	IP address for the object author.
      * Context: edit
      */
-    author_ip: string
+    author_ip: string;
 
     /**
      * string
      * Display name for the object author.
      * Context: view, edit, embed
      */
-    author_name: string
+    author_name: string;
 
     /**
      * string,
      * uri 	URL for the object author.
      * Context: view, edit, embed
      */
-    author_url: string
+    author_url: string;
 
     /**
      * string
@@ -48,21 +48,21 @@ export interface Comment {
      * Read only
      * Context: edit
      */
-    author_user_agent: string
+    author_user_agent: string;
 
     /**
      * object
      * The content for the object.
      * Context: view, edit, embed
      */
-    content: {}
+    content: {};
 
     /**
      * string,
      * datetime(details) 	The date the object was published.
      * Context: view, edit, embed
      */
-    date: string
+    date: string;
 
     /**
      * string,
@@ -70,14 +70,14 @@ export interface Comment {
      * The date the object was published as GMT.
      * Context: view, edit
      */
-    date_gmt: string
+    date_gmt: string;
 
     /**
      * integer
      * Karma for the object.
      * Context: edit
      */
-    karma: number
+    karma: number;
 
     /**
      * string,uri
@@ -85,35 +85,35 @@ export interface Comment {
      * Read only
      * Context: view, edit, embed
      */
-    link: string
+    link: string;
 
     /**
      * integer
      * The id for the parent of the object.
      * Context: view, edit, embed
      */
-    parent: number
+    parent: number;
 
     /**
      * integer
      * The id of the associated post object.
      * Context: view, edit
      */
-    post: number
+    post: number;
 
     /**
      * string
      * State of the object.
      * Context: view, edit
      */
-    status: string
+    status: string;
 
     /**
      * string
      * Type of Comment for the object.
      * Context: view, edit, embed
      */
-    type: string
+    type: string;
 
     /**
      * object
@@ -121,14 +121,14 @@ export interface Comment {
      * Read only
      * Context: view, edit, embed
      */
-    author_avatar_urls: {}
+    author_avatar_urls: {};
 
     /**
      * object
      * Meta fields.
      * Context: view, edit
      */
-    meta: {}
+    meta: {};
 }
 
 export interface ListComments {
@@ -137,114 +137,114 @@ export interface ListComments {
      * Default: view
      * One of: view, embed, edit
      */
-    context?: string
+    context?: string;
 
     /**
      * Current page of the collection.
      * Default: 1
      */
-    page?: number
+    page?: number;
 
     /**
      * Maximum number of items to be returned in result set.
      * Default: 10
      */
-    per_page?: number
+    per_page?: number;
 
     /**
      * Limit results to those matching a string.
      */
-    search?: string
+    search?: string;
 
     /**
      * Limit response to resources published after a given date.
      */
-    after?: number
+    after?: number;
 
     /**
      * Limit result set to comments assigned to specific user ids.
      * Requires authorization.
      */
-    author?: number[]
+    author?: number[];
 
     /**
      * Ensure result set excludes comments assigned to specific user ids.
      * Requires authorization.
      */
-    author_exclude?: number[]
+    author_exclude?: number[];
     /**
      * Limit result set to that from a specific author email.
      * Requires authorization.
      */
-    author_email?: string
+    author_email?: string;
 
     /**
      * Limit response to resources published before a given date.
      */
-    before?: number
+    before?: number;
 
     /**
      * 	Ensure result set excludes specific ids.
      */
-    exclude?: number[]
+    exclude?: number[];
 
     /**
      * Limit result set to specific ids.
      */
-    include?: number[]
+    include?: number[];
 
     /**
      * Limit result set to that of a particular comment karma.Requires authorization.
      */
-    karma?: number
+    karma?: number;
 
     /**
      * Offset the result set by a specific number of comments.
      */
-    offset?: number
+    offset?: number;
 
     /**
      * Order sort attribute ascending or descending.
      * Default: desc
      * One of: asc, desc
      */
-    order?: string
+    order?: string;
 
     /**
      * Sort collection by object attribute.
      * Default: date_gmt
      * One of: date, date_gmt, id, include, post, parent, type
      */
-    orderby?: string
+    orderby?: string;
 
     /**
      * Limit result set to resources of specific parent ids.
      */
-    parent?: number[]
+    parent?: number[];
 
     /**
      * Ensure result set excludes specific parent ids.
      */
-    parent_exclude?: number[]
+    parent_exclude?: number[];
 
     /**
      * Limit result set to resources assigned to specific post ids.
      */
-    post?: number[]
+    post?: number[];
 
     /**
      * Limit result set to comments assigned a specific status.
      * Requires authorization.
      * Default: approve
      */
-    status?: string
+    status?: string;
 
     /**
      * Limit result set to comments assigned a specific type.
      * Requires authorization.
      * Default: comment
      */
-    type?: string
+    type?: string;
 }
 
 export interface GetComment {
@@ -253,156 +253,156 @@ export interface GetComment {
      * Default: view
      * One of: view, embed, edit
      */
-    context?: string
+    context?: string;
 }
 
 export interface CreateComment {
     /**
      * The id of the user object, if author was a user.
      */
-    author?: number
+    author?: number;
 
     /**
      * Email address for the object author.
      */
-    author_email?: string
+    author_email?: string;
 
     /**
      * IP address for the object author.
      * Default: 127.0.0.1
      */
-    author_ip?: string
+    author_ip?: string;
 
     /**
      * Display name for the object author.
      */
-    author_name?: string
+    author_name?: string;
 
     /**
      * URL for the object author.
      */
-    author_url?: string
+    author_url?: string;
 
     /**
      * The content for the object.
      */
-    content: string
+    content: string;
 
     /**
      * The date the object was published.
      */
-    date?: string
+    date?: string;
 
     /**
      * The date the object was published as GMT.
      */
-    date_gmt?: string
+    date_gmt?: string;
 
     /**
      * Karma for the object.
      */
-    karma?: number
+    karma?: number;
 
     /**
      * The id for the parent of the object.
      * Default: 0
      */
-    parent?: number
+    parent?: number;
 
     /**
      * The id of the associated post object.
      * Default: 0
      */
-    post: number
+    post: number;
 
     /**
      * State of the object.
      * type Type of Comment for the object.
      * Default: comment
      */
-    status?: string
+    status?: string;
 
     /**
      * Meta fields.
      */
-    meta?: {}
+    meta?: {};
 }
 
 export interface UpdateComment {
     /**
      * The id of the user object, if author was a user.
      */
-    author?: number
+    author?: number;
 
     /**
      * Email address for the object author.
      */
-    author_email?: string
+    author_email?: string;
 
     /**
      * IP address for the object author.
      */
-    author_ip?: string
+    author_ip?: string;
 
     /**
      * Display name for the object author.
      */
-    author_name?: string
+    author_name?: string;
 
     /**
      * URL for the object author.
      */
-    author_url?: string
+    author_url?: string;
 
     /**
      * The content for the object.
      */
-    content?: string
+    content?: string;
 
     /**
      * The date the object was published.
      */
-    date?: string
+    date?: string;
 
     /**
      * The date the object was published as GMT.
      */
-    date_gmt?: string
+    date_gmt?: string;
 
     /**
      * Karma for the object.
      */
-    karma?: number
+    karma?: number;
 
     /**
      * The id for the parent of the object.
      */
-    parent?: number
+    parent?: number;
 
     /**
      * The id of the associated post object.
      */
-    post?: number
+    post?: number;
 
     /**
      * State of the object.
      */
-    status?: string
+    status?: string;
 
     /**
      * Type of Comment for the object.
      */
-    type?: number
+    type?: number;
 
     /**
      * Meta fields.
      */
-    meta?: {}
+    meta?: {};
 }
 
 export interface DeleteComment {
     /**
      * Whether to bypass trash and force deletion.
      */
-    force: boolean
+    force: boolean;
 }

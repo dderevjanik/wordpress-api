@@ -5,7 +5,7 @@ export interface MediaItem {
      * The date the object was published, in the site’s timezone.
      * Context: view, edit, embed
      */
-    date: string
+    date: string;
 
     /**
      * string,
@@ -13,7 +13,7 @@ export interface MediaItem {
      * The date the object was published, as GMT.
      * Context: view, edit
      */
-    date_gmt: string
+    date_gmt: string;
 
     /**
      * object
@@ -21,7 +21,7 @@ export interface MediaItem {
      * Read only
      * Context: view, edit
      */
-    guid: {}
+    guid: {};
 
     /**
      * integer
@@ -29,7 +29,7 @@ export interface MediaItem {
      * Read only
      * Context: view, edit, embed
      */
-    id: number
+    id: number;
 
     /**
      * string, uri
@@ -37,7 +37,7 @@ export interface MediaItem {
      * Read only
      * Context: view, edit, embed
      */
-    link: string
+    link: string;
 
     /**
      * string,
@@ -46,7 +46,7 @@ export interface MediaItem {
      * Read only
      * Context: view, edit
      */
-    modified: string
+    modified: string;
 
     /**
      * string,
@@ -55,14 +55,14 @@ export interface MediaItem {
      * Read only
      * Context: view, edit
      */
-    modified_gmt: string
+    modified_gmt: string;
 
     /**
      * string
      * An alphanumeric identifier for the object unique to its type.
      * Context: view, edit, embed
      */
-    slug: string
+    slug: string;
 
     /**
      * string
@@ -70,7 +70,7 @@ export interface MediaItem {
      * Context: edit
      * One of: publish, future, draft, pending, private
      */
-    status: string
+    status: string;
 
     /**
      * string
@@ -78,21 +78,21 @@ export interface MediaItem {
      * Read only
      * Context: view, edit, embed
      */
-    type: string
+    type: string;
 
     /**
      * object
      * The title for the object.
      * Context: view, edit, embed
      */
-    title: {}
+    title: {};
 
     /**
      * integer
      * The id for the author of the object.
      * Context: view, edit, embed
      */
-    author: number
+    author: number;
 
     /**
      * string
@@ -100,7 +100,7 @@ export interface MediaItem {
      * Context: view, edit
      * One of: open, closed
      */
-    comment_status: string
+    comment_status: string;
 
     /**
      * string
@@ -108,35 +108,35 @@ export interface MediaItem {
      * Context: view, edit
      * One of: open, closed
      */
-    ping_status: string
+    ping_status: string;
 
     /**
      * object
      * Meta fields.
      * Context: view, edit
      */
-    meta: {}
+    meta: {};
 
     /**
      * string
      * Alternative text to display when resource is not displayed.
      * Context: view, edit, embed
      */
-    alt_text: string
+    alt_text: string;
 
     /**
      * string
      * The caption for the resource.
      * Context: view, edit
      */
-    caption: string
+    caption: string;
 
     /**
      * string
      * The description for the resource.
      * Context: view, edit
      */
-    description: string
+    description: string;
 
     /**
      * string
@@ -145,7 +145,7 @@ export interface MediaItem {
      * Context: view, edit, embed
      * One of: image, file
      */
-    media_type: string
+    media_type: string;
 
     /**
      * string
@@ -153,7 +153,7 @@ export interface MediaItem {
      * Read only
      * Context: view, edit, embed
      */
-    mime_type: string
+    mime_type: string;
 
     /**
      * object
@@ -161,14 +161,14 @@ export interface MediaItem {
      * Read only
      * Context: view, edit, embed
      */
-    media_details: {}
+    media_details: {};
 
     /**
      * integer
      * The id for the associated post of the resource.
      * Context: view, edit
      */
-    post: number
+    post: number;
 
     /**
      * string, uri
@@ -176,7 +176,7 @@ export interface MediaItem {
      * Read only
      * Context: view, edit, embed
      */
-    source_url: string
+    source_url: string;
 }
 
 export interface ListMedia {
@@ -185,112 +185,111 @@ export interface ListMedia {
      * Default: view
      * One of: view, embed, edit
      */
-    context?: string
+    context?: string;
 
     /**
      * Current page of the collection.
      * Default: 1
      */
-    page?: number
+    page?: number;
 
     /**
      * Maximum number of items to be returned in result set.
      * Default: 10
      */
-    per_page?: number
+    per_page?: number;
 
     /**
      * Limit results to those matching a string.
      */
-    search?: string
+    search?: string;
 
     /**
      * Limit response to resources published after a given ISO8601 compliant date.
      */
-    after?: string
+    after?: string;
 
     /**
      * Limit result set to posts assigned to specific authors.
      */
-    author?: number[]
+    author?: number[];
 
     /**
      * Ensure result set excludes posts assigned to specific authors.
      */
-    author_exclude?: number[]
+    author_exclude?: number[];
 
     /**
      * Limit response to resources published before a given ISO8601 compliant date.
      */
-    before?: string
+    before?: string;
 
     /**
      * Ensure result set excludes specific ids.
      */
-    exclude?: number[]
+    exclude?: number[];
 
     /**
      * Limit result set to specific ids.
-
      */
-    include?: number[]
+    include?: number[];
 
     /**
      * Offset the result set by a specific number of items.
      */
-    offset?: number[]
+    offset?: number[];
 
     /**
      * Order sort attribute ascending or descending.
      * Default: desc
      * One of: asc, desc
      */
-    order?: string
+    order?: string;
 
     /**
      * Sort collection by object attribute.
      * Default: date
      * One of: date, relevance, id, include, title, slug
      */
-    orderby?: string
+    orderby?: string;
 
     /**
      * Limit result set to those of particular parent ids.
      */
-    parent?: number[]
+    parent?: number[];
 
     /**
      * Limit result set to all items except those of a particular parent id.
      */
-    parent_exclude?: number[]
+    parent_exclude?: number[];
 
     /**
      * Limit result set to posts with a specific slug.
      */
-    slug?: string
+    slug?: string;
 
     /**
      * Limit result set to posts assigned a specific status; can be comma- delimited list of status types.
      * Default: inherit
      * One of: inherit, private, trash
      */
-    status?: string
+    status?: string;
 
     /**
      * Use WP Query arguments to modify the response; private query vars require appropriate authorization.
      */
-    filter?: string
+    filter?: string;
 
     /**
      * Limit result set to attachments of a particular media type.
      * One of: image, video, audio, application
      */
-    media_type?: string
+    media_type?: string;
 
     /**
      * Limit result set to attachments of a particular MIME type.
      */
-    mime_type?: string
+    mime_type?: string;
 }
 
 export interface GetMedia {
@@ -299,157 +298,157 @@ export interface GetMedia {
      * Default: view
      * One of: view, embed, edit
      */
-    context?: string
+    context?: string;
 
     /**
      * The password for the post if it is password protected.
      */
-    password?: string
+    password?: string;
 }
 
 export interface CreateMedia {
     /**
      * The date the object was published, in the site’s timezone.
      */
-    date?: string
+    date?: string;
 
     /**
      * The date the object was published, as GMT.
      */
-    date_gmt?: string
+    date_gmt?: string;
 
     /**
      * An alphanumeric identifier for the object unique to its type.
      */
-    slug?: string
+    slug?: string;
 
     /**
      * A named status for the object.
      * One of: publish, future, draft, pending, private
      */
-    status?: string
+    status?: string;
 
     /**
      * The title for the object.
      */
-    title?: string
+    title?: string;
 
     /**
      * The id for the author of the object.
      */
-    author?: number
+    author?: number;
 
     /**
      * Whether or not comments are open on the object.
      * One of: open, closed
      */
-    comment_status?: string
+    comment_status?: string;
 
     /**
      * Whether or not the object can be pinged.
      * One of: open, closed
      */
-    ping_status?: string
+    ping_status?: string;
 
     /**
      * Meta fields.
      */
-    meta?: {}
+    meta?: {};
 
     /**
      * Alternative text to display when resource is not displayed.
      */
-    alt_text?: string
+    alt_text?: string;
 
     /**
      * The caption for the resource.
      */
-    caption?: string
+    caption?: string;
 
     /**
      * The description for the resource.
      */
-    description?: string
+    description?: string;
 
     /**
      * The id for the associated post of the resource.
      */
-    post?: number
+    post?: number;
 }
 
 export interface UpdateMedia {
     /**
      * The date the object was published, in the site’s timezone.
      */
-    date?: string
+    date?: string;
 
     /**
      * The date the object was published, as GMT.
      */
-    date_gmt?: string
+    date_gmt?: string;
 
     /**
      * An alphanumeric identifier for the object unique to its type.
      */
-    slug?: string
+    slug?: string;
 
     /**
      * A named status for the object.
      * One of: publish, future, draft, pending, private
      */
-    status?: string
+    status?: string;
 
     /**
      * The title for the object.
      */
-    title?: string
+    title?: string;
 
     /**
      * The id for the author of the object.
      */
-    author?: number
+    author?: number;
 
     /**
      * Whether or not comments are open on the object.
      * One of: open, closed
      */
-    comment_status?: string
+    comment_status?: string;
 
     /**
      * Whether or not the object can be pinged.
      * One of: open, closed
      */
-    ping_status?: string
+    ping_status?: string;
 
     /**
      * Meta fields.
      */
-    meta?: {}
+    meta?: {};
 
     /**
      * Alternative text to display when resource is not displayed.
      */
-    alt_text?: string
+    alt_text?: string;
 
     /**
      * The caption for the resource.
      */
-    caption?: string
+    caption?: string;
 
     /**
      * The description for the resource.
      */
-    description?: string
+    description?: string;
 
     /**
      * The id for the associated post of the resource.
      */
-    post?: number
+    post?: number;
 }
 
 export interface DeleteMedia {
     /**
      * Whether to bypass trash and force deletion.
      */
-    force?: boolean
+    force?: boolean;
 }

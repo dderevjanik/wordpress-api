@@ -4,39 +4,39 @@ export interface Tag {
      * Read only
      * Context: view, embed, edit
      */
-    id: number
+    id: number;
 
     /**
      * integer	Number of published posts for the term.
      * Read only
      * Context: view, edit
      */
-    count: number
+    count: number;
 
     /**
      * string	HTML description of the term.
      * Context: view, edit
      */
-    description: string
+    description: string;
 
     /**
      * string, uri	URL of the term.
      * Read only
      * Context: view, embed, edit
      */
-    link: string
+    link: string;
 
     /**
      * string	HTML title for the term.
      * Context: view, embed, edit
      */
-    name: string
+    name: string;
 
     /**
      * string	An alphanumeric identifier for the term unique to its type.
      * Context: view, embed, edit
      */
-    slug: string
+    slug: string;
 
     /**
      * string	Type attribution for the term.
@@ -44,13 +44,13 @@ export interface Tag {
      * Context: view, embed, edit
      * One of: category, post_tag, nav_menu, link_category, post_format
      */
-    taxonomy: string
+    taxonomy: string;
 
     /**
      * object	Meta fields.
      * Context: view, edit
      */
-    meta: {}
+    meta: {};
 }
 
 export interface ListTags {
@@ -59,69 +59,69 @@ export interface ListTags {
      * Default: view
      * One of: view, embed, edit
      */
-    context?: string
+    context?: string;
 
     /**
      * Current page of the collection.
      * Default: 1
      */
-    page?: number
+    page?: number;
 
     /**
      * Maximum number of items to be returned in result set.
      * Default: 10
      */
-    per_page?: number
+    per_page?: number;
 
     /**
      * Limit results to those matching a string.
      */
-    search?: number
+    search?: number;
 
     /**
      * Ensure result set excludes specific IDs.
      */
 
-    exclude?: number[]
+    exclude?: number[];
 
     /**
      * Limit result set to specific IDs.
      */
-    include?: number[]
+    include?: number[];
 
     /**
      * Offset the result set by a specific number of items.
      */
-    offset?: number
+    offset?: number;
 
     /**
      * Order sort attribute ascending or descending.
      * Default: asc
      * One of: asc, desc
      */
-    order?: string
+    order?: string;
 
     /**
      * Sort collection by term attribute.
      * Default: name
      * One of: id, include, name, slug, term_group, description, count
      */
-    orderby?: string
+    orderby?: string;
 
     /**
      * hide_empty: boolean
      */
-    hide_empty?: boolean
+    hide_empty?: boolean;
 
     /**
      * Limit result set to terms assigned to a specific post.
      */
-    post?: number
+    post?: number;
 
     /**
      * Limit result set to terms with a specific slug.
      */
-    slug?: string
+    slug?: string;
 }
 
 export interface GetTag {
@@ -130,58 +130,58 @@ export interface GetTag {
      * Default: view
      * One of: view, embed, edit
      */
-    context?: string
+    context?: string;
 }
 
 export interface CreateTag {
     /**
      * HTML description of the term.
      */
-    description?: string
+    description?: string;
 
     /**
      * HTML title for the term.
      * Required: true
      */
-    name: string
+    name: string;
 
     /**
      * An alphanumeric identifier for the term unique to its type.
      */
-    slug?: string
+    slug?: string;
 
     /**
      * Meta fields.
      */
-    meta?: {}
+    meta?: {};
 }
 
 export interface UpdateTag {
 
     /**
-   * HTML description of the term.
-   */
-    description?: string
+     * HTML description of the term.
+     */
+    description?: string;
 
     /**
      * HTML title for the term.
      */
-    name?: string
+    name?: string;
 
     /**
      * An alphanumeric identifier for the term unique to its type.
      */
-    slug?: string
+    slug?: string;
 
     /**
      * Meta fields.
      */
-    meta?: {}
+    meta?: {};
 }
 
 export interface DeleteTag {
     /**
      * Required to be true, as terms do not support trashing.
      */
-    force: boolean
+    force: boolean;
 }

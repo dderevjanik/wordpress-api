@@ -44,12 +44,13 @@ exports.Media = function (API_URL, makeRequest) {
          * @param options - options to create a tag
          */
         createMedia: function (options) { return __awaiter(_this, void 0, void 0, function () {
-            var header, response;
+            var header, url, response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         header = { 'Content-Disposition': 'attachment; filename="example.jpg"' };
-                        return [4 /*yield*/, makeRequest({ method: 'POST', url: API_URL + "/" + objectEndpoint, data: options, headers: header })];
+                        url = API_URL + "/" + objectEndpoint;
+                        return [4 /*yield*/, makeRequest({ method: 'POST', url: url, data: options, headers: header })];
                     case 1:
                         response = _a.sent();
                         return [2 /*return*/, response.data];
@@ -64,13 +65,35 @@ exports.Media = function (API_URL, makeRequest) {
         deleteMedia: function (id, options) {
             if (options === void 0) { options = { force: true }; }
             return __awaiter(_this, void 0, void 0, function () {
-                var response;
+                var url, response;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, makeRequest({ method: 'DELETE', url: API_URL + "/" + objectEndpoint + "/" + id, data: options })];
+                        case 0:
+                            url = API_URL + "/" + objectEndpoint + "/" + id;
+                            return [4 /*yield*/, makeRequest({ method: 'DELETE', url: url, data: options })];
                         case 1:
                             response = _a.sent();
                             return [2 /*return*/, response.data.deleted];
+                    }
+                });
+            });
+        },
+        /**
+         * Get all Media
+         * @param options - options to retrieve a posts
+         */
+        getAllMedia: function (options) {
+            if (options === void 0) { options = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var url, response;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            url = API_URL + "/" + objectEndpoint;
+                            return [4 /*yield*/, makeRequest({ method: 'GET', url: url, data: options })];
+                        case 1:
+                            response = _a.sent();
+                            return [2 /*return*/, response.data];
                     }
                 });
             });
@@ -83,28 +106,12 @@ exports.Media = function (API_URL, makeRequest) {
         getMedia: function (id, options) {
             if (options === void 0) { options = { context: 'view' }; }
             return __awaiter(_this, void 0, void 0, function () {
-                var response;
+                var url, response;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, makeRequest({ method: 'GET', url: API_URL + "/" + objectEndpoint + "/" + id, data: options })];
-                        case 1:
-                            response = _a.sent();
-                            return [2 /*return*/, response.data];
-                    }
-                });
-            });
-        },
-        /**
-         * Get all Media
-         * @param options - options to retrieve a posts
-         */
-        getAllMedia: function (options) {
-            if (options === void 0) { options = {}; }
-            return __awaiter(_this, void 0, void 0, function () {
-                var response;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, makeRequest({ method: 'GET', url: API_URL + "/" + objectEndpoint, data: options })];
+                        case 0:
+                            url = API_URL + "/" + objectEndpoint + "/" + id;
+                            return [4 /*yield*/, makeRequest({ method: 'GET', url: url, data: options })];
                         case 1:
                             response = _a.sent();
                             return [2 /*return*/, response.data];
@@ -118,10 +125,12 @@ exports.Media = function (API_URL, makeRequest) {
          * @param options - options to update a media
          */
         updateMedia: function (id, options) { return __awaiter(_this, void 0, void 0, function () {
-            var response;
+            var url, response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, makeRequest({ method: 'POST', url: API_URL + "/" + objectEndpoint + "/" + id, data: options })];
+                    case 0:
+                        url = API_URL + "/" + objectEndpoint + "/" + id;
+                        return [4 /*yield*/, makeRequest({ method: 'POST', url: url, data: options })];
                     case 1:
                         response = _a.sent();
                         return [2 /*return*/, response.data];

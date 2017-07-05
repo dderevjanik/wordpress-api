@@ -16,7 +16,9 @@ export interface Setting {
     url?: string;
     /**
      * string, email
-     * This address is used for admin purposes.If you change this we will send you an email at your new address to confirm it.The new address will not become active until confirmed.
+     * This address is used for admin purposes.
+     * If you change this we will send you an email at your new address to confirm it.
+     * The new address will not become active until confirmed.
      */
     email?: string;
     /**

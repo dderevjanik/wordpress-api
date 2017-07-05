@@ -330,7 +330,6 @@ export interface DeleteUser {
 
     /**
      * Reassign the deleted user’s posts and links to this user ID.
-     * I have no idea what type of that parameter is, i guess boolean but api retur bad request param so that works... ! ! ! !
      */
     reassign?: {};
 }

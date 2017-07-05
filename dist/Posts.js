@@ -36,7 +36,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
-var QueryString = require("querystring");
 exports.Posts = function (API_URL, makeRequest) {
     var objectEndpoint = 'posts';
     return {
@@ -45,12 +44,12 @@ exports.Posts = function (API_URL, makeRequest) {
          * @param post - post to create
          */
         createPost: function (post) { return __awaiter(_this, void 0, void 0, function () {
-            var queries, response;
+            var url, response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        queries = QueryString.stringify(post);
-                        return [4 /*yield*/, makeRequest({ method: 'POST', url: API_URL + "/" + objectEndpoint, data: post })];
+                        url = API_URL + "/" + objectEndpoint;
+                        return [4 /*yield*/, makeRequest({ method: 'POST', url: url, data: post })];
                     case 1:
                         response = _a.sent();
                         return [2 /*return*/, response.data];
@@ -63,12 +62,15 @@ exports.Posts = function (API_URL, makeRequest) {
          * @param options - remove options
          */
         deletePost: function (postId, options) { return __awaiter(_this, void 0, void 0, function () {
+            var url, response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, makeRequest({ method: 'DELETE', url: API_URL + "/" + objectEndpoint + "/" + postId })];
+                    case 0:
+                        url = API_URL + "/" + objectEndpoint + "/" + postId;
+                        return [4 /*yield*/, makeRequest({ method: 'DELETE', url: url })];
                     case 1:
-                        _a.sent();
-                        return [2 /*return*/];
+                        response = _a.sent();
+                        return [2 /*return*/, response.data.deleted];
                 }
             });
         }); },
@@ -82,8 +84,8 @@ exports.Posts = function (API_URL, makeRequest) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        url = "http://" + API_URL + "/posts/" + postId;
-                        return [4 /*yield*/, makeRequest({ method: 'GET', url: API_URL + "/" + objectEndpoint + "/" + postId })];
+                        url = "http://" + API_URL + "/" + objectEndpoint + "/" + postId;
+                        return [4 /*yield*/, makeRequest({ method: 'GET', url: url })];
                     case 1:
                         response = _a.sent();
                         return [2 /*return*/, response.data];
@@ -96,10 +98,12 @@ exports.Posts = function (API_URL, makeRequest) {
          * @returns {Post[]} array of Posts
          */
         getPosts: function (options) { return __awaiter(_this, void 0, void 0, function () {
-            var response;
+            var url, response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, makeRequest({ method: 'GET', url: API_URL + "/" + objectEndpoint, data: options })];
+                    case 0:
+                        url = API_URL + "/" + objectEndpoint;
+                        return [4 /*yield*/, makeRequest({ method: 'GET', url: url, data: options })];
                     case 1:
                         response = _a.sent();
                         return [2 /*return*/, response.data];
@@ -112,10 +116,12 @@ exports.Posts = function (API_URL, makeRequest) {
          * @param options - options to update a post
          */
         updatePost: function (postId, options) { return __awaiter(_this, void 0, void 0, function () {
-            var response;
+            var url, response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, makeRequest({ method: 'PUT', url: API_URL + "/" + objectEndpoint, data: options })];
+                    case 0:
+                        url = API_URL + "/" + objectEndpoint + "/" + postId;
+                        return [4 /*yield*/, makeRequest({ method: 'POST', url: url, data: options })];
                     case 1:
                         response = _a.sent();
                         return [2 /*return*/, response.data];

@@ -40,13 +40,15 @@ exports.Settings = function (API_URL, makeRequest) {
     var objectEndpoint = 'settings';
     return {
         /**
-         *Get all settings
+         * Get all settings
          */
         getAllSettings: function () { return __awaiter(_this, void 0, void 0, function () {
-            var response;
+            var url, response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, makeRequest({ method: 'POST', url: API_URL + "/" + objectEndpoint })];
+                    case 0:
+                        url = API_URL + "/" + objectEndpoint;
+                        return [4 /*yield*/, makeRequest({ method: 'POST', url: url })];
                     case 1:
                         response = _a.sent();
                         return [2 /*return*/, response.data];
@@ -54,8 +56,16 @@ exports.Settings = function (API_URL, makeRequest) {
             });
         }); },
         updateSettings: function (options) { return __awaiter(_this, void 0, void 0, function () {
+            var url, response;
             return __generator(this, function (_a) {
-                throw Error("Not implemented in rest api");
+                switch (_a.label) {
+                    case 0:
+                        url = API_URL + "/" + objectEndpoint;
+                        return [4 /*yield*/, makeRequest({ method: 'POST', url: url })];
+                    case 1:
+                        response = _a.sent();
+                        return [2 /*return*/, response.data];
+                }
             });
         }); },
     };

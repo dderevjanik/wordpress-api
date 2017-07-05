@@ -5,7 +5,7 @@ export interface PostStatus {
      * Read only
      * Context: embed, view, edit
      */
-    name: string
+    name: string;
 
     /**
      * boolean
@@ -13,7 +13,7 @@ export interface PostStatus {
      * Read only
      * Context: edit
      */
-    private: boolean
+    private: boolean;
 
     /**
      * boolean
@@ -21,7 +21,7 @@ export interface PostStatus {
      * Read only
      * Context: edit
      */
-    protected: boolean
+    protected: boolean;
 
     /**
      * boolean
@@ -29,7 +29,7 @@ export interface PostStatus {
      * Read only
      * Context: view, edit
      */
-    public: boolean
+    public: boolean;
 
     /**
      * boolean
@@ -37,7 +37,7 @@ export interface PostStatus {
      * Read only
      * Context: view, edit
      */
-    queryable: boolean
+    queryable: boolean;
 
     /**
      * boolean
@@ -45,7 +45,7 @@ export interface PostStatus {
      * Read only
      * Context: edit
      */
-    show_in_list: boolean
+    show_in_list: boolean;
 
     /**
      * string
@@ -53,7 +53,7 @@ export interface PostStatus {
      * Read only
      * Context: embed, view, edit
      */
-    slug: string
+    slug: string;
 }
 
 export interface ListStatuses {
@@ -62,7 +62,7 @@ export interface ListStatuses {
      * Default: view
      * One of: view, embed, edit
      */
-    context?: string
+    context?: string;
 }
 
 export interface GetStatus {
@@ -70,5 +70,5 @@ export interface GetStatus {
      * Scope under which the request is made; determines fields present in response.
      * Default: viewOne of: view, embed, edit
      */
-    context?: string
+    context?: string;
 }

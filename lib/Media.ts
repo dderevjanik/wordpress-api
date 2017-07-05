@@ -12,7 +12,8 @@ export const Media = (API_URL: string, makeRequest: RequestHandler) => {
          */
         createMedia: async (options: CreateMedia) => {
             const header = { 'Content-Disposition': 'attachment; filename="example.jpg"' };
-            const response = await makeRequest({ method: 'POST', url: `${API_URL}/${objectEndpoint}`, data: options, headers: header });
+            const url = `${API_URL}/${objectEndpoint}`;
+            const response = await makeRequest({ method: 'POST', url, data: options, headers: header });
             return response.data as MediaItem;
         },
 
@@ -22,8 +23,19 @@ export const Media = (API_URL: string, makeRequest: RequestHandler) => {
          * @param options - remove options
          */
         deleteMedia: async (id: number, options: DeleteMedia = { force: true }) => {
-            const response = await makeRequest({ method: 'DELETE', url: `${API_URL}/${objectEndpoint}/${id}`, data: options });
+            const url = `${API_URL}/${objectEndpoint}/${id}`;
+            const response = await makeRequest({ method: 'DELETE', url, data: options });
             return response.data.deleted;
+        },
+
+        /**
+         * Get all Media
+         * @param options - options to retrieve a posts
+         */
+        getAllMedia: async (options: ListMedia = {}) => {
+            const url = `${API_URL}/${objectEndpoint}`;
+            const response = await makeRequest({ method: 'GET', url, data: options });
+            return response.data as MediaItem[];
         },
 
         /**
@@ -32,17 +44,9 @@ export const Media = (API_URL: string, makeRequest: RequestHandler) => {
          * @param options - get options
          */
         getMedia: async (id: number, options: GetMedia = { context: 'view' }) => {
-            const response = await makeRequest({ method: 'GET', url: `${API_URL}/${objectEndpoint}/${id}`, data: options });
+            const url = `${API_URL}/${objectEndpoint}/${id}`;
+            const response = await makeRequest({ method: 'GET', url, data: options });
             return response.data as MediaItem;
-        },
-
-        /**
-         * Get all Media
-         * @param options - options to retrieve a posts
-         */
-        getAllMedia: async (options: ListMedia = {}) => {
-            const response = await makeRequest({ method: 'GET', url: `${API_URL}/${objectEndpoint}`, data: options });
-            return response.data as MediaItem[];
         },
 
         /**
@@ -51,7 +55,8 @@ export const Media = (API_URL: string, makeRequest: RequestHandler) => {
          * @param options - options to update a media
          */
         updateMedia: async (id: number, options: UpdateMedia) => {
-            const response = await makeRequest({ method: 'POST', url: `${API_URL}/${objectEndpoint}/${id}`, data: options });
+            const url = `${API_URL}/${objectEndpoint}/${id}`;
+            const response = await makeRequest({ method: 'POST', url, data: options });
             return response.data as MediaItem;
         },
     };

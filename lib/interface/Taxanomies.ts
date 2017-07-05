@@ -4,63 +4,63 @@ export interface Taxanomy {
      * Read only
      * Context: edit
      */
-    capabilities: {}
+    capabilities: {};
 
     /**
      * string	A human- readable description of the taxonomy.
      * Read only
      * Context: view, edit
      */
-    description: string
+    description: string;
 
     /**
      * boolean	Whether or not the taxonomy should have children.
      * Read only
      * Context: view, edit
      */
-    hierarchical: boolean
+    hierarchical: boolean;
 
     /**
      * object	Human- readable labels for the taxonomy for various contexts.
      * Read only
      * Context: edit
      */
-    labels: {}
+    labels: {};
 
     /**
      * string	The title for the taxonomy.
      * Read only
      * Context: view, edit, embed
      */
-    name: string
+    name: string;
 
     /**
      * string	An alphanumeric identifier for the taxonomy.
      * Read only
      * Context: view, edit, embed
      */
-    slug: string
+    slug: string;
 
     /**
      * boolean	Whether or not the term cloud should be displayed.
      * Read only
      * Context: edit
      */
-    show_cloud: boolean
+    show_cloud: boolean;
 
     /**
      * array	Types associated with the taxonomy.
      * Read only
      * Context: view, edit
      */
-    types: string[]
+    types: string[];
 
     /**
      * string	REST base route for the taxonomy.
      * Read only
      * Context: view, edit, embed
      */
-    rest_base: string
+    rest_base: string;
 }
 
 export interface ListTaxaomies {
@@ -69,11 +69,11 @@ export interface ListTaxaomies {
      * Default: view
      * One of: view, embed, edit
      */
-    context?: string
+    context?: string;
     /**
      * Limit results to taxonomies associated with a specific post type.
      */
-    type?: string
+    type?: string;
 }
 
 export interface GetTaxaomy {
@@ -82,5 +82,5 @@ export interface GetTaxaomy {
      * Default: view
      * One of: view, embed, edit
      */
-    context?: string
+    context?: string;
 }

@@ -44,10 +44,12 @@ exports.Tags = function (API_URL, makeRequest) {
          * @param options - options to create a tag
          */
         createTag: function (options) { return __awaiter(_this, void 0, void 0, function () {
-            var response;
+            var url, response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, makeRequest({ method: 'POST', url: API_URL + "/" + objectEndpoint, data: options })];
+                    case 0:
+                        url = API_URL + "/" + objectEndpoint;
+                        return [4 /*yield*/, makeRequest({ method: 'POST', url: url, data: options })];
                     case 1:
                         response = _a.sent();
                         return [2 /*return*/, response.data];
@@ -62,10 +64,12 @@ exports.Tags = function (API_URL, makeRequest) {
         deleteTag: function (id, options) {
             if (options === void 0) { options = { force: true }; }
             return __awaiter(_this, void 0, void 0, function () {
-                var response;
+                var url, response;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, makeRequest({ method: 'DELETE', url: API_URL + "/" + objectEndpoint + "/" + id, data: options })];
+                        case 0:
+                            url = API_URL + "/" + objectEndpoint + "/" + id;
+                            return [4 /*yield*/, makeRequest({ method: 'DELETE', url: url, data: options })];
                         case 1:
                             response = _a.sent();
                             return [2 /*return*/, response.data.deleted];
@@ -81,10 +85,12 @@ exports.Tags = function (API_URL, makeRequest) {
         getTag: function (id, options) {
             if (options === void 0) { options = { context: 'view' }; }
             return __awaiter(_this, void 0, void 0, function () {
-                var response;
+                var url, response;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, makeRequest({ method: 'GET', url: API_URL + "/" + objectEndpoint + "/" + id, data: options })];
+                        case 0:
+                            url = API_URL + "/" + objectEndpoint + "/" + id;
+                            return [4 /*yield*/, makeRequest({ method: 'GET', url: url, data: options })];
                         case 1:
                             response = _a.sent();
                             return [2 /*return*/, response.data];
@@ -99,10 +105,12 @@ exports.Tags = function (API_URL, makeRequest) {
         getTags: function (options) {
             if (options === void 0) { options = {}; }
             return __awaiter(_this, void 0, void 0, function () {
-                var response;
+                var url, response;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, makeRequest({ method: 'GET', url: API_URL + "/" + objectEndpoint, data: options })];
+                        case 0:
+                            url = API_URL + "/" + objectEndpoint;
+                            return [4 /*yield*/, makeRequest({ method: 'GET', url: url, data: options })];
                         case 1:
                             response = _a.sent();
                             return [2 /*return*/, response.data];
@@ -116,10 +124,12 @@ exports.Tags = function (API_URL, makeRequest) {
          * @param options - options to update a tag
          */
         updateTag: function (id, options) { return __awaiter(_this, void 0, void 0, function () {
-            var response;
+            var url, response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, makeRequest({ method: 'POST', url: API_URL + "/" + objectEndpoint + "/" + id, data: options })];
+                    case 0:
+                        url = API_URL + "/" + objectEndpoint + "/" + id;
+                        return [4 /*yield*/, makeRequest({ method: 'POST', url: url, data: options })];
                     case 1:
                         response = _a.sent();
                         return [2 /*return*/, response.data];

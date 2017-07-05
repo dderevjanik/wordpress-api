@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import * as QueryString from 'querystring';
-import { CreateTag, DeleteTag, GetTag, ListTags, Tag, UpdateTag } from './interface/Tags';
 import { RequestHandler } from './interface/RequestHandler';
+import { CreateTag, DeleteTag, GetTag, ListTags, Tag, UpdateTag } from './interface/Tags';
 
 export const Tags = (API_URL: string, makeRequest: RequestHandler) => {
     const objectEndpoint = 'tags';
@@ -11,7 +11,8 @@ export const Tags = (API_URL: string, makeRequest: RequestHandler) => {
          * @param options - options to create a tag
          */
         createTag: async (options: CreateTag) => {
-            const response = await makeRequest({ method: 'POST', url: `${API_URL}/${objectEndpoint}`, data: options });
+            const url = `${API_URL}/${objectEndpoint}`;
+            const response = await makeRequest({ method: 'POST', url, data: options });
             return response.data as Tag;
         },
 
@@ -21,7 +22,8 @@ export const Tags = (API_URL: string, makeRequest: RequestHandler) => {
          * @param options - remove options
          */
         deleteTag: async (id: number, options: DeleteTag = { force: true }) => {
-            const response = await makeRequest({ method: 'DELETE', url: `${API_URL}/${objectEndpoint}/${id}`, data: options });
+            const url = `${API_URL}/${objectEndpoint}/${id}`;
+            const response = await makeRequest({ method: 'DELETE', url, data: options });
             return response.data.deleted;
         },
 
@@ -31,7 +33,8 @@ export const Tags = (API_URL: string, makeRequest: RequestHandler) => {
          * @param options - get options
          */
         getTag: async (id: number, options: GetTag = { context: 'view' }) => {
-            const response = await makeRequest({ method: 'GET', url: `${API_URL}/${objectEndpoint}/${id}`, data: options });
+            const url = `${API_URL}/${objectEndpoint}/${id}`;
+            const response = await makeRequest({ method: 'GET', url, data: options });
             return response.data as Tag;
         },
 
@@ -40,7 +43,8 @@ export const Tags = (API_URL: string, makeRequest: RequestHandler) => {
          * @param options - options to retrieve a posts
          */
         getTags: async (options: ListTags = {}) => {
-            const response = await makeRequest({ method: 'GET', url: `${API_URL}/${objectEndpoint}`, data: options });
+            const url = `${API_URL}/${objectEndpoint}`;
+            const response = await makeRequest({ method: 'GET', url, data: options });
             return response.data as Tag[];
         },
 
@@ -50,7 +54,8 @@ export const Tags = (API_URL: string, makeRequest: RequestHandler) => {
          * @param options - options to update a tag
          */
         updateTag: async (id: number, options: UpdateTag) => {
-            const response = await makeRequest({ method: 'POST', url: `${API_URL}/${objectEndpoint}/${id}`, data: options });
+            const url = `${API_URL}/${objectEndpoint}/${id}`;
+            const response = await makeRequest({ method: 'POST', url, data: options });
             return response.data as Tag;
         },
     };

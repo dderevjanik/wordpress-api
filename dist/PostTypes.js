@@ -47,10 +47,12 @@ exports.PostTypes = function (API_URL, makeRequest) {
         getType: function (key, options) {
             if (options === void 0) { options = { context: 'view' }; }
             return __awaiter(_this, void 0, void 0, function () {
-                var response;
+                var url, response;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, makeRequest({ method: 'GET', url: API_URL + "/" + objectEndpoint + "/" + key, data: options })];
+                        case 0:
+                            url = API_URL + "/" + objectEndpoint + "/" + key;
+                            return [4 /*yield*/, makeRequest({ method: 'GET', url: url, data: options })];
                         case 1:
                             response = _a.sent();
                             return [2 /*return*/, response.data];
@@ -65,10 +67,12 @@ exports.PostTypes = function (API_URL, makeRequest) {
         getTypes: function (options) {
             if (options === void 0) { options = {}; }
             return __awaiter(_this, void 0, void 0, function () {
-                var response;
+                var url, response;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, makeRequest({ method: 'GET', url: API_URL + "/" + objectEndpoint, data: options })];
+                        case 0:
+                            url = API_URL + "/" + objectEndpoint;
+                            return [4 /*yield*/, makeRequest({ method: 'GET', url: url, data: options })];
                         case 1:
                             response = _a.sent();
                             return [2 /*return*/, response.data];

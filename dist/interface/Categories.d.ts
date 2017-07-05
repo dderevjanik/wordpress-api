@@ -47,7 +47,7 @@ export interface Category {
     /**
      * object	Meta fields.
      * Context: view, edit
-    */
+     */
     meta: {};
 }
 export interface ListCategories {

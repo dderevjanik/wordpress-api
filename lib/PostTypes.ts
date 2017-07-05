@@ -12,7 +12,8 @@ export const PostTypes = (API_URL: string, makeRequest: RequestHandler) => {
          * @param options - get options
          */
         getType: async (key: string, options: GetType = { context: 'view' }) => {
-            const response = await makeRequest({ method: 'GET', url: `${API_URL}/${objectEndpoint}/${key}`, data: options });
+            const url = `${API_URL}/${objectEndpoint}/${key}`;
+            const response = await makeRequest({ method: 'GET', url, data: options });
             return response.data as PostType;
         },
 
@@ -21,7 +22,8 @@ export const PostTypes = (API_URL: string, makeRequest: RequestHandler) => {
          * @param options - options to retrieve a post types
          */
         getTypes: async (options: ListTypes = {}) => {
-            const response = await makeRequest({ method: 'GET', url: `${API_URL}/${objectEndpoint}`, data: options });
+            const url = `${API_URL}/${objectEndpoint}`;
+            const response = await makeRequest({ method: 'GET', url, data: options });
             return response.data as {};
         },
     };

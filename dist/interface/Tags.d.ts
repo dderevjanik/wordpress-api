@@ -132,8 +132,8 @@ export interface CreateTag {
 }
 export interface UpdateTag {
     /**
-   * HTML description of the term.
-   */
+     * HTML description of the term.
+     */
     description?: string;
     /**
      * HTML title for the term.
