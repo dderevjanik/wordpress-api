@@ -4,75 +4,75 @@ export interface User {
      * Read only
      * Context: embed, view, edit
      */
-    id: number
+    id: number;
 
     /**
      * string	Login name for the user.
      * Context: edit
      */
-    username: string
+    username: string;
 
     /**
      * string	Display name for the user.
      * Context: embed, view, edit
      */
-    name: string
+    name: string;
 
     /**
      * string	First name for the user.
      * Context: edit
      */
-    first_name: string
+    first_name: string;
 
     /**
      * string	Last name for the user.
      * Context: edit
      */
-    last_name: string
+    last_name: string;
 
     /**
      * string, email	The email address for the user.
      * Context: edit
      */
-    email: string
+    email: string;
 
     /**
      * string, uri	URL of the user.
      * Context: embed, view, edit
      */
-    url: string
+    url: string;
 
     /**
      * string	Description of the user.
      * Context: embed, view, edit
      */
-    description: string
+    description: string;
 
     /**
      * string, uri	Author URL of the user.
      * Read only
      * Context: embed, view, edit
      */
-    link: string
+    link: string;
 
     /**
      * string	Locale for the user.
      * Context: edit
      * One of: , en_US
      */
-    locale: string
+    locale: string;
 
     /**
      * string	The nickname for the user.
      * Context: edit
      */
-    nickname: string
+    nickname: string;
 
     /**
      * string	An alphanumeric identifier for the user.
      * Context: embed, view, edit
      */
-    slug: string
+    slug: string;
 
     /**
      * string, datetime(ISO8601)
@@ -80,46 +80,46 @@ export interface User {
      * Read only
      * Context: edit
      */
-    registered_date: Date
+    registered_date: Date;
 
     /**
      * array	Roles assigned to the user.
      * Context: edit
      */
-    roles: string[]
+    roles: string[];
 
     /**
      * string	Password for the user (never included).
      * Context:
      */
-    password: string
+    password: string;
 
     /**
      * object	All capabilities assigned to the user.
      * Read only
      * Context: edit
      */
-    capabilities: {}
+    capabilities: {};
 
     /**
      * object	Any extra capabilities assigned to the user.
      * Read only
      * Context: edit
      */
-    extra_capabilities: {}
+    extra_capabilities: {};
 
     /**
      * object	Avatar URLs for the user.
      * Read only
      * Context: embed, view, edit
      */
-    avatar_urls: {}
+    avatar_urls: {};
 
     /**
      * object	Meta fields.
      * Context: view, edit
      */
-    meta: {}
+    meta: {};
 }
 
 export interface ListUsers {
@@ -128,34 +128,33 @@ export interface ListUsers {
      * Default: view
      * One of: view, embed, edit
      */
-    context?: string
+    context?: string;
 
     /**
      * Current page of the collection.
      * Default: 1
      */
-    page?: number
+    page?: number;
 
     /**
      * Maximum number of items to be returned in result set.
      * Default: 10
      */
-    per_page?: number
+    per_page?: number;
 
     /**
      * Limit results to those matching a string.
      * exclude	Ensure result set excludes specific IDs.
      * Default:
      */
-    search?: string
-
+    search?: string;
 
     //TODO: what type is incule?
     /**
      * Limit result set to specific IDs.
      * Default:
      */
-    include?: string
+    include?: string;
 
     /**
      * Offset the result set by a specific number of items.
@@ -163,24 +162,24 @@ export interface ListUsers {
      * Default: asc
      * One of: asc, desc
      */
-    offset?: string
+    offset?: string;
 
     /**
      * Sort collection by object attribute.
      * Default: name
      * One of: id, include, name, registered_date, slug, email, url
      */
-    orderby?: string
+    orderby?: string;
 
     /**
      * Limit result set to users with a specific slug.
      */
-    slug?: string
+    slug?: string;
 
     /**
      * Limit result set to users matching at least one specific role provided.Accepts csv list or single role.
      */
-    roles?: string[]
+    roles?: string[];
 }
 
 export interface CreateUser {
@@ -188,150 +187,151 @@ export interface CreateUser {
      * Login name for the user.
      * Required: true
      */
-    username: string
+    username: string;
 
     /**
      * Display name for the user.
      */
-    name?: string
+    name?: string;
 
     /**
      * First name for the user.
      */
-    first_name?: string
+    first_name?: string;
 
     /**
      * Last name for the user.
      */
-    last_name?: string
+    last_name?: string;
 
     /**
      * The email address for the user.
      * Required: true
      */
-    email: string
+    email: string;
 
     /**
      * URL of the user.
      */
-    url?: string
+    url?: string;
 
     /**
      * Description of the user.
      */
-    description?: string
+    description?: string;
 
     /**
      * Locale for the user.
      * One of: , en_US
      */
-    locale?: string
+    locale?: string;
 
     /**
      * The nickname for the user.
      */
-    nickname?: string
+    nickname?: string;
 
     /**
      * An alphanumeric identifier for the user.
      */
-    slug?: string
+    slug?: string;
 
     /**
      * Roles assigned to the user.
      */
-    roles?: string
+    roles?: string;
 
     /**
      * Password for the user (never included).
      * Required: true
      */
-    password?: string
+    password?: string;
 
     /**
      * Meta fields.
      */
-    meta?: {}
+    meta?: {};
 }
 
 export interface UpdateUser {
     /**
      * Login name for the user.
+     * user name is not editable
      */
-    username?: string
+    //username?: string;
 
     /**
      * Display name for the user.
      */
-    name?: string
+    name?: string;
 
     /**
      * First name for the user.
      */
-    first_name?: string
+    first_name?: string;
 
     /**
      * Last name for the user.
      */
-    last_name?: string
+    last_name?: string;
 
     /**
      * The email address for the user.
      */
-    email?: string
+    email?: string;
 
     /**
      * URL of the user.
      */
-    url?: string
+    url?: string;
 
     /**
      * Description of the user.
      */
-    description?: string
+    description?: string;
 
     /**
      * Locale for the user.
      * One of: , en_US
      */
-    locale?: string
+    locale?: string;
 
     /**
      * The nickname for the user.
      */
-    nickname?: string
+    nickname?: string;
 
     /**
      * An alphanumeric identifier for the user.
      */
-    slug?: string
+    slug?: string;
 
     /**
      * Roles assigned to the user.
      */
-    roles?: string[]
+    roles?: string[];
 
     /**
      * Password for the user (never included).
      */
-    password?: string
+    password?: string;
 
     /**
      * Meta fields.
      */
-    meta?: {}
+    meta?: {};
 }
 
 export interface DeleteUser {
     /**
      * Required to be true, as users do not support trashing.
      */
-    force?: boolean
+    force?: boolean;
 
     /**
      * Reassign the deleted user’s posts and links to this user ID.
+     * I have no idea what type of that parameter is, i guess boolean but api retur bad request param so that works... ! ! ! !
      */
-    reassign?: boolean
+    reassign?: {};
 }
-
-
+

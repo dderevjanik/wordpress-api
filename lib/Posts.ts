@@ -3,6 +3,7 @@ import * as QueryString from 'querystring';
 import { DeletePost, ListPosts, Post, RetrievePost } from './interface/Posts';
 
 export const Posts = (API_URL: string, makeRequest: (options: AxiosRequestConfig) => Promise<AxiosResponse>) => {
+    const objectEndpoint = 'posts';
     return {
         /**
          * Create a post
@@ -10,15 +11,17 @@ export const Posts = (API_URL: string, makeRequest: (options: AxiosRequestConfig
          */
         createPost: async (post: Post) => {
             const queries = QueryString.stringify(post);
-            await makeRequest({ method: 'POST', url: `${API_URL}/posts`, data: post });
+            const response = await makeRequest({ method: 'POST', url: `${API_URL}/${objectEndpoint}`, data: post });
+            return response.data as Post;
         },
+
         /**
          * Remove a post
          * @param postId - post id to remove
          * @param options - remove options
          */
         deletePost: async (postId: number, options: DeletePost) => {
-            await makeRequest({ method: 'DELETE', url: `${API_URL}/posts/${postId}` });
+            await makeRequest({ method: 'DELETE', url: `${API_URL}/${objectEndpoint}/${postId}` });
         },
 
         /**
@@ -28,7 +31,7 @@ export const Posts = (API_URL: string, makeRequest: (options: AxiosRequestConfig
          */
         getPost: async (postId: number): Promise<Post> => {
             const url = `http://${API_URL}/posts/${postId}`;
-            const response = await makeRequest({ method: 'GET', url: `${API_URL}/posts/${postId}` });
+            const response = await makeRequest({ method: 'GET', url: `${API_URL}/${objectEndpoint}/${postId}` });
             return response.data as Post;
         },
 
@@ -38,7 +41,7 @@ export const Posts = (API_URL: string, makeRequest: (options: AxiosRequestConfig
          * @returns {Post[]} array of Posts
          */
         getPosts: async (options: RetrievePost): Promise<Post[]> => {
-            const response = await makeRequest({ method: 'GET', url: `${API_URL}/posts`, data: options });
+            const response = await makeRequest({ method: 'GET', url: `${API_URL}/${objectEndpoint}`, data: options });
             return response.data as Post[];
         },
 
@@ -48,8 +51,8 @@ export const Posts = (API_URL: string, makeRequest: (options: AxiosRequestConfig
          * @param options - options to update a post
          */
         updatePost: async (postId: number, options: Post) => {
-            const queryString = QueryString.stringify(options);
-            const response = await axios.put(`${API_URL}/posts?${queryString}`);
+            const response = await makeRequest({ method: 'PUT', url: `${API_URL}/${objectEndpoint}`, data: options });
+            return response.data as Post;
         },
     };
 };
