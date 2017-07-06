@@ -26,7 +26,7 @@ const REST_API_PATH = '/wp-json/wp/v2';
  * @param hooks - hooks for modify requests/responses, useful for custom authentication
  * @throws {BadHost}
  */
-export const connect = async (host: string, hooks: ConnectHook = {}) => {
+const connect = async (host: string, hooks: ConnectHook = {}) => {
     const API_URL = host + REST_API_PATH;
     const { beforeRequest, afterResponse } = hooks;
 

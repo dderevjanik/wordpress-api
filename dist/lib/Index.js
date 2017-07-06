@@ -66,7 +66,7 @@ var REST_API_PATH = '/wp-json/wp/v2';
  * @param hooks - hooks for modify requests/responses, useful for custom authentication
  * @throws {BadHost}
  */
-exports.connect = function (host, hooks) {
+var connect = function (host, hooks) {
     if (hooks === void 0) { hooks = {}; }
     return __awaiter(_this, void 0, void 0, function () {
         var _this = this;
@@ -179,7 +179,7 @@ exports.connect = function (host, hooks) {
             case 1:
                 token = (_a.sent()).token;
                 authorization = "Bearer " + token;
-                return [4 /*yield*/, exports.connect(URL, {
+                return [4 /*yield*/, connect(URL, {
                         beforeRequest: function (r) { return (__assign({}, r, { headers: __assign({}, r.headers, { Authorization: authorization }) })); },
                     })];
             case 2:
