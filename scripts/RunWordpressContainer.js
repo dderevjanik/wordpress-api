@@ -39,6 +39,7 @@ const pullImage = (docker, imageName) => {
         log(red("cannot pull images from dockerhub"));
         process.exit(1);
     }
+
     dockerode.run();
     dockerode.run();
     process.exit(0);

@@ -36,15 +36,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
-var QueryString = require("querystring");
-exports.Users = function (API_URL, makeRequest) {
-    var objectEndpoint = 'users';
+exports.Comments = function (API_URL, makeRequest) {
+    var objectEndpoint = 'comments';
     return {
         /**
-         * Create new user
-         * @param options - options to create a user
+         * Create a comment
+         * @param options - options to create a comment
          */
-        createUser: function (options) { return __awaiter(_this, void 0, void 0, function () {
+        createComment: function (options) { return __awaiter(_this, void 0, void 0, function () {
             var url, response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -58,74 +57,80 @@ exports.Users = function (API_URL, makeRequest) {
             });
         }); },
         /**
-         * Delete existing user
-         * @param userId - id of a user to be removed
-         * @param options - options to delete a user
-         * @default { force: true, reassign: true }
+         * Remove a comment
+         * @param id - comment id to remove
+         * @param options - remove options
+         * @default: { force: true }
          */
-        deleteUser: function (userId, options) {
-            if (options === void 0) { options = { force: true, reassign: {} }; }
+        deleteComment: function (id, options) {
+            if (options === void 0) { options = { force: true }; }
             return __awaiter(_this, void 0, void 0, function () {
-                var url, response, deleted;
+                var url, response;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
-                            url = API_URL + "/" + objectEndpoint + "/" + userId;
+                            url = API_URL + "/" + objectEndpoint + "/" + id;
                             return [4 /*yield*/, makeRequest({ method: 'DELETE', url: url, data: options })];
                         case 1:
                             response = _a.sent();
-                            deleted = response.data.deleted;
-                            return [2 /*return*/, deleted];
+                            return [2 /*return*/, response.data.deleted];
                     }
                 });
             });
         },
         /**
-         * get specific user
-         * @param userId - id of a user to get
+         * Get specific comment with id
+         * @param id - comment id
+         * @param options - get options
+         * @default: { context: 'view' }
          */
-        getUser: function (userId) { return __awaiter(_this, void 0, void 0, function () {
+        getComment: function (id, options) {
+            if (options === void 0) { options = { context: 'view' }; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var url, response;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            url = API_URL + "/" + objectEndpoint + "/" + id;
+                            return [4 /*yield*/, makeRequest({ method: 'GET', url: url, data: options })];
+                        case 1:
+                            response = _a.sent();
+                            return [2 /*return*/, response.data];
+                    }
+                });
+            });
+        },
+        /**
+         * Get all comments
+         * @param options - options to retrieve a comments
+         */
+        getComments: function (options) {
+            if (options === void 0) { options = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var url, response;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            url = API_URL + "/" + objectEndpoint;
+                            return [4 /*yield*/, makeRequest({ method: 'GET', url: url, data: options })];
+                        case 1:
+                            response = _a.sent();
+                            return [2 /*return*/, response.data];
+                    }
+                });
+            });
+        },
+        /**
+         * Update a specific comment
+         * @param id - which comment to update
+         * @param options - options to update a comment
+         */
+        updateComment: function (id, options) { return __awaiter(_this, void 0, void 0, function () {
             var url, response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        url = API_URL + "/" + objectEndpoint + "/" + userId;
-                        return [4 /*yield*/, makeRequest({ method: 'GET', url: url })];
-                    case 1:
-                        response = _a.sent();
-                        return [2 /*return*/, response.data];
-                }
-            });
-        }); },
-        /**
-         * Get all posts
-         * @param options - options to retrieve a posts
-         */
-        getUsers: function (options) { return __awaiter(_this, void 0, void 0, function () {
-            var url, queryString, response;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        url = API_URL + "/" + objectEndpoint + "}";
-                        queryString = QueryString.stringify(options);
-                        return [4 /*yield*/, makeRequest({ method: 'GET', url: url, data: options })];
-                    case 1:
-                        response = _a.sent();
-                        return [2 /*return*/, response.data];
-                }
-            });
-        }); },
-        /**
-         * Update existing user
-         * @param userId
-         * @param options - options to update a user
-         */
-        updateUser: function (userId, options) { return __awaiter(_this, void 0, void 0, function () {
-            var url, response;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        url = API_URL + "/" + objectEndpoint + "/" + userId;
+                        url = API_URL + "/" + objectEndpoint + "/" + id;
                         return [4 /*yield*/, makeRequest({ method: 'POST', url: url, data: options })];
                     case 1:
                         response = _a.sent();
@@ -135,4 +140,4 @@ exports.Users = function (API_URL, makeRequest) {
         }); },
     };
 };
-//# sourceMappingURL=Users.js.map
+//# sourceMappingURL=Comments.js.map

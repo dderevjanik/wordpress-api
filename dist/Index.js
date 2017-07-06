@@ -48,9 +48,16 @@ var axios_1 = require("axios");
 var chalk_1 = require("chalk");
 var wordpress_jwt_auth_1 = require("wordpress-jwt-auth"); // DEV
 var Categories_1 = require("./Categories");
+var Comments_1 = require("./Comments");
+var Media_1 = require("./Media");
 var Pages_1 = require("./Pages");
 var PostRevisions_1 = require("./PostRevisions");
 var Posts_1 = require("./Posts");
+var PostStatuses_1 = require("./PostStatuses");
+var PostTypes_1 = require("./PostTypes");
+var Settings_1 = require("./Settings");
+var Tags_1 = require("./Tags");
+var Taxaomies_1 = require("./Taxaomies");
 var Users_1 = require("./Users");
 var REST_API_PATH = '/wp-json/wp/v2';
 /**
@@ -97,32 +104,73 @@ var connect = function (host, hooks) {
                     throw new Error(msg);
                 case 4: return [2 /*return*/, {
                         /**
-                         * define all methods with wp posts
-                         */
-                        posts: Posts_1.Posts(API_URL, makeRequest),
-                        /**
-                         * define all methods with wp pages
-                         */
-                        pages: Pages_1.Pages(API_URL, makeRequest),
-                        /**
-                         * define all methods with wp users
-                         */
-                        users: Users_1.Users(API_URL, makeRequest),
-                        /**
                          * define all methods with categories
+                         * http://demo.wp-api.org/wp-json/wp/v2/categories
                          */
                         categories: Categories_1.Categories(API_URL, makeRequest),
                         /**
+                         * define all methods with wp comments
+                         * http://demo.wp-api.org/wp-json/wp/v2/comments
+                         */
+                        comments: Comments_1.Comments(API_URL, makeRequest),
+                        /**
+                         * define all methods with wp media
+                         * http://demo.wp-api.org/wp-json/wp/v2/media
+                         */
+                        media: Media_1.Media(API_URL, makeRequest),
+                        /**
+                         * define all methods with wp pages
+                         * http://demo.wp-api.org/wp-json/wp/v2/pages
+                         */
+                        pages: Pages_1.Pages(API_URL, makeRequest),
+                        /**
                          * define all methods with post revisions
+                         * http://demo.wp-api.org/wp-json/wp/v2/posts/<parent_id>/revisions
                          */
                         postRevisions: PostRevisions_1.PostRevisions(API_URL, makeRequest),
+                        /**
+                         * define all methods with wp post statuses
+                         * http://demo.wp-api.org/wp-json/wp/v2/statuses
+                         */
+                        postStatuses: PostStatuses_1.PostStatuses(API_URL, makeRequest),
+                        /**
+                         * define all methods with wp post type
+                         * http://demo.wp-api.org/wp-json/wp/v2/media
+                         */
+                        postTypes: PostTypes_1.PostTypes(API_URL, makeRequest),
+                        /**
+                         * define all methods with wp posts
+                         * http://demo.wp-api.org/wp-json/wp/v2/posts
+                         */
+                        posts: Posts_1.Posts(API_URL, makeRequest),
+                        /**
+                         * define all methods with wp settings
+                         * specific settings for authenticated user
+                         * http://demo.wp-api.org/wp-json/wp/v2/settings
+                         */
+                        settings: Settings_1.Settings(API_URL, makeRequest),
+                        /**
+                         * define all methods with wp tags
+                         * http://demo.wp-api.org/wp-json/wp/v2/tags
+                         */
+                        tags: Tags_1.Tags(API_URL, makeRequest),
+                        /**
+                         * define all methods with wp taxaomies
+                         * http://demo.wp-api.org/wp-json/wp/v2/taxaomies
+                         */
+                        taxanomies: Taxaomies_1.Taxanomies(API_URL, makeRequest),
+                        /**
+                         * define all methods with wp users
+                         * http://demo.wp-api.org/wp-json/wp/v2/users
+                         */
+                        users: Users_1.Users(API_URL, makeRequest),
                     }];
             }
         });
     });
 };
 (function () { return __awaiter(_this, void 0, void 0, function () {
-    var URL, token, authorization, wpaApi, user, updatedUser, newUser, deletedUser, page, pages, newPage, newPageId, updatedPage, deleted, category, categories, newCategory, updatedCategory, deletedCategory, e_2;
+    var URL, token, authorization, wpaApi;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -136,73 +184,6 @@ var connect = function (host, hooks) {
                     })];
             case 2:
                 wpaApi = _a.sent();
-                console.log('Authenticated');
-                _a.label = 3;
-            case 3:
-                _a.trys.push([3, 18, , 19]);
-                return [4 /*yield*/, wpaApi.users.getUser(1)];
-            case 4:
-                user = _a.sent();
-                console.log(user);
-                return [4 /*yield*/, wpaApi.users.updateUser(2, { email: 'juraj@gmail.com', name: 'edit', first_name: 'updatedFirstName' })];
-            case 5:
-                updatedUser = _a.sent();
-                console.log(updatedUser);
-                return [4 /*yield*/, wpaApi.users.createUser({ email: 'newEmail@gmail.com', password: 'root', username: 'userName' })];
-            case 6:
-                newUser = _a.sent();
-                console.log(newUser);
-                return [4 /*yield*/, wpaApi.users.deleteUser(newUser.id, { force: true, reassign: {} })];
-            case 7:
-                deletedUser = _a.sent();
-                console.log(deletedUser);
-                return [4 /*yield*/, wpaApi.pages.getPage(2)];
-            case 8:
-                page = _a.sent();
-                console.log(page);
-                return [4 /*yield*/, wpaApi.pages.getPages({ author: 1 })];
-            case 9:
-                pages = _a.sent();
-                console.log(pages);
-                return [4 /*yield*/, wpaApi.pages.createPage({})];
-            case 10:
-                newPage = _a.sent();
-                newPageId = newPage.id;
-                return [4 /*yield*/, wpaApi.pages.updatePage(newPageId, { content: 'updatedContent' })];
-            case 11:
-                updatedPage = _a.sent();
-                console.log(updatedPage.content);
-                return [4 /*yield*/, wpaApi.pages.deletePage(newPageId)];
-            case 12:
-                deleted = _a.sent();
-                console.log(deleted);
-                return [4 /*yield*/, wpaApi.categories.getCategory(1)];
-            case 13:
-                category = _a.sent();
-                console.log(category);
-                return [4 /*yield*/, wpaApi.categories.getCategories({})];
-            case 14:
-                categories = _a.sent();
-                console.log(categories);
-                return [4 /*yield*/, wpaApi.categories.createCategory({ name: 'newCategory' })];
-            case 15:
-                newCategory = _a.sent();
-                console.log(newCategory.id);
-                return [4 /*yield*/, wpaApi.categories.updateCategory(newCategory.id, { name: 'updatedCategory' })];
-            case 16:
-                updatedCategory = _a.sent();
-                console.log(updatedCategory);
-                return [4 /*yield*/, wpaApi.categories.deleteCategory(updatedCategory.id, { force: true })];
-            case 17:
-                deletedCategory = _a.sent();
-                console.log(deletedCategory);
-                return [3 /*break*/, 19];
-            case 18:
-                e_2 = _a.sent();
-                console.log('oops, error');
-                console.log(e_2);
-                return [3 /*break*/, 19];
-            case 19:
                 process.exit();
                 return [2 /*return*/];
         }

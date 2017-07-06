@@ -36,20 +36,19 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Posts = function (API_URL, makeRequest) {
-    var objectEndpoint = 'posts';
+exports.Settings = function (API_URL, makeRequest) {
+    var objectEndpoint = 'settings';
     return {
         /**
-         * Create a post
-         * @param post - post to create
+         * Get all settings
          */
-        createPost: function (post) { return __awaiter(_this, void 0, void 0, function () {
+        getAllSettings: function () { return __awaiter(_this, void 0, void 0, function () {
             var url, response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         url = API_URL + "/" + objectEndpoint;
-                        return [4 /*yield*/, makeRequest({ method: 'POST', url: url, data: post })];
+                        return [4 /*yield*/, makeRequest({ method: 'POST', url: url })];
                     case 1:
                         response = _a.sent();
                         return [2 /*return*/, response.data];
@@ -57,71 +56,15 @@ exports.Posts = function (API_URL, makeRequest) {
             });
         }); },
         /**
-         * Remove a post
-         * @param postId - post id to remove
-         * @param options - remove options
+         * @param options - options to upadete settings
          */
-        deletePost: function (postId, options) { return __awaiter(_this, void 0, void 0, function () {
-            var url, response;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        url = API_URL + "/" + objectEndpoint + "/" + postId;
-                        return [4 /*yield*/, makeRequest({ method: 'DELETE', url: url })];
-                    case 1:
-                        response = _a.sent();
-                        return [2 /*return*/, response.data.deleted];
-                }
-            });
-        }); },
-        /**
-         * Get specific post with id
-         * @param postId - post id
-         * @returns {Post} post with postId
-         */
-        getPost: function (postId) { return __awaiter(_this, void 0, void 0, function () {
-            var url, response;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        url = "http://" + API_URL + "/" + objectEndpoint + "/" + postId;
-                        return [4 /*yield*/, makeRequest({ method: 'GET', url: url })];
-                    case 1:
-                        response = _a.sent();
-                        return [2 /*return*/, response.data];
-                }
-            });
-        }); },
-        /**
-         * Get all posts
-         * @param options - options to retrieve a posts
-         * @returns {Post[]} array of Posts
-         */
-        getPosts: function (options) { return __awaiter(_this, void 0, void 0, function () {
+        updateSettings: function (options) { return __awaiter(_this, void 0, void 0, function () {
             var url, response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         url = API_URL + "/" + objectEndpoint;
-                        return [4 /*yield*/, makeRequest({ method: 'GET', url: url, data: options })];
-                    case 1:
-                        response = _a.sent();
-                        return [2 /*return*/, response.data];
-                }
-            });
-        }); },
-        /**
-         * Update a specific post
-         * @param postId - which post to update
-         * @param options - options to update a post
-         */
-        updatePost: function (postId, options) { return __awaiter(_this, void 0, void 0, function () {
-            var url, response;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        url = API_URL + "/" + objectEndpoint + "/" + postId;
-                        return [4 /*yield*/, makeRequest({ method: 'POST', url: url, data: options })];
+                        return [4 /*yield*/, makeRequest({ method: 'POST', url: url })];
                     case 1:
                         response = _a.sent();
                         return [2 /*return*/, response.data];
@@ -130,4 +73,4 @@ exports.Posts = function (API_URL, makeRequest) {
         }); },
     };
 };
-//# sourceMappingURL=Posts.js.map
+//# sourceMappingURL=Settings.js.map

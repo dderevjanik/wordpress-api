@@ -36,21 +36,21 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
-var QueryString = require("querystring");
-exports.Users = function (API_URL, makeRequest) {
-    var objectEndpoint = 'users';
+exports.Media = function (API_URL, makeRequest) {
+    var objectEndpoint = 'media';
     return {
         /**
-         * Create new user
-         * @param options - options to create a user
+         * Create a Media
+         * @param options - options to create a media
          */
-        createUser: function (options) { return __awaiter(_this, void 0, void 0, function () {
-            var url, response;
+        createMedia: function (options) { return __awaiter(_this, void 0, void 0, function () {
+            var header, url, response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        header = { 'Content-Disposition': 'attachment; filename="example.jpg"' };
                         url = API_URL + "/" + objectEndpoint;
-                        return [4 /*yield*/, makeRequest({ method: 'POST', url: url, data: options })];
+                        return [4 /*yield*/, makeRequest({ method: 'POST', url: url, data: options, headers: header })];
                     case 1:
                         response = _a.sent();
                         return [2 /*return*/, response.data];
@@ -58,74 +58,81 @@ exports.Users = function (API_URL, makeRequest) {
             });
         }); },
         /**
-         * Delete existing user
-         * @param userId - id of a user to be removed
-         * @param options - options to delete a user
-         * @default { force: true, reassign: true }
+         * Remove a media
+         * @param id - media id to remove
+         * @param options - remove options
+         * @default: { force: true }
          */
-        deleteUser: function (userId, options) {
-            if (options === void 0) { options = { force: true, reassign: {} }; }
+        deleteMedia: function (id, options) {
+            if (options === void 0) { options = { force: true }; }
             return __awaiter(_this, void 0, void 0, function () {
-                var url, response, deleted;
+                var url, response;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
-                            url = API_URL + "/" + objectEndpoint + "/" + userId;
+                            url = API_URL + "/" + objectEndpoint + "/" + id;
                             return [4 /*yield*/, makeRequest({ method: 'DELETE', url: url, data: options })];
                         case 1:
                             response = _a.sent();
-                            deleted = response.data.deleted;
-                            return [2 /*return*/, deleted];
+                            return [2 /*return*/, response.data.deleted];
                     }
                 });
             });
         },
         /**
-         * get specific user
-         * @param userId - id of a user to get
-         */
-        getUser: function (userId) { return __awaiter(_this, void 0, void 0, function () {
-            var url, response;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        url = API_URL + "/" + objectEndpoint + "/" + userId;
-                        return [4 /*yield*/, makeRequest({ method: 'GET', url: url })];
-                    case 1:
-                        response = _a.sent();
-                        return [2 /*return*/, response.data];
-                }
-            });
-        }); },
-        /**
-         * Get all posts
+         * Get all Media
          * @param options - options to retrieve a posts
+         * @default: {}
          */
-        getUsers: function (options) { return __awaiter(_this, void 0, void 0, function () {
-            var url, queryString, response;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        url = API_URL + "/" + objectEndpoint + "}";
-                        queryString = QueryString.stringify(options);
-                        return [4 /*yield*/, makeRequest({ method: 'GET', url: url, data: options })];
-                    case 1:
-                        response = _a.sent();
-                        return [2 /*return*/, response.data];
-                }
+        getAllMedia: function (options) {
+            if (options === void 0) { options = {}; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var url, response;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            url = API_URL + "/" + objectEndpoint;
+                            return [4 /*yield*/, makeRequest({ method: 'GET', url: url, data: options })];
+                        case 1:
+                            response = _a.sent();
+                            return [2 /*return*/, response.data];
+                    }
+                });
             });
-        }); },
+        },
         /**
-         * Update existing user
-         * @param userId
-         * @param options - options to update a user
+         * Get specific media with id
+         * @param id - media id
+         * @param options - get options
+         * @default: { context: 'view' }
          */
-        updateUser: function (userId, options) { return __awaiter(_this, void 0, void 0, function () {
+        getMedia: function (id, options) {
+            if (options === void 0) { options = { context: 'view' }; }
+            return __awaiter(_this, void 0, void 0, function () {
+                var url, response;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0:
+                            url = API_URL + "/" + objectEndpoint + "/" + id;
+                            return [4 /*yield*/, makeRequest({ method: 'GET', url: url, data: options })];
+                        case 1:
+                            response = _a.sent();
+                            return [2 /*return*/, response.data];
+                    }
+                });
+            });
+        },
+        /**
+         * Update a specific media
+         * @param id - which media to update
+         * @param options - options to update a media
+         */
+        updateMedia: function (id, options) { return __awaiter(_this, void 0, void 0, function () {
             var url, response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        url = API_URL + "/" + objectEndpoint + "/" + userId;
+                        url = API_URL + "/" + objectEndpoint + "/" + id;
                         return [4 /*yield*/, makeRequest({ method: 'POST', url: url, data: options })];
                     case 1:
                         response = _a.sent();
@@ -135,4 +142,4 @@ exports.Users = function (API_URL, makeRequest) {
         }); },
     };
 };
-//# sourceMappingURL=Users.js.map
+//# sourceMappingURL=Media.js.map

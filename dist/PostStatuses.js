@@ -36,42 +36,23 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
-// TODO: what is post revision, what are parametesrs like parentId, id?
-exports.PostRevisions = function (API_URL, makeRequest) {
+exports.PostStatuses = function (API_URL, makeRequest) {
+    var objectEndpoint = 'statuses';
     return {
         /**
-         * Remove a post revision
-         * @param parentId - parent Id
-         * @param id - revision wiht Id to remove
-         */
-        deletePostRevision: function (parentId, id) { return __awaiter(_this, void 0, void 0, function () {
-            var url;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        url = API_URL + "/posts/" + parentId + "/revisions/" + id;
-                        return [4 /*yield*/, makeRequest({ method: 'DELETE', url: url })];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        }); },
-        /**
-         * Get specific post revision
-         * @param parentId - parentId
-         * @param id - revisionId
-         * @param options - options to get retrieve post revision
+         * Get specific post status by prop key
+         * @param key - status prop key
+         * @param options - get options
          * @default: { context: 'view' }
          */
-        getPostRevision: function (parentId, id, options) {
+        getStatus: function (key, options) {
             if (options === void 0) { options = { context: 'view' }; }
             return __awaiter(_this, void 0, void 0, function () {
                 var url, response;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
-                            url = API_URL + "/posts/" + parentId + "/revisions/" + id;
+                            url = API_URL + "/" + objectEndpoint + "/" + key;
                             return [4 /*yield*/, makeRequest({ method: 'GET', url: url, data: options })];
                         case 1:
                             response = _a.sent();
@@ -81,20 +62,18 @@ exports.PostRevisions = function (API_URL, makeRequest) {
             });
         },
         /**
-         * Get all posts
-         * @param parentId
-         * @param id
-         * @param options - options to retrieve all post revisions
-         * @default: { context: 'view' }
+         * Get all Post statuses
+         * @param options - options to retrieve a post statuses
+         * @default: {}
          */
-        getPostRevisions: function (parentId, id, options) {
-            if (options === void 0) { options = { context: 'view' }; }
+        getStatuses: function (options) {
+            if (options === void 0) { options = {}; }
             return __awaiter(_this, void 0, void 0, function () {
                 var url, response;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
-                            url = API_URL + "/posts/" + parentId + "/revisions/" + id;
+                            url = API_URL + "/" + objectEndpoint;
                             return [4 /*yield*/, makeRequest({ method: 'GET', url: url, data: options })];
                         case 1:
                             response = _a.sent();
@@ -105,4 +84,4 @@ exports.PostRevisions = function (API_URL, makeRequest) {
         },
     };
 };
-//# sourceMappingURL=PostRevisions.js.map
+//# sourceMappingURL=PostStatuses.js.map

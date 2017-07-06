@@ -1,4 +1,4 @@
-export interface Category {
+export interface Tag {
     /**
      * integer	Unique identifier for the term.
      * Context: view, embed, edit
@@ -36,21 +36,16 @@ export interface Category {
      * string	Type attribution for the term.
      * Context: view, embed, edit
      * One of: category, post_tag, nav_menu, link_category, post_format
-     * @default: view
+     * @readonly
      */
     taxonomy: 'category' | 'post_tag' | 'nav_menu' | 'link_category' | 'post_format';
-    /**
-     * integer	The parent term ID.
-     * Context: view, edit
-     */
-    parent: number;
     /**
      * object	Meta fields.
      * Context: view, edit
      */
     meta: {};
 }
-export interface ListCategories {
+export interface ListTags {
     /**
      * Scope under which the request is made; determines fields present in response.
      * One of: view, embed, edit
@@ -69,17 +64,24 @@ export interface ListCategories {
     per_page?: number;
     /**
      * Limit results to those matching a string.
-     * exclude	Ensure result set excludes specific IDs.
      */
     search?: number;
     /**
+     * Ensure result set excludes specific IDs.
+     */
+    exclude?: number[];
+    /**
      * Limit result set to specific IDs.
      */
-    include?: number;
+    include?: number[];
+    /**
+     * Offset the result set by a specific number of items.
+     */
+    offset?: number;
     /**
      * Order sort attribute ascending or descending.
      * One of: asc, desc
-     * @default: asc
+     * @default: "asc"
      */
     order?: 'asc' | 'desc';
     /**
@@ -89,13 +91,9 @@ export interface ListCategories {
      */
     orderby?: 'id' | 'include' | 'name' | 'slug' | 'term_group' | 'description' | 'count';
     /**
-     * Whether to hide terms not assigned to any posts.
+     * hide_empty: boolean
      */
     hide_empty?: boolean;
-    /**
-     * Limit result set to terms assigned to a specific parent.
-     */
-    parent?: number;
     /**
      * Limit result set to terms assigned to a specific post.
      */
@@ -105,22 +103,22 @@ export interface ListCategories {
      */
     slug?: string;
 }
-export interface GetCategory {
+export interface GetTag {
     /**
      * Scope under which the request is made; determines fields present in response.
-     * @default: "view"
      * One of: view, embed, edit
+     * @default: "view"
      */
-    context: 'view' | 'embed' | 'edit';
+    context?: 'view' | 'embed' | 'edit';
 }
-export interface CreateCategory {
+export interface CreateTag {
     /**
      * HTML description of the term.
      */
     description?: string;
     /**
      * HTML title for the term.
-     * @required
+     * Required: true
      */
     name: string;
     /**
@@ -128,17 +126,13 @@ export interface CreateCategory {
      */
     slug?: string;
     /**
-     * The parent term ID.
-     */
-    parent?: number;
-    /**
      * Meta fields.
      */
     meta?: {};
 }
-export interface UpdateCategory {
+export interface UpdateTag {
     /**
-     * description: string
+     * HTML description of the term.
      */
     description?: string;
     /**
@@ -150,17 +144,13 @@ export interface UpdateCategory {
      */
     slug?: string;
     /**
-     * The parent term ID.
-     */
-    parent?: number;
-    /**
      * Meta fields.
      */
     meta?: {};
 }
-export interface DeleteCategory {
+export interface DeleteTag {
     /**
      * Required to be true, as terms do not support trashing.
      */
-    force?: boolean;
+    force: boolean;
 }

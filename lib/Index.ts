@@ -6,12 +6,17 @@ import { ConnectHook } from './interface/IConnectHook';
 import { DeletePost, ListPosts, Post, RetrievePost } from './interface/Posts';
 
 import { Categories } from './Categories';
+import { Comments } from './Comments';
+import { Media } from './Media';
 import { Pages } from './Pages';
 import { PostRevisions } from './PostRevisions';
 import { Posts } from './Posts';
+import { PostStatuses } from './PostStatuses';
+import { PostTypes } from './PostTypes';
+import { Settings } from './Settings';
+import { Tags } from './Tags';
+import { Taxanomies } from './Taxaomies';
 import { Users } from './Users';
-
-import { test } from './test';
 
 const REST_API_PATH = '/wp-json/wp/v2';
 
@@ -49,6 +54,18 @@ const connect = async (host: string, hooks: ConnectHook = {}) => {
         categories: Categories(API_URL, makeRequest),
 
         /**
+         * define all methods with wp comments
+         * http://demo.wp-api.org/wp-json/wp/v2/comments
+         */
+        comments: Comments(API_URL, makeRequest),
+
+        /**
+         * define all methods with wp media
+         * http://demo.wp-api.org/wp-json/wp/v2/media
+         */
+        media: Media(API_URL, makeRequest),
+
+        /**
          * define all methods with wp pages
          * http://demo.wp-api.org/wp-json/wp/v2/pages
          */
@@ -61,10 +78,41 @@ const connect = async (host: string, hooks: ConnectHook = {}) => {
         postRevisions: PostRevisions(API_URL, makeRequest),
 
         /**
+         * define all methods with wp post statuses
+         * http://demo.wp-api.org/wp-json/wp/v2/statuses
+         */
+        postStatuses: PostStatuses(API_URL, makeRequest),
+
+        /**
+         * define all methods with wp post type
+         * http://demo.wp-api.org/wp-json/wp/v2/media
+         */
+        postTypes: PostTypes(API_URL, makeRequest),
+
+        /**
          * define all methods with wp posts
          * http://demo.wp-api.org/wp-json/wp/v2/posts
          */
         posts: Posts(API_URL, makeRequest),
+
+        /**
+         * define all methods with wp settings
+         * specific settings for authenticated user
+         * http://demo.wp-api.org/wp-json/wp/v2/settings
+         */
+        settings: Settings(API_URL, makeRequest),
+
+        /**
+         * define all methods with wp tags
+         * http://demo.wp-api.org/wp-json/wp/v2/tags
+         */
+        tags: Tags(API_URL, makeRequest),
+
+        /**
+         * define all methods with wp taxaomies
+         * http://demo.wp-api.org/wp-json/wp/v2/taxaomies
+         */
+        taxanomies: Taxanomies(API_URL, makeRequest),
 
         /**
          * define all methods with wp users
@@ -83,70 +131,5 @@ const connect = async (host: string, hooks: ConnectHook = {}) => {
             ...r, headers: { ...r.headers, Authorization: authorization },
         }),
     });
-    console.log('Authenticated');
-
-    /**
-     * tests with console logs
-     */
-
-    try {
-        /**
-         * test user
-         */
-        const user = await wpaApi.users.getUser(1);
-        console.log(user);
-
-        const updatedUser = await wpaApi.users.updateUser(2, { email: 'juraj@gmail.com', name: 'edit', first_name: 'updatedFirstName' });
-        console.log(updatedUser);
-
-        const newUser = await wpaApi.users.createUser({ email: 'newEmail@gmail.com', password: 'root', username: 'userName' });
-        console.log(newUser);
-
-        const deletedUser = await wpaApi.users.deleteUser(newUser.id, { force: true, reassign: {} });
-        console.log(deletedUser);
-
-        /**
-         * test page
-         */
-        const page = await wpaApi.pages.getPage(2);
-        console.log(page);
-
-        const pages = await wpaApi.pages.getPages({ author: 1 });
-        console.log(pages);
-
-        const newPage = await wpaApi.pages.createPage({});
-        const newPageId = newPage.id;
-
-        const updatedPage = await wpaApi.pages.updatePage(newPageId, { content: 'updatedContent' });
-        console.log(updatedPage.content);
-
-        const deleted = await wpaApi.pages.deletePage(newPageId);
-        console.log(deleted);
-
-        /**
-         * test category
-         */
-        const category = await wpaApi.categories.getCategory(1);
-        console.log(category);
-
-        const categories = await wpaApi.categories.getCategories({});
-        console.log(categories);
-
-        const newCategory = await wpaApi.categories.createCategory({ name: 'newCategory' });
-        console.log(newCategory.id);
-
-        const updatedCategory = await wpaApi.categories.updateCategory(newCategory.id, { name: 'updatedCategory' });
-        console.log(updatedCategory);
-
-        // documentation says its has to be true... working with false anyway, perfect
-        const deletedCategory = await wpaApi.categories.deleteCategory(updatedCategory.id, { force: true });
-        console.log(deletedCategory);
-    }
-    catch (e) {
-        console.log('oops, error');
-        console.log(e);
-
-    }
-
     process.exit();
 })();
