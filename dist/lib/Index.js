@@ -66,7 +66,7 @@ var REST_API_PATH = '/wp-json/wp/v2';
  * @param hooks - hooks for modify requests/responses, useful for custom authentication
  * @throws {BadHost}
  */
-var connect = function (host, hooks) {
+exports.connect = function (host, hooks) {
     if (hooks === void 0) { hooks = {}; }
     return __awaiter(_this, void 0, void 0, function () {
         var _this = this;
@@ -75,6 +75,7 @@ var connect = function (host, hooks) {
             switch (_a.label) {
                 case 0:
                     API_URL = host + REST_API_PATH;
+                    hooks = { afterResponse: undefined, beforeRequest: undefined };
                     beforeRequest = hooks.beforeRequest, afterResponse = hooks.afterResponse;
                     hookedRequest = beforeRequest
                         ? function (requestConfig) { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
@@ -170,7 +171,7 @@ var connect = function (host, hooks) {
     });
 };
 (function () { return __awaiter(_this, void 0, void 0, function () {
-    var URL, token, authorization, wpaApi;
+    var URL, token, authorization, wpaApi, comment, tag, page, e_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -179,11 +180,34 @@ var connect = function (host, hooks) {
             case 1:
                 token = (_a.sent()).token;
                 authorization = "Bearer " + token;
-                return [4 /*yield*/, connect(URL, {
+                return [4 /*yield*/, exports.connect(URL, {
                         beforeRequest: function (r) { return (__assign({}, r, { headers: __assign({}, r.headers, { Authorization: authorization }) })); },
                     })];
             case 2:
                 wpaApi = _a.sent();
+                console.log(token);
+                _a.label = 3;
+            case 3:
+                _a.trys.push([3, 7, , 8]);
+                return [4 /*yield*/, wpaApi.comments.createComment({ content: 'content', post: 1 })];
+            case 4:
+                comment = _a.sent();
+                console.log(comment);
+                return [4 /*yield*/, wpaApi.tags.createTag({ name: 'tag' })];
+            case 5:
+                tag = _a.sent();
+                console.log(tag);
+                return [4 /*yield*/, wpaApi.pages.createPage({ content: 'content' })];
+            case 6:
+                page = _a.sent();
+                console.log(page.id);
+                return [3 /*break*/, 8];
+            case 7:
+                e_2 = _a.sent();
+                console.log('err');
+                console.log(e_2);
+                return [3 /*break*/, 8];
+            case 8:
                 process.exit();
                 return [2 /*return*/];
         }

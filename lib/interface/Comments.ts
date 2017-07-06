@@ -286,6 +286,7 @@ export interface CreateComment {
 
     /**
      * The content for the object.
+     * @required
      */
     content: string;
 
@@ -314,7 +315,7 @@ export interface CreateComment {
      * The id of the associated post object.
      * @default: 0
      */
-    post: number;
+    post?: number;
 
     /**
      * State of the object.

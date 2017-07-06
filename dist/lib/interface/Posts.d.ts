@@ -28,79 +28,79 @@ export interface Post {
     /**
      * The date the object was published, in the site’s timezone
      */
-    date: string;
+    date?: string;
     /**
      * The date the object was published, as GMT
      */
-    date_gmt: string;
+    date_gmt?: string;
     /**
      * An alphanumeric identifier for the object unique to its type
      */
-    slug: string;
+    slug?: string;
     /**
      * A named status for the object
      */
-    status: 'publish' | 'future' | 'draft' | 'pending' | 'private';
+    status?: 'publish' | 'future' | 'draft' | 'pending' | 'private';
     /**
      * 	A password to protect access to the content and excerpt
      */
-    password: string;
+    password?: string;
     /**
      * 	The title for the object
      */
-    title: {};
+    title?: {};
     /**
      * The content for the object
      */
-    content: {};
+    content?: {};
     /**
      * The ID for the author of the object
      */
-    author: number;
+    author?: number;
     /**
      * 	The excerpt for the object
      */
-    excerpt: {};
+    excerpt?: {};
     /**
      * he ID of the featured media for the object
      */
-    featured_media: string;
+    featured_media?: string;
     /**
      * Whether or not comments are open on the object
      */
-    comment_status: 'open' | 'closed';
+    comment_status?: 'open' | 'closed';
     /**
      * Whether or not the object can be pinged
      */
-    ping_status: 'open' | 'closed';
+    ping_status?: 'open' | 'closed';
     /**
      * The format for the object
      */
-    format: string;
+    format?: string;
     /**
      * 	Meta fields
      */
-    meta: string;
+    meta?: string;
     /**
      * Whether or not the object should be treated as sticky
      */
-    sticky: boolean;
+    sticky?: boolean;
     /**
      * The theme file to use to display the object
      */
-    template: string;
+    template?: string;
     /**
      * The terms assigned to the object in the category taxonomy
      */
-    categories: string[];
+    categories?: string[];
     /**
      * The terms assigned to the object in the post_tag taxonomy
      */
-    tags: string[];
+    tags?: string[];
     /**
      * The number of Liveblog Likes the post has
      */
-    liveblog_likes: number;
+    liveblog_likes?: number;
 }
 export interface DeletePost {
     /**
