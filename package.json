@@ -24,10 +24,6 @@
   "types": "dist/Index.d.ts",
   "typings": "dist/Index.d.ts",
   "scripts": {
-<<<<<<< HEAD
-    "wordpress": "node scripts/RunWordpressContainer.js",
-=======
->>>>>>> master
     "test": "jest",
     "dev": "tsc --watch",
     "build": "tsc",
@@ -46,14 +42,10 @@
   },
   "license": "ISC",
   "devDependencies": {
-<<<<<<< HEAD
+    "@types/jest": "^20.0.2",
+    "dockerode": "^2.5.0",
     "jest": "^20.0.4",
     "request": "^2.81.0",
-=======
-    "dockerode": "^2.5.0",
-    "@types/jest": "^20.0.2",
-    "jest": "^20.0.4",
->>>>>>> master
     "ts-jest": "^20.0.6",
     "ts-lint": "^4.5.1",
     "typescript": "^2.4.1"
@@ -61,12 +53,10 @@
   "dependencies": {
     "@types/chalk": "^0.4.31",
     "@types/dockerode": "^2.4.3",
-    "@types/jest": "^20.0.2",
     "@types/node": "^8.0.4",
     "@types/request": "0.0.45",
     "axios": "^0.16.2",
     "chalk": "^1.1.3",
-    "dockerode": "^2.5.0",
     "wordpress-jwt-auth": "^1.1.0"
   }
 }

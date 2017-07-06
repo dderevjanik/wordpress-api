@@ -1,24 +1,23 @@
 import { Container } from 'dockerode';
-import { runWorpdressTestContainer } from './../Utils';
+import { host, runWorpdressTestContainer, waitMs } from '../Utils';
+import { connect } from './../../lib/Index';
 
+const port = 9001;
 let container: Container;
 
 describe('Example test', () => {
 
-    beforeAll(() => {
-        // before
+    beforeAll(async () => {
+        container = await runWorpdressTestContainer(port);
     });
 
     test('test1', () => {
-        // empty
+        // code
     });
 
-    test('test2', () => {
-        // empty
-    });
-
-    afterAll(() => {
-        // after
+    afterAll(async () => {
+        await container.stop();
+        await container.remove({ v: true });
     });
 
 });

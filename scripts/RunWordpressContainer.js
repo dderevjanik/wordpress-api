@@ -4,7 +4,6 @@ const log = console.log;
 const Docker = require("dockerode");
 
 const wordpressImage = "appcontainers/wordpress";
-
 const dockerode = new Docker();
 
 /**
@@ -30,6 +29,8 @@ const pullImage = (docker, imageName) => {
 };
 
 (async () => {
+    log(yellow("Downloading docker images"));
     pullImage(dockerode, wordpressImage);
+    log(green("Image download"));
     process.exit(0);
 })();
