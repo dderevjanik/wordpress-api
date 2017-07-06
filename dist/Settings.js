@@ -55,6 +55,9 @@ exports.Settings = function (API_URL, makeRequest) {
                 }
             });
         }); },
+        /**
+         * @param options - options to upadete settings
+         */
         updateSettings: function (options) { return __awaiter(_this, void 0, void 0, function () {
             var url, response;
             return __generator(this, function (_a) {

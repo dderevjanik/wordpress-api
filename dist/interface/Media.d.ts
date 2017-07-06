@@ -16,38 +16,38 @@ export interface MediaItem {
     /**
      * object
      * The globally unique identifier for the object.
-     * Read only
      * Context: view, edit
+     * @readonly
      */
     guid: {};
     /**
      * integer
      * Unique identifier for the object.
-     * Read only
      * Context: view, edit, embed
+     * @readonly
      */
     id: number;
     /**
      * string, uri
      * URL to the object.
-     * Read only
      * Context: view, edit, embed
+     * @readonly
      */
     link: string;
     /**
      * string,
      * datetime(ISO8601)
      * The date the object was last modified, in the site’s timezone.
-     * Read only
      * Context: view, edit
+     * @readonly
      */
     modified: string;
     /**
      * string,
      * datetime(ISO8601)
      * The date the object was last modified, as GMT.
-     * Read only
      * Context: view, edit
+     * @readonly
      */
     modified_gmt: string;
     /**
@@ -62,12 +62,12 @@ export interface MediaItem {
      * Context: edit
      * One of: publish, future, draft, pending, private
      */
-    status: string;
+    status: 'publish' | 'future' | 'draft' | 'pending' | 'private';
     /**
      * string
      * Type of Post for the object.
-     * Read only
      * Context: view, edit, embed
+     * @readonly
      */
     type: string;
     /**
@@ -88,14 +88,14 @@ export interface MediaItem {
      * Context: view, edit
      * One of: open, closed
      */
-    comment_status: string;
+    comment_status: 'open' | 'closed';
     /**
      * string
      * Whether or not the object can be pinged.
      * Context: view, edit
      * One of: open, closed
      */
-    ping_status: string;
+    ping_status: 'open' | 'closed';
     /**
      * object
      * Meta fields.
@@ -123,23 +123,23 @@ export interface MediaItem {
     /**
      * string
      * Type of resource.
-     * Read only
      * Context: view, edit, embed
      * One of: image, file
+     * @readonly
      */
-    media_type: string;
+    media_type: 'image' | 'file';
     /**
      * string
      * MIME type of resource.
-     * Read only
      * Context: view, edit, embed
+     * @readonly
      */
     mime_type: string;
     /**
      * object
      * Details about the resource file, specific to its type.
-     * Read only
      * Context: view, edit, embed
+     * @readonly
      */
     media_details: {};
     /**
@@ -151,26 +151,26 @@ export interface MediaItem {
     /**
      * string, uri
      * URL to the original resource file.
-     * Read only
      * Context: view, edit, embed
+     * @readonly
      */
     source_url: string;
 }
 export interface ListMedia {
     /**
      * Scope under which the request is made; determines fields present in response.
-     * Default: view
      * One of: view, embed, edit
+     * @default: "view"
      */
-    context?: string;
+    context?: 'view' | 'embed' | 'edit';
     /**
      * Current page of the collection.
-     * Default: 1
+     * @default: 1
      */
     page?: number;
     /**
      * Maximum number of items to be returned in result set.
-     * Default: 10
+     * @default: 10
      */
     per_page?: number;
     /**
@@ -207,16 +207,16 @@ export interface ListMedia {
     offset?: number[];
     /**
      * Order sort attribute ascending or descending.
-     * Default: desc
      * One of: asc, desc
+     * @default: "desc"
      */
-    order?: string;
+    order?: 'asc' | 'desc';
     /**
      * Sort collection by object attribute.
-     * Default: date
      * One of: date, relevance, id, include, title, slug
+     * @default: "date"
      */
-    orderby?: string;
+    orderby?: 'date' | 'relevance' | 'id' | 'include' | 'title' | 'slug';
     /**
      * Limit result set to those of particular parent ids.
      */
@@ -231,10 +231,10 @@ export interface ListMedia {
     slug?: string;
     /**
      * Limit result set to posts assigned a specific status; can be comma- delimited list of status types.
-     * Default: inherit
      * One of: inherit, private, trash
+     * @default: "inherit"
      */
-    status?: string;
+    status?: 'inherit' | 'private' | 'trash';
     /**
      * Use WP Query arguments to modify the response; private query vars require appropriate authorization.
      */
@@ -243,7 +243,7 @@ export interface ListMedia {
      * Limit result set to attachments of a particular media type.
      * One of: image, video, audio, application
      */
-    media_type?: string;
+    media_type?: 'image' | 'video' | 'audio' | 'application';
     /**
      * Limit result set to attachments of a particular MIME type.
      */
@@ -252,10 +252,10 @@ export interface ListMedia {
 export interface GetMedia {
     /**
      * Scope under which the request is made; determines fields present in response.
-     * Default: view
      * One of: view, embed, edit
+     * @default: '"view"
      */
-    context?: string;
+    context?: 'view' | 'embed' | 'edit';
     /**
      * The password for the post if it is password protected.
      */
@@ -278,7 +278,7 @@ export interface CreateMedia {
      * A named status for the object.
      * One of: publish, future, draft, pending, private
      */
-    status?: string;
+    status?: 'publish' | 'future' | 'draft' | 'pending' | 'private';
     /**
      * The title for the object.
      */
@@ -291,12 +291,12 @@ export interface CreateMedia {
      * Whether or not comments are open on the object.
      * One of: open, closed
      */
-    comment_status?: string;
+    comment_status?: 'open' | 'closed';
     /**
      * Whether or not the object can be pinged.
      * One of: open, closed
      */
-    ping_status?: string;
+    ping_status?: 'open' | 'closed';
     /**
      * Meta fields.
      */
@@ -335,7 +335,7 @@ export interface UpdateMedia {
      * A named status for the object.
      * One of: publish, future, draft, pending, private
      */
-    status?: string;
+    status?: 'publish' | 'future' | 'draft' | 'pending' | 'private';
     /**
      * The title for the object.
      */
@@ -348,12 +348,12 @@ export interface UpdateMedia {
      * Whether or not comments are open on the object.
      * One of: open, closed
      */
-    comment_status?: string;
+    comment_status?: 'open' | 'closed';
     /**
      * Whether or not the object can be pinged.
      * One of: open, closed
      */
-    ping_status?: string;
+    ping_status?: 'open' | 'closed';
     /**
      * Meta fields.
      */

@@ -125,7 +125,7 @@ export interface Page {
      * Context: view, edit
      * One of: open, closed
      */
-    comment_status: string;
+    comment_status: 'open' | 'closed';
 
     /**
      * string
@@ -133,7 +133,7 @@ export interface Page {
      * Context: view, edit
      * One of: open, closed
      */
-    ping_status: string;
+    ping_status: 'open' | 'closed';
 
     /**
      * integer
@@ -163,7 +163,7 @@ export interface ListPages {
      * One of: view, embed, edit
      * @default "view"
      */
-    context?: string;
+    context?: 'view' | 'embed' | 'edit';
 
     /**
      * Current page of the collection.
@@ -271,7 +271,7 @@ export interface GetPage {
      * One of: view, embed, edit
      * @default: "view"
      */
-    context: string;
+    context: 'view' | 'embed' | 'edit';
 
     /**
      * The password for the post if it is password protected.
@@ -444,5 +444,5 @@ export interface DeletePage {
     /**
      * Whether to bypass trash and force deletion.
      */
-    force: boolean;
+    force?: boolean;
 }

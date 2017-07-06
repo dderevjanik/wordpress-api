@@ -18,9 +18,10 @@ export const PostRevisions = (API_URL: string, makeRequest: RequestHandler) => {
 
         /**
          * Get specific post revision
-         * @param parentId
-         * @param id
-         * @param options
+         * @param parentId - parentId
+         * @param id - revisionId
+         * @param options - options to get retrieve post revision
+         * @default: { context: 'view' }
          */
         getPostRevision: async (parentId: number, id: number, options: GetPostRevision = { context: 'view' }) => {
             const url = `${API_URL}/posts/${parentId}/revisions/${id}`;
@@ -32,8 +33,8 @@ export const PostRevisions = (API_URL: string, makeRequest: RequestHandler) => {
          * Get all posts
          * @param parentId
          * @param id
-         * @param options - options to retrieve a posts
-         * @returns {Post[]} array of Posts
+         * @param options - options to retrieve all post revisions
+         * @default: { context: 'view' }
          */
         getPostRevisions: async (parentId: number, id: number, options: ListPostRevisions = { context: 'view' }) => {
             const url = `${API_URL}/posts/${parentId}/revisions/${id}`;

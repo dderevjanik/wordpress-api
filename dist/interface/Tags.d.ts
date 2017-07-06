@@ -1,14 +1,14 @@
 export interface Tag {
     /**
      * integer	Unique identifier for the term.
-     * Read only
      * Context: view, embed, edit
+     * @readonly
      */
     id: number;
     /**
      * integer	Number of published posts for the term.
-     * Read only
      * Context: view, edit
+     * @readonly
      */
     count: number;
     /**
@@ -18,8 +18,8 @@ export interface Tag {
     description: string;
     /**
      * string, uri	URL of the term.
-     * Read only
      * Context: view, embed, edit
+     * @readonly
      */
     link: string;
     /**
@@ -34,11 +34,11 @@ export interface Tag {
     slug: string;
     /**
      * string	Type attribution for the term.
-     * Read only
      * Context: view, embed, edit
      * One of: category, post_tag, nav_menu, link_category, post_format
+     * @readonly
      */
-    taxonomy: string;
+    taxonomy: 'category' | 'post_tag' | 'nav_menu' | 'link_category' | 'post_format';
     /**
      * object	Meta fields.
      * Context: view, edit
@@ -48,18 +48,18 @@ export interface Tag {
 export interface ListTags {
     /**
      * Scope under which the request is made; determines fields present in response.
-     * Default: view
      * One of: view, embed, edit
+     * @default: "view"
      */
-    context?: string;
+    context?: 'view' | 'embed' | 'edit';
     /**
      * Current page of the collection.
-     * Default: 1
+     * @default: 1
      */
     page?: number;
     /**
      * Maximum number of items to be returned in result set.
-     * Default: 10
+     * @default: 10
      */
     per_page?: number;
     /**
@@ -80,16 +80,16 @@ export interface ListTags {
     offset?: number;
     /**
      * Order sort attribute ascending or descending.
-     * Default: asc
      * One of: asc, desc
+     * @default: "asc"
      */
-    order?: string;
+    order?: 'asc' | 'desc';
     /**
      * Sort collection by term attribute.
-     * Default: name
      * One of: id, include, name, slug, term_group, description, count
+     * @default: name
      */
-    orderby?: string;
+    orderby?: 'id' | 'include' | 'name' | 'slug' | 'term_group' | 'description' | 'count';
     /**
      * hide_empty: boolean
      */
@@ -106,10 +106,10 @@ export interface ListTags {
 export interface GetTag {
     /**
      * Scope under which the request is made; determines fields present in response.
-     * Default: view
      * One of: view, embed, edit
+     * @default: "view"
      */
-    context?: string;
+    context?: 'view' | 'embed' | 'edit';
 }
 export interface CreateTag {
     /**

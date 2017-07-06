@@ -60,6 +60,7 @@ exports.Tags = function (API_URL, makeRequest) {
          * Remove a tag
          * @param id - tag id to remove
          * @param options - remove options
+         * @default: { force: true }
          */
         deleteTag: function (id, options) {
             if (options === void 0) { options = { force: true }; }
@@ -81,6 +82,7 @@ exports.Tags = function (API_URL, makeRequest) {
          * Get specific tag with id
          * @param id - tag id
          * @param options - get options
+         * @default: { context: 'view' }
          */
         getTag: function (id, options) {
             if (options === void 0) { options = { context: 'view' }; }
@@ -100,7 +102,8 @@ exports.Tags = function (API_URL, makeRequest) {
         },
         /**
          * Get all Tags
-         * @param options - options to retrieve a posts
+         * @param options - options to retrieve a tags
+         * @default: {}
          */
         getTags: function (options) {
             if (options === void 0) { options = {}; }

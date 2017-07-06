@@ -10,6 +10,7 @@ export const PostStatuses = (API_URL: string, makeRequest: RequestHandler) => {
          * Get specific post status by prop key
          * @param key - status prop key
          * @param options - get options
+         * @default: { context: 'view' }
          */
         getStatus: async (key: string, options: GetStatus = { context: 'view' }) => {
             const url = `${API_URL}/${objectEndpoint}/${key}`;
@@ -20,6 +21,7 @@ export const PostStatuses = (API_URL: string, makeRequest: RequestHandler) => {
         /**
          * Get all Post statuses
          * @param options - options to retrieve a post statuses
+         * @default: {}
          */
         getStatuses: async (options: ListStatuses = {}) => {
             const url = `${API_URL}/${objectEndpoint}`;

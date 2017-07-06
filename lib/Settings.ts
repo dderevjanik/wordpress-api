@@ -15,6 +15,9 @@ export const Settings = (API_URL: string, makeRequest: RequestHandler) => {
             return response.data as Setting;
         },
 
+        /**
+         * @param options - options to upadete settings
+         */
         updateSettings: async (options: Setting) => {
             const url = `${API_URL}/${objectEndpoint}`;
             const response = await makeRequest({ method: 'POST', url });

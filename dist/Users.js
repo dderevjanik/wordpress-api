@@ -59,7 +59,7 @@ exports.Users = function (API_URL, makeRequest) {
         }); },
         /**
          * Delete existing user
-         * @param userId
+         * @param userId - id of a user to be removed
          * @param options - options to delete a user
          * @default { force: true, reassign: true }
          */
@@ -100,7 +100,6 @@ exports.Users = function (API_URL, makeRequest) {
         /**
          * Get all posts
          * @param options - options to retrieve a posts
-         * @returns {Post[]} array of Posts
          */
         getUsers: function (options) { return __awaiter(_this, void 0, void 0, function () {
             var url, queryString, response;

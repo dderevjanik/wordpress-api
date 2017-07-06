@@ -59,9 +59,10 @@ exports.PostRevisions = function (API_URL, makeRequest) {
         }); },
         /**
          * Get specific post revision
-         * @param parentId
-         * @param id
-         * @param options
+         * @param parentId - parentId
+         * @param id - revisionId
+         * @param options - options to get retrieve post revision
+         * @default: { context: 'view' }
          */
         getPostRevision: function (parentId, id, options) {
             if (options === void 0) { options = { context: 'view' }; }
@@ -83,8 +84,8 @@ exports.PostRevisions = function (API_URL, makeRequest) {
          * Get all posts
          * @param parentId
          * @param id
-         * @param options - options to retrieve a posts
-         * @returns {Post[]} array of Posts
+         * @param options - options to retrieve all post revisions
+         * @default: { context: 'view' }
          */
         getPostRevisions: function (parentId, id, options) {
             if (options === void 0) { options = { context: 'view' }; }

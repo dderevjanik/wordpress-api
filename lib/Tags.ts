@@ -20,6 +20,7 @@ export const Tags = (API_URL: string, makeRequest: RequestHandler) => {
          * Remove a tag
          * @param id - tag id to remove
          * @param options - remove options
+         * @default: { force: true }
          */
         deleteTag: async (id: number, options: DeleteTag = { force: true }) => {
             const url = `${API_URL}/${objectEndpoint}/${id}`;
@@ -31,6 +32,7 @@ export const Tags = (API_URL: string, makeRequest: RequestHandler) => {
          * Get specific tag with id
          * @param id - tag id
          * @param options - get options
+         * @default: { context: 'view' }
          */
         getTag: async (id: number, options: GetTag = { context: 'view' }) => {
             const url = `${API_URL}/${objectEndpoint}/${id}`;
@@ -40,7 +42,8 @@ export const Tags = (API_URL: string, makeRequest: RequestHandler) => {
 
         /**
          * Get all Tags
-         * @param options - options to retrieve a posts
+         * @param options - options to retrieve a tags
+         * @default: {}
          */
         getTags: async (options: ListTags = {}) => {
             const url = `${API_URL}/${objectEndpoint}`;

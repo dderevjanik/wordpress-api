@@ -43,6 +43,7 @@ exports.PostStatuses = function (API_URL, makeRequest) {
          * Get specific post status by prop key
          * @param key - status prop key
          * @param options - get options
+         * @default: { context: 'view' }
          */
         getStatus: function (key, options) {
             if (options === void 0) { options = { context: 'view' }; }
@@ -63,6 +64,7 @@ exports.PostStatuses = function (API_URL, makeRequest) {
         /**
          * Get all Post statuses
          * @param options - options to retrieve a post statuses
+         * @default: {}
          */
         getStatuses: function (options) {
             if (options === void 0) { options = {}; }

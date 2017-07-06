@@ -50,8 +50,8 @@ export interface User {
 
     /**
      * string, uri	Author URL of the user.
-     * Read only
      * Context: embed, view, edit
+     * @readonly
      */
     link: string;
 
@@ -77,8 +77,8 @@ export interface User {
     /**
      * string, datetime(ISO8601)
      * Registration date for the user.
-     * Read only
      * Context: edit
+     * @readonly
      */
     registered_date: Date;
 
@@ -90,7 +90,6 @@ export interface User {
 
     /**
      * string	Password for the user (never included).
-     * Context:
      */
     password: string;
 
@@ -145,14 +144,12 @@ export interface ListUsers {
     /**
      * Limit results to those matching a string.
      * exclude	Ensure result set excludes specific IDs.
-     * Default:
      */
     search?: string;
 
     // TODO: what type is incule?
     /**
      * Limit result set to specific IDs.
-     * Default:
      */
     include?: string;
 
@@ -243,9 +240,9 @@ export interface CreateUser {
 
     /**
      * Password for the user (never included).
-     * Required: true
+     * @required
      */
-    password?: string;
+    password: string;
 
     /**
      * Meta fields.

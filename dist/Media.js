@@ -41,7 +41,7 @@ exports.Media = function (API_URL, makeRequest) {
     return {
         /**
          * Create a Media
-         * @param options - options to create a tag
+         * @param options - options to create a media
          */
         createMedia: function (options) { return __awaiter(_this, void 0, void 0, function () {
             var header, url, response;
@@ -61,6 +61,7 @@ exports.Media = function (API_URL, makeRequest) {
          * Remove a media
          * @param id - media id to remove
          * @param options - remove options
+         * @default: { force: true }
          */
         deleteMedia: function (id, options) {
             if (options === void 0) { options = { force: true }; }
@@ -81,6 +82,7 @@ exports.Media = function (API_URL, makeRequest) {
         /**
          * Get all Media
          * @param options - options to retrieve a posts
+         * @default: {}
          */
         getAllMedia: function (options) {
             if (options === void 0) { options = {}; }
@@ -102,6 +104,7 @@ exports.Media = function (API_URL, makeRequest) {
          * Get specific media with id
          * @param id - media id
          * @param options - get options
+         * @default: { context: 'view' }
          */
         getMedia: function (id, options) {
             if (options === void 0) { options = { context: 'view' }; }

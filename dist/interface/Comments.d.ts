@@ -2,8 +2,8 @@ export interface Comment {
     /**
      * integer
      * Unique identifier for the object.
-     * Read only
      * Context: view, edit, embed
+     * @readonly
      */
     id: number;
     /**
@@ -39,8 +39,8 @@ export interface Comment {
     /**
      * string
      * User agent for the object author.
-     * Read only
      * Context: edit
+     * @readonly
      */
     author_user_agent: string;
     /**
@@ -102,8 +102,8 @@ export interface Comment {
     /**
      * object
      * Avatar URLs for the object author.
-     * Read only
      * Context: view, edit, embed
+     * @readonly
      */
     author_avatar_urls: {};
     /**
@@ -116,18 +116,18 @@ export interface Comment {
 export interface ListComments {
     /**
      * Scope under which the request is made; determines fields present in response.
-     * Default: view
      * One of: view, embed, edit
+     * @default: "view"
      */
-    context?: string;
+    context?: 'view' | 'embed' | 'edit';
     /**
      * Current page of the collection.
-     * Default: 1
+     * @default: 1
      */
     page?: number;
     /**
      * Maximum number of items to be returned in result set.
-     * Default: 10
+     * @default: 10
      */
     per_page?: number;
     /**
@@ -158,7 +158,7 @@ export interface ListComments {
      */
     before?: number;
     /**
-     * 	Ensure result set excludes specific ids.
+     * Ensure result set excludes specific ids.
      */
     exclude?: number[];
     /**
@@ -175,16 +175,16 @@ export interface ListComments {
     offset?: number;
     /**
      * Order sort attribute ascending or descending.
-     * Default: desc
      * One of: asc, desc
+     * @default: 'desc'
      */
-    order?: string;
+    order?: 'asc' | 'desc';
     /**
      * Sort collection by object attribute.
-     * Default: date_gmt
+     * @default: 'date_gmt'
      * One of: date, date_gmt, id, include, post, parent, type
      */
-    orderby?: string;
+    orderby?: 'date' | 'date_gmt' | 'id' | 'include' | 'post' | 'parent' | 'type';
     /**
      * Limit result set to resources of specific parent ids.
      */
@@ -200,23 +200,23 @@ export interface ListComments {
     /**
      * Limit result set to comments assigned a specific status.
      * Requires authorization.
-     * Default: approve
+     * @default: 'approve'
      */
     status?: string;
     /**
      * Limit result set to comments assigned a specific type.
      * Requires authorization.
-     * Default: comment
+     * @default: 'comment'
      */
     type?: string;
 }
 export interface GetComment {
     /**
      * Scope under which the request is made; determines fields present in response.
-     * Default: view
+     * @default: 'view'
      * One of: view, embed, edit
      */
-    context?: string;
+    context?: 'view' | 'embed' | 'edit';
 }
 export interface CreateComment {
     /**
@@ -229,7 +229,7 @@ export interface CreateComment {
     author_email?: string;
     /**
      * IP address for the object author.
-     * Default: 127.0.0.1
+     * @default: '127.0.0.1'
      */
     author_ip?: string;
     /**
@@ -258,18 +258,18 @@ export interface CreateComment {
     karma?: number;
     /**
      * The id for the parent of the object.
-     * Default: 0
+     * @default: 0
      */
     parent?: number;
     /**
      * The id of the associated post object.
-     * Default: 0
+     * @default: 0
      */
     post: number;
     /**
      * State of the object.
      * type Type of Comment for the object.
-     * Default: comment
+     * @default: 'comment'
      */
     status?: string;
     /**
@@ -339,5 +339,5 @@ export interface DeleteComment {
     /**
      * Whether to bypass trash and force deletion.
      */
-    force: boolean;
+    force?: boolean;
 }

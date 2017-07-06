@@ -10,6 +10,7 @@ export const PostTypes = (API_URL: string, makeRequest: RequestHandler) => {
          * Get specific taxaomy by prop key
          * @param key - taxaomy prop key
          * @param options - get options
+         * @default: { context: 'view' }
          */
         getType: async (key: string, options: GetType = { context: 'view' }) => {
             const url = `${API_URL}/${objectEndpoint}/${key}`;
@@ -20,6 +21,7 @@ export const PostTypes = (API_URL: string, makeRequest: RequestHandler) => {
         /**
          * Get all Post types
          * @param options - options to retrieve a post types
+         * @default: {}
          */
         getTypes: async (options: ListTypes = {}) => {
             const url = `${API_URL}/${objectEndpoint}`;

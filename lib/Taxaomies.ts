@@ -9,6 +9,7 @@ export const Taxanomies = (API_URL: string, makeRequest: RequestHandler) => {
         /**
          * Get all Taxaomies
          * @param options - options to retrieve a taxaomies
+         * @default: {}
          */
         getTaxanomies: async (options: ListTaxaomies = {}) => {
             const url = `${API_URL}/${objectEndpoint}`;
@@ -20,6 +21,7 @@ export const Taxanomies = (API_URL: string, makeRequest: RequestHandler) => {
          * Get specific taxaomy by prop key
          * @param key - taxaomy prop key
          * @param options - get options
+         * @default: { context: 'view' }
          */
         getTaxanomy: async (key: string, options: GetTaxaomy = { context: 'view' }) => {
             const url = `${API_URL}/${objectEndpoint}/${key}`;

@@ -57,10 +57,10 @@ export interface Taxanomy {
 export interface ListTaxaomies {
     /**
      * Scope under which the request is made; determines fields present in response.
-     * Default: view
      * One of: view, embed, edit
+     * @default: view
      */
-    context?: string;
+    context?: 'view' | 'embed' | 'edit';
     /**
      * Limit results to taxonomies associated with a specific post type.
      */
@@ -69,8 +69,8 @@ export interface ListTaxaomies {
 export interface GetTaxaomy {
     /**
      * Scope under which the request is made; determines fields present in response.
-     * Default: view
      * One of: view, embed, edit
+     * @default: view
      */
-    context?: string;
+    context?: 'view' | 'embed' | 'edit';
 }

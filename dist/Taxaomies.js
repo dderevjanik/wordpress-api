@@ -42,6 +42,7 @@ exports.Taxanomies = function (API_URL, makeRequest) {
         /**
          * Get all Taxaomies
          * @param options - options to retrieve a taxaomies
+         * @default: {}
          */
         getTaxanomies: function (options) {
             if (options === void 0) { options = {}; }
@@ -63,6 +64,7 @@ exports.Taxanomies = function (API_URL, makeRequest) {
          * Get specific taxaomy by prop key
          * @param key - taxaomy prop key
          * @param options - get options
+         * @default: { context: 'view' }
          */
         getTaxanomy: function (key, options) {
             if (options === void 0) { options = { context: 'view' }; }

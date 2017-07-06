@@ -1,14 +1,14 @@
 export interface Category {
     /**
      * integer	Unique identifier for the term.
-     * Read only
      * Context: view, embed, edit
+     * @readonly
      */
     id: number;
     /**
      * integer	Number of published posts for the term.
-     * Read only
      * Context: view, edit
+     * @readonly
      */
     count: number;
     /**
@@ -18,8 +18,8 @@ export interface Category {
     description: string;
     /**
      * string, uri	URL of the term.
-     * Read only
      * Context: view, embed, edit
+     * @readonly
      */
     link: string;
     /**
@@ -34,11 +34,11 @@ export interface Category {
     slug: string;
     /**
      * string	Type attribution for the term.
-     * Read only
      * Context: view, embed, edit
      * One of: category, post_tag, nav_menu, link_category, post_format
+     * @default: view
      */
-    taxonomy: string;
+    taxonomy: 'category' | 'post_tag' | 'nav_menu' | 'link_category' | 'post_format';
     /**
      * integer	The parent term ID.
      * Context: view, edit
@@ -53,10 +53,10 @@ export interface Category {
 export interface ListCategories {
     /**
      * Scope under which the request is made; determines fields present in response.
-     * @default: "view"
      * One of: view, embed, edit
+     * @default: "view"
      */
-    context?: string;
+    context?: 'view' | 'embed' | 'edit';
     /**
      * Current page of the collection.
      * @default: 1
@@ -107,11 +107,11 @@ export interface ListCategories {
 }
 export interface GetCategory {
     /**
-     * 	Scope under which the request is made; determines fields present in response.
-     * Default: view
+     * Scope under which the request is made; determines fields present in response.
+     * @default: "view"
      * One of: view, embed, edit
      */
-    context: string;
+    context: 'view' | 'embed' | 'edit';
 }
 export interface CreateCategory {
     /**

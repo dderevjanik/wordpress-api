@@ -19,7 +19,7 @@ export const Users = (API_URL: string, makeRequest: RequestHandler) => {
 
         /**
          * Delete existing user
-         * @param userId
+         * @param userId - id of a user to be removed
          * @param options - options to delete a user
          * @default { force: true, reassign: true }
          */
@@ -43,7 +43,6 @@ export const Users = (API_URL: string, makeRequest: RequestHandler) => {
         /**
          * Get all posts
          * @param options - options to retrieve a posts
-         * @returns {Post[]} array of Posts
          */
         getUsers: async (options: ListUsers) => {
             const url = `${API_URL}/${objectEndpoint}}`;

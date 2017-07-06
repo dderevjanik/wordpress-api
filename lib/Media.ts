@@ -8,7 +8,7 @@ export const Media = (API_URL: string, makeRequest: RequestHandler) => {
     return {
         /**
          * Create a Media
-         * @param options - options to create a tag
+         * @param options - options to create a media
          */
         createMedia: async (options: CreateMedia) => {
             const header = { 'Content-Disposition': 'attachment; filename="example.jpg"' };
@@ -21,6 +21,7 @@ export const Media = (API_URL: string, makeRequest: RequestHandler) => {
          * Remove a media
          * @param id - media id to remove
          * @param options - remove options
+         * @default: { force: true }
          */
         deleteMedia: async (id: number, options: DeleteMedia = { force: true }) => {
             const url = `${API_URL}/${objectEndpoint}/${id}`;
@@ -31,6 +32,7 @@ export const Media = (API_URL: string, makeRequest: RequestHandler) => {
         /**
          * Get all Media
          * @param options - options to retrieve a posts
+         * @default: {}
          */
         getAllMedia: async (options: ListMedia = {}) => {
             const url = `${API_URL}/${objectEndpoint}`;
@@ -42,6 +44,7 @@ export const Media = (API_URL: string, makeRequest: RequestHandler) => {
          * Get specific media with id
          * @param id - media id
          * @param options - get options
+         * @default: { context: 'view' }
          */
         getMedia: async (id: number, options: GetMedia = { context: 'view' }) => {
             const url = `${API_URL}/${objectEndpoint}/${id}`;

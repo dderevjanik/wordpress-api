@@ -22,6 +22,7 @@ export const Comments = (API_URL: string, makeRequest: RequestHandler) => {
          * Remove a comment
          * @param id - comment id to remove
          * @param options - remove options
+         * @default: { force: true }
          */
         deleteComment: async (id: number, options: DeleteComment = { force: true }) => {
             const url = `${API_URL}/${objectEndpoint}/${id}`;
@@ -33,6 +34,7 @@ export const Comments = (API_URL: string, makeRequest: RequestHandler) => {
          * Get specific comment with id
          * @param id - comment id
          * @param options - get options
+         * @default: { context: 'view' }
          */
         getComment: async (id: number, options: GetComment = { context: 'view' }) => {
             const url = `${API_URL}/${objectEndpoint}/${id}`;
@@ -42,7 +44,7 @@ export const Comments = (API_URL: string, makeRequest: RequestHandler) => {
 
         /**
          * Get all comments
-         * @param options - options to retrieve a posts
+         * @param options - options to retrieve a comments
          */
         getComments: async (options: ListComments = {}) => {
             const url = `${API_URL}/${objectEndpoint}`;

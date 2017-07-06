@@ -60,6 +60,7 @@ exports.Comments = function (API_URL, makeRequest) {
          * Remove a comment
          * @param id - comment id to remove
          * @param options - remove options
+         * @default: { force: true }
          */
         deleteComment: function (id, options) {
             if (options === void 0) { options = { force: true }; }
@@ -81,6 +82,7 @@ exports.Comments = function (API_URL, makeRequest) {
          * Get specific comment with id
          * @param id - comment id
          * @param options - get options
+         * @default: { context: 'view' }
          */
         getComment: function (id, options) {
             if (options === void 0) { options = { context: 'view' }; }
@@ -100,7 +102,7 @@ exports.Comments = function (API_URL, makeRequest) {
         },
         /**
          * Get all comments
-         * @param options - options to retrieve a posts
+         * @param options - options to retrieve a comments
          */
         getComments: function (options) {
             if (options === void 0) { options = {}; }

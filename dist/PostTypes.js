@@ -43,6 +43,7 @@ exports.PostTypes = function (API_URL, makeRequest) {
          * Get specific taxaomy by prop key
          * @param key - taxaomy prop key
          * @param options - get options
+         * @default: { context: 'view' }
          */
         getType: function (key, options) {
             if (options === void 0) { options = { context: 'view' }; }
@@ -63,6 +64,7 @@ exports.PostTypes = function (API_URL, makeRequest) {
         /**
          * Get all Post types
          * @param options - options to retrieve a post types
+         * @default: {}
          */
         getTypes: function (options) {
             if (options === void 0) { options = {}; }
