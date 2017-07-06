@@ -1,16 +1,24 @@
+import { Container } from 'dockerode';
+import { runWorpdressTestContainer } from './../Utils';
+
+let container: Container;
 
 describe('Example test', () => {
 
     beforeAll(() => {
-        // copy wordpress container's volume data
+        // before
     });
 
-    test('test', () => {
+    test('test1', () => {
+        // empty
+    });
+
+    test('test2', () => {
         // empty
     });
 
     afterAll(() => {
-        // let container uses copied volume data
+        // after
     });
 
 });

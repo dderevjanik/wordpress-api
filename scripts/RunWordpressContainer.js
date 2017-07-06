@@ -1,10 +1,9 @@
-const { red, green, yellow } = require("chalk");
-const axios = require("axios");
+const { red, green, yellow, underline } = require("chalk");
+const { post } = require("request");
 const log = console.log;
 const Docker = require("dockerode");
 
 const wordpressImage = "appcontainers/wordpress";
-const exposePortTo = "8021";
 
 const dockerode = new Docker();
 
@@ -31,33 +30,6 @@ const pullImage = (docker, imageName) => {
 };
 
 (async () => {
-    log(yellow("-- Resolving dependencies --"));
-    log(`> docker pull ${wordpressImage}`);
-    // await pullImage(dockerode, wordpressImage);
-    log(green(` - image '${wordpressImage}' downloaded`));
-
-    log(yellow("-- Running wordpress container --"));
-    const container = await dockerode.createContainer({
-        ExposedPorts: {
-            "80/tcp": {},
-        },
-        HostConfig: {
-            PortBindings: {
-                "80/tcp": [
-                    {
-                        HostIp: "0.0.0.0",
-                        HostPort: exposePortTo,
-                    },
-                ],
-            },
-        },
-        Image: wordpressImage,
-    });
-    await container.start();
-
-    log(yellow("-- Installing wordpress --"));
-    // after several seconds (timeout)
-    // make request to finish wordpress installation
-
+    pullImage(dockerode, wordpressImage);
     process.exit(0);
 })();
