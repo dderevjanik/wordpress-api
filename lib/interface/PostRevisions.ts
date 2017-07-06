@@ -88,7 +88,7 @@ export interface ListPostRevisions {
      * One of: view
      * @default: 'view'
      */
-    context: string;
+    context: 'view';
 }
 
 export interface GetPostRevision {
@@ -97,5 +97,5 @@ export interface GetPostRevision {
      * One of: view
      * @default: "view"
      */
-    context: string;
+    context: 'view';
 }

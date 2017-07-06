@@ -181,8 +181,8 @@ export interface ListComments {
     order?: 'asc' | 'desc';
     /**
      * Sort collection by object attribute.
-     * @default: 'date_gmt'
      * One of: date, date_gmt, id, include, post, parent, type
+     * @default: 'date_gmt'
      */
     orderby?: 'date' | 'date_gmt' | 'id' | 'include' | 'post' | 'parent' | 'type';
     /**
@@ -213,8 +213,8 @@ export interface ListComments {
 export interface GetComment {
     /**
      * Scope under which the request is made; determines fields present in response.
-     * @default: 'view'
      * One of: view, embed, edit
+     * @default: 'view'
      */
     context?: 'view' | 'embed' | 'edit';
 }

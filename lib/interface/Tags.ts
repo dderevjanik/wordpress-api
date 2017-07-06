@@ -141,7 +141,7 @@ export interface CreateTag {
 
     /**
      * HTML title for the term.
-     * Required: true
+     * @required
      */
     name: string;
 

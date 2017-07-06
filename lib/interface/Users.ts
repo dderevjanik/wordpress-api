@@ -252,12 +252,6 @@ export interface CreateUser {
 
 export interface UpdateUser {
     /**
-     * Login name for the user.
-     * user name is not editable
-     */
-    // username?: string;
-
-    /**
      * Display name for the user.
      */
     name?: string;
