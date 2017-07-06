@@ -1,4 +1,5 @@
-const { red } = require("chalk");
+const { red, green } = require("chalk");
+const axios = require("axios");
 const log = console.log;
 const Docker = require("dockerode");
 
@@ -12,35 +13,35 @@ const dockerode = new Docker();
  */
 const pullImage = (docker, imageName) => {
     return new Promise((resolve, rej) => {
-        docker.pull(imageName, (pullErr, stream) => {
-            if (pullErr) {
-                log(red(`Cannot pull image "${imageName}"`));
-            }
+        docker.pull(imageName, (err, stream) => {
             docker.modem.followProgress(stream, onFinished, onProgress);
-            function onFinished(err, output) {
-                if (err) {
-                    log(red("Cannot pull an image ") + err);
+            function onFinished(cErr, output) {
+                if (cErr) {
+                    log(red("Error: cannot pull an image ") + cErr);
                     rej();
                 }
                 resolve();
             }
             function onProgress(ev) {
-                // onProgress
+                // empty
             }
         });
     });
 };
 
 (async () => {
+    log("-- Resolving dependencies --");
     try {
+        log(`> docker pull ${wordpressImage}`);
         await pullImage(dockerode, wordpressImage);
-        await pullImage(dockerode, mysqlImage);
+        log(green(`image '${wordpressImage}' downloaded`));
     } catch (e) {
         log(red("cannot pull images from dockerhub"));
         process.exit(1);
     }
+    log("-- Running wordpress container --");
 
-    dockerode.run();
-    dockerode.run();
+    log("-- Installing wordpress --");
+
     process.exit(0);
 })();
