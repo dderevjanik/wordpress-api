@@ -24,18 +24,34 @@
   "types": "dist/Index.d.ts",
   "typings": "dist/Index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "dev": "tsc --watch",
     "build": "tsc",
     "lint": "tslint -c tslint.json --fix 'lib/**/*.ts'"
   },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ]
+  },
   "license": "ISC",
   "devDependencies": {
+    "dockerode": "^2.5.0",
+    "jest": "^20.0.4",
+    "ts-jest": "^20.0.6",
     "ts-lint": "^4.5.1",
     "typescript": "^2.4.1"
   },
   "dependencies": {
     "@types/chalk": "^0.4.31",
+    "@types/dockerode": "^2.4.3",
+    "@types/jest": "^20.0.2",
     "@types/node": "^8.0.4",
     "axios": "^0.16.2",
     "chalk": "^1.1.3",
