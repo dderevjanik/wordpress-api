@@ -24,7 +24,8 @@
   "types": "dist/Index.d.ts",
   "typings": "dist/Index.d.ts",
   "scripts": {
-    "test": "jest",
+    "wordpress": "node scripts/RunWordpressContainer.js",
+    "test": "npm run wordpress && jest",
     "dev": "tsc --watch",
     "build": "tsc",
     "lint": "tslint -c tslint.json --fix 'lib/**/*.ts'"

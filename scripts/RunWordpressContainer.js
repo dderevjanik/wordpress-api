@@ -31,17 +31,20 @@ const pullImage = (docker, imageName) => {
 
 (async () => {
     log("-- Resolving dependencies --");
-    try {
-        log(`> docker pull ${wordpressImage}`);
-        await pullImage(dockerode, wordpressImage);
-        log(green(`image '${wordpressImage}' downloaded`));
-    } catch (e) {
-        log(red("cannot pull images from dockerhub"));
-        process.exit(1);
-    }
+    log(`> docker pull ${wordpressImage}`);
+    await pullImage(dockerode, wordpressImage);
+    log(green(`image '${wordpressImage}' downloaded`));
+
     log("-- Running wordpress container --");
+    const container = await dockerode.createContainer({
+        Image: wordpressImage,
+        // expose port
+    });
+    await container.start();
 
     log("-- Installing wordpress --");
+    // after several seconds (timeout)
+    // make request to finish wordpress installation
 
     process.exit(0);
 })();
