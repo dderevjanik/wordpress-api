@@ -5,6 +5,7 @@ export const dockerode = new Dockerode();
 export const host = dockerode.modem.host;
 
 /**
+ * Wait a specific time (in ms)
  * @param ms - miliseconds
  */
 export const waitMs = async (ms: number) => {
@@ -15,6 +16,11 @@ export const waitMs = async (ms: number) => {
     });
 };
 
+/**
+ * Run wordpress container and expose his port
+ * @param portToExpose - port to expose
+ * @returns docker container
+ */
 export const runWorpdressTestContainer = async (portToExpose: number) => {
     const container = await dockerode.createContainer({
         ExposedPorts: {
@@ -33,7 +39,7 @@ export const runWorpdressTestContainer = async (portToExpose: number) => {
         Image: 'appcontainers/wordpress',
     });
     await container.start();
-    await waitMs(3000);
+    await waitMs(2000);
     post(`http://${dockerode.modem.host}:${portToExpose}/wp-admin/install.php?step=2`, {
         formData: {
             "Submit": "Install WordPress",
@@ -47,6 +53,6 @@ export const runWorpdressTestContainer = async (portToExpose: number) => {
             "weblog_title": "wordpress - rest - api",
         },
     });
-    await waitMs(2000);
+    await waitMs(1000);
     return container;
 };

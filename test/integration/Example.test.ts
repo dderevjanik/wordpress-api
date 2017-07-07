@@ -4,6 +4,7 @@ import { connect } from './../../lib/Index';
 
 const port = 9001;
 let container: Container;
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 8000;
 
 describe('Example test', () => {
 
