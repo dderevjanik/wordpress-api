@@ -41,7 +41,6 @@ const REST_API_PATH = '/wp-json/wp/v2';
  */
 export const connect = async (host: string, hooks: ConnectHook = {}) => {
     const API_URL = host + REST_API_PATH;
-    hooks = { afterResponse: undefined, beforeRequest: undefined };
     const { beforeRequest, afterResponse } = hooks;
 
     // before every request, modify it if there's a hook
@@ -147,12 +146,11 @@ export const connect = async (host: string, hooks: ConnectHook = {}) => {
     });
     console.log(token);
     try {
-        const comment = await wpaApi.comments.createComment({ content: 'content', post: 1 });
-        console.log(comment);
-        const tag = await wpaApi.tags.createTag({ name: 'tag' });
-        console.log(tag);
-        const page = await wpaApi.pages.createPage({ content: 'content' });
-        console.log(page.id);
+        // const comment = await wpaApi.comments.createComment({ content: 'content', post: 1 });
+        // console.log(comment);
+        const newUser = await wpaApi.users.createUser({ email: 'testEmail1@gmail.com', password: 'password', username: 'userName1' });
+        // await wpaApi.users.deleteUser(6);
+        // console.log(newUser);
     }
     catch (e) {
         console.log('err');

@@ -1,4 +1,12 @@
 "use strict";
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -36,44 +44,24 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
-var Connection_1 = require("./Connection");
-describe('connection', function () { return __awaiter(_this, void 0, void 0, function () {
-    var _this = this;
-    var host, userName, password;
+var Index_1 = require("./../lib/Index");
+var wordpress_jwt_auth_1 = require("wordpress-jwt-auth"); // DEV
+var connectToWpApi = function (host, userName, password) { return __awaiter(_this, void 0, void 0, function () {
+    var token, authorization, wpaApi;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0:
-                host = 'http://localhost:8080/wordpress';
-                userName = 'root';
-                password = 'root';
-                test('what the fuck', function () {
-                    expect(host).toBe('http://localhost:8080/wordpress');
-                });
-                return [4 /*yield*/, test('', function () { return __awaiter(_this, void 0, void 0, function () {
-                        var wpApi, tags;
-                        return __generator(this, function (_a) {
-                            switch (_a.label) {
-                                case 0: return [4 /*yield*/, Connection_1.connectToWpApi(host, userName, password)];
-                                case 1:
-                                    wpApi = _a.sent();
-                                    return [4 /*yield*/, wpApi.users.getUsers({})];
-                                case 2:
-                                    tags = _a.sent();
-                                    expect(wpApi.categories).not.toBe(1);
-                                    return [2 /*return*/];
-                            }
-                        });
-                    }); })];
+            case 0: return [4 /*yield*/, wordpress_jwt_auth_1.generateToken(host, userName, password)];
             case 1:
-                _a.sent();
-                // await test('createUser', async () => {
-                //     const user = await wpApi.users.createUser({ email: 'testEmail1@gmail.com', password: 'password', username: 'userName1' });
-                //     expect('testEmail1@gmail.com').toBe(user.email);
-                //     expect('password').toBe(user.password);
-                //     expect('userName1').toBe(user.username);
-                // });
-                return [2 /*return*/];
+                token = (_a.sent()).token;
+                authorization = "Bearer " + token;
+                return [4 /*yield*/, Index_1.connect(host, {
+                        beforeRequest: function (r) { return (__assign({}, r, { headers: __assign({}, r.headers, { Authorization: authorization }) })); },
+                    })];
+            case 2:
+                wpaApi = _a.sent();
+                return [2 /*return*/, wpaApi];
         }
     });
-}); });
-//# sourceMappingURL=Authentication.test.js.map
+}); };
+exports.connectToWpApi = connectToWpApi;
+//# sourceMappingURL=Connection.js.map

@@ -75,7 +75,6 @@ exports.connect = function (host, hooks) {
             switch (_a.label) {
                 case 0:
                     API_URL = host + REST_API_PATH;
-                    hooks = { afterResponse: undefined, beforeRequest: undefined };
                     beforeRequest = hooks.beforeRequest, afterResponse = hooks.afterResponse;
                     hookedRequest = beforeRequest
                         ? function (requestConfig) { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
@@ -171,7 +170,7 @@ exports.connect = function (host, hooks) {
     });
 };
 (function () { return __awaiter(_this, void 0, void 0, function () {
-    var URL, token, authorization, wpaApi, comment, tag, page, e_2;
+    var URL, token, authorization, wpaApi, newUser, e_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -188,26 +187,17 @@ exports.connect = function (host, hooks) {
                 console.log(token);
                 _a.label = 3;
             case 3:
-                _a.trys.push([3, 7, , 8]);
-                return [4 /*yield*/, wpaApi.comments.createComment({ content: 'content', post: 1 })];
+                _a.trys.push([3, 5, , 6]);
+                return [4 /*yield*/, wpaApi.users.createUser({ email: 'testEmail1@gmail.com', password: 'password', username: 'userName1' })];
             case 4:
-                comment = _a.sent();
-                console.log(comment);
-                return [4 /*yield*/, wpaApi.tags.createTag({ name: 'tag' })];
+                newUser = _a.sent();
+                return [3 /*break*/, 6];
             case 5:
-                tag = _a.sent();
-                console.log(tag);
-                return [4 /*yield*/, wpaApi.pages.createPage({ content: 'content' })];
-            case 6:
-                page = _a.sent();
-                console.log(page.id);
-                return [3 /*break*/, 8];
-            case 7:
                 e_2 = _a.sent();
                 console.log('err');
                 console.log(e_2);
-                return [3 /*break*/, 8];
-            case 8:
+                return [3 /*break*/, 6];
+            case 6:
                 process.exit();
                 return [2 /*return*/];
         }

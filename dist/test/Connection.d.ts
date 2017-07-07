@@ -1,23 +1,16 @@
-import { ConnectHook } from './interface/IConnectHook';
-import { ListComments, Comment, CreateComment, DeleteComment, GetComment, UpdateComment } from './interface/Comments';
-import { Category, CreateCategory, DeleteCategory, GetCategory, ListCategories, UpdateCategory } from './interface/Categories';
-import { MediaItem, CreateMedia, DeleteMedia, GetMedia, ListMedia, UpdateMedia } from './interface/Media';
-import { CreateTag, DeleteTag, GetTag, ListTags, Tag, UpdateTag } from './interface/Tags';
-import { CreatePage, DeletePage, ListPages, Page, UpdatePage } from './interface/Pages';
-import { GetPostRevision, ListPostRevisions, PostRevision } from './interface/PostRevisions';
-import { DeletePost, Post, RetrievePost } from './interface/Posts';
-import { GetStatus, ListStatuses, PostStatus } from './interface/PostStatuses';
-import { GetType, ListTypes, PostType } from './interface/PostTypes';
-import { Setting } from './interface/Settings';
-import { CreateUser, DeleteUser, ListUsers, UpdateUser, User } from './interface/Users';
-import { GetTaxaomy, ListTaxaomies, Taxanomy } from './interface/Taxanomies';
-/**
- * Connect to wordpress api
- * @param host - url to wordpress
- * @param hooks - hooks for modify requests/responses, useful for custom authentication
- * @throws {BadHost}
- */
-export declare const connect: (host: string, hooks?: ConnectHook) => Promise<{
+import { ListComments, Comment, CreateComment, DeleteComment, GetComment, UpdateComment } from './../lib/interface/Comments';
+import { Category, CreateCategory, DeleteCategory, GetCategory, ListCategories, UpdateCategory } from './../lib/interface/Categories';
+import { MediaItem, CreateMedia, DeleteMedia, GetMedia, ListMedia, UpdateMedia } from './../lib/interface/Media';
+import { CreateTag, DeleteTag, GetTag, ListTags, Tag, UpdateTag } from './../lib/interface/Tags';
+import { CreatePage, DeletePage, ListPages, Page, UpdatePage } from './../lib/interface/Pages';
+import { GetPostRevision, ListPostRevisions, PostRevision } from './../lib/interface/PostRevisions';
+import { DeletePost, Post, RetrievePost } from './../lib/interface/Posts';
+import { GetStatus, ListStatuses, PostStatus } from './../lib/interface/PostStatuses';
+import { GetType, ListTypes, PostType } from './../lib/interface/PostTypes';
+import { Setting } from './../lib/interface/Settings';
+import { CreateUser, DeleteUser, ListUsers, UpdateUser, User } from './../lib/interface/Users';
+import { GetTaxaomy, ListTaxaomies, Taxanomy } from './../lib/interface/Taxanomies';
+declare const connectToWpApi: (host: string, userName: string, password: string) => Promise<{
     categories: {
         createCategory: (options: CreateCategory) => Promise<Category>;
         deleteCategory: (id: number, options?: DeleteCategory) => Promise<any>;
@@ -90,3 +83,4 @@ export declare const connect: (host: string, hooks?: ConnectHook) => Promise<{
         updateUser: (userId: number, options: UpdateUser) => Promise<User>;
     };
 }>;
+export { connectToWpApi };
