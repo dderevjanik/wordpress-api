@@ -121,15 +121,3 @@ export const connect = async (host: string, hooks: ConnectHook = {}) => {
         users: Users(API_URL, makeRequest),
     };
 };
-
-(async () => {
-    const URL = 'http://localhost:8080/wordpress';
-    const { token } = await generateToken(URL, 'root', 'root');
-    const authorization = `Bearer ${token}`;
-    const wpaApi = await connect(URL, {
-        beforeRequest: (r) => ({
-            ...r, headers: { ...r.headers, Authorization: authorization },
-        }),
-    });
-    process.exit();
-})();

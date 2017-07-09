@@ -3,7 +3,8 @@ const { post } = require("request");
 const log = console.log;
 const Docker = require("dockerode");
 
-const wordpressImage = "appcontainers/wordpress";
+const wordpressImage = "wordpress:4.8.0";
+const mysqlImage = "mysql:5.7";
 const dockerode = new Docker();
 
 /**
@@ -29,8 +30,16 @@ const pullImage = (docker, imageName) => {
 };
 
 (async () => {
-    log(yellow("Downloading docker images"));
-    pullImage(dockerode, wordpressImage);
-    log(green("Image download"));
+    log(yellow("-- Downloading wordpress image --"));
+
+    log(`downloading ${wordpressImage}`);
+    await pullImage(dockerode, wordpressImage);
+    log(green("> Image download"));
+
+    log(`downloading ${mysqlImage}`);
+    await pullImage(dockerode, mysqlImage);
+    log(green("> Image download"));
+
+    log("all docker images downloaded");
     process.exit(0);
 })();
