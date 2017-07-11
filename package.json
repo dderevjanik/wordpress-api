@@ -24,7 +24,7 @@
   "types": "dist/Index.d.ts",
   "typings": "dist/Index.d.ts",
   "scripts": {
-    "app": "node ./dist/lib/Index.js",
+    "app": "node ./dist/Index.js",
     "test": "jest",
     "testWatch": "jest --watch",
     "dev": "tsc --watch",

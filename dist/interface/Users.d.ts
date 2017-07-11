@@ -210,10 +210,6 @@ export interface CreateUser {
 }
 export interface UpdateUser {
     /**
-     * Login name for the user.
-     * user name is not editable
-     */
-    /**
      * Display name for the user.
      */
     name?: string;

@@ -14,7 +14,7 @@ export const Comments = (API_URL: string, makeRequest: RequestHandler) => {
          */
         createComment: async (options: CreateComment) => {
             const url = `${API_URL}/${objectEndpoint}`;
-            const response = await makeRequest({ method: 'POST', url, data: options });
+            const response = await makeRequest({ method: 'POST', url: url, data: options });
             return response.data as Comment;
         },
 
@@ -26,7 +26,7 @@ export const Comments = (API_URL: string, makeRequest: RequestHandler) => {
          */
         deleteComment: async (id: number, options: DeleteComment = { force: true }) => {
             const url = `${API_URL}/${objectEndpoint}/${id}`;
-            const response = await makeRequest({ method: 'DELETE', url, data: options });
+            const response = await makeRequest({ method: 'DELETE', url: url, data: options });
             return response.data.deleted;
         },
 
@@ -38,7 +38,7 @@ export const Comments = (API_URL: string, makeRequest: RequestHandler) => {
          */
         getComment: async (id: number, options: GetComment = { context: 'view' }) => {
             const url = `${API_URL}/${objectEndpoint}/${id}`;
-            const response = await makeRequest({ method: 'GET', url, data: options });
+            const response = await makeRequest({ method: 'GET', url: url, data: options });
             return response.data as Comment;
         },
 
@@ -48,7 +48,7 @@ export const Comments = (API_URL: string, makeRequest: RequestHandler) => {
          */
         getComments: async (options: ListComments = {}) => {
             const url = `${API_URL}/${objectEndpoint}`;
-            const response = await makeRequest({ method: 'GET', url, data: options });
+            const response = await makeRequest({ method: 'GET', url: url, data: options });
             return response.data as Comment[];
         },
 
@@ -59,7 +59,7 @@ export const Comments = (API_URL: string, makeRequest: RequestHandler) => {
          */
         updateComment: async (id: number, options: UpdateComment) => {
             const url = `${API_URL}/${objectEndpoint}/${id}`;
-            const response = await makeRequest({ method: 'POST', url, data: options });
+            const response = await makeRequest({ method: 'POST', url: url, data: options });
             return response.data as Comment;
         },
     };

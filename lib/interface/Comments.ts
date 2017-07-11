@@ -106,7 +106,7 @@ export interface Comment {
      * State of the object.
      * Context: view, edit
      */
-    status: string;
+    status?: "approved" | "hold" | "1" | "0" | "spam" | "trash";
 
     /**
      * string
@@ -236,9 +236,11 @@ export interface ListComments {
     /**
      * Limit result set to comments assigned a specific status.
      * Requires authorization.
+     * 1 is "approved", 0 is "hold" or "pending"
+     * not all methods can work with hold and approved, better to use 1 or 0 in all methods
      * @default: 'approve'
      */
-    status?: string;
+    status?: '1' | "0" | "spam" | "trash";
 
     /**
      * Limit result set to comments assigned a specific type.
@@ -314,15 +316,23 @@ export interface CreateComment {
     /**
      * The id of the associated post object.
      * @default: 0
+     * @required
      */
-    post?: number;
+    post: number;
 
     /**
      * State of the object.
-     * type Type of Comment for the object.
-     * @default: 'comment'
+     * 1 is "approved", 0 is "hold" or "pending"
+     * not all methods can work with hold and approved, better to use 1 or 0 in all methods
+     * @default: 'approve'
      */
-    status?: string;
+    status?: '1' | "0" | "spam" | "trash";
+
+    /**
+     * Type of Comment for the object.
+     * @default: "comment"
+     */
+    type?: string
 
     /**
      * Meta fields.
@@ -388,8 +398,11 @@ export interface UpdateComment {
 
     /**
      * State of the object.
+     * 1 is "approved", 0 is "hold" or "pending"
+     * not all methods can work with hold and approved, better to use 1 or 0 in all methods
+     * @default: "approved"
      */
-    status?: string;
+    status?: '1' | "0" | "spam" | "trash";
 
     /**
      * Type of Comment for the object.

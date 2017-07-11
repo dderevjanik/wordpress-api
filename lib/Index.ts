@@ -24,7 +24,7 @@ import { MediaItem, CreateMedia, DeleteMedia, GetMedia, ListMedia, UpdateMedia }
 import { CreateTag, DeleteTag, GetTag, ListTags, Tag, UpdateTag } from './interface/Tags';
 import { CreatePage, DeletePage, GetPage, ListPages, Page, UpdatePage } from './interface/Pages';
 import { GetPostRevision, ListPostRevisions, PostRevision } from './interface/PostRevisions';
-import { DeletePost, ListPosts, Post, RetrievePost } from './interface/Posts';
+import { DeletePost, ListPosts, Post, RetrievePost, CreatePost, UpdatePost } from './interface/Posts';
 import { GetStatus, ListStatuses, PostStatus } from './interface/PostStatuses';
 import { GetType, ListTypes, PostType } from './interface/PostTypes';
 import { Setting } from './interface/Settings';
@@ -135,26 +135,25 @@ export const connect = async (host: string, hooks: ConnectHook = {}) => {
     };
 };
 
-(async () => {
-    const URL = 'http://localhost:8080/wordpress';
-    const { token } = await generateToken(URL, 'root', 'root');
-    const authorization = `Bearer ${token}`;
-    const wpaApi = await connect(URL, {
-        beforeRequest: (r) => ({
-            ...r, headers: { ...r.headers, Authorization: authorization },
-        }),
-    });
-    console.log(token);
-    try {
-        // const comment = await wpaApi.comments.createComment({ content: 'content', post: 1 });
-        // console.log(comment);
-        const newUser = await wpaApi.users.createUser({ email: 'testEmail1@gmail.com', password: 'password', username: 'userName1' });
-        // await wpaApi.users.deleteUser(6);
-        // console.log(newUser);
-    }
-    catch (e) {
-        console.log('err');
-        console.log(e)
-    }
-    process.exit();
-})();
+// (async () => {
+//     const URL = 'http://localhost:8080/wordpress';
+//     const { token } = await generateToken(URL, 'root', 'root');
+//     const authorization = `Bearer ${token}`;
+//     const wpApi = await connect(URL, {
+//         beforeRequest: (r) => ({
+//             ...r, headers: { ...r.headers, Authorization: authorization },
+//         }),
+//     });
+//     try {
+//         const comment = await wpApi.comments.createComment({ content: 'testContent1', post: 1, status: '1' });
+//         const comments = await wpApi.comments.getComments();
+//         const commentId = Math.max.apply(Math, comments.map((c) => { return c.id; }));
+//         const deleted = await wpApi.comments.deleteComment(commentId);
+//     }
+//     catch (e) {
+//         console.log('err');
+//         console.log(e)
+//     }
+//     process.exit();
+// })();
+

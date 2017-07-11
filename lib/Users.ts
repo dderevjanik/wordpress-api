@@ -51,8 +51,7 @@ export const Users = (API_URL: string, makeRequest: RequestHandler) => {
          * @param options - options to retrieve a posts
          */
         getUsers: async (options: ListUsers = {}) => {
-            const url = `${API_URL}/${objectEndpoint}}`;
-            const queryString = QueryString.stringify(options);
+            const url = `${API_URL}/${objectEndpoint}`;
             const response = await makeRequest({ method: 'GET', url, data: options });
             return response.data as User[];
         },

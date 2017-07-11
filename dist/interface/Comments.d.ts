@@ -92,7 +92,7 @@ export interface Comment {
      * State of the object.
      * Context: view, edit
      */
-    status: string;
+    status?: "approved" | "hold" | "1" | "0" | "spam" | "trash";
     /**
      * string
      * Type of Comment for the object.
@@ -181,8 +181,8 @@ export interface ListComments {
     order?: 'asc' | 'desc';
     /**
      * Sort collection by object attribute.
-     * @default: 'date_gmt'
      * One of: date, date_gmt, id, include, post, parent, type
+     * @default: 'date_gmt'
      */
     orderby?: 'date' | 'date_gmt' | 'id' | 'include' | 'post' | 'parent' | 'type';
     /**
@@ -200,9 +200,11 @@ export interface ListComments {
     /**
      * Limit result set to comments assigned a specific status.
      * Requires authorization.
+     * 1 is "approved", 0 is "hold" or "pending"
+     * not all methods can work with hold and approved, better to use 1 or 0 in all methods
      * @default: 'approve'
      */
-    status?: string;
+    status?: '1' | "0" | "spam" | "trash";
     /**
      * Limit result set to comments assigned a specific type.
      * Requires authorization.
@@ -213,8 +215,8 @@ export interface ListComments {
 export interface GetComment {
     /**
      * Scope under which the request is made; determines fields present in response.
-     * @default: 'view'
      * One of: view, embed, edit
+     * @default: 'view'
      */
     context?: 'view' | 'embed' | 'edit';
 }
@@ -242,6 +244,7 @@ export interface CreateComment {
     author_url?: string;
     /**
      * The content for the object.
+     * @required
      */
     content: string;
     /**
@@ -264,14 +267,21 @@ export interface CreateComment {
     /**
      * The id of the associated post object.
      * @default: 0
+     * @required
      */
     post: number;
     /**
      * State of the object.
-     * type Type of Comment for the object.
-     * @default: 'comment'
+     * 1 is "approved", 0 is "hold" or "pending"
+     * not all methods can work with hold and approved, better to use 1 or 0 in all methods
+     * @default: 'approve'
      */
-    status?: string;
+    status?: '1' | "0" | "spam" | "trash";
+    /**
+     * Type of Comment for the object.
+     * @default: "comment"
+     */
+    type?: string;
     /**
      * Meta fields.
      */
@@ -324,8 +334,11 @@ export interface UpdateComment {
     post?: number;
     /**
      * State of the object.
+     * 1 is "approved", 0 is "hold" or "pending"
+     * not all methods can work with hold and approved, better to use 1 or 0 in all methods
+     * @default: "approved"
      */
-    status?: string;
+    status?: '1' | "0" | "spam" | "trash";
     /**
      * Type of Comment for the object.
      */

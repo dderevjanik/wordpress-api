@@ -99,7 +99,6 @@ exports.Pages = function (API_URL, makeRequest) {
         /**
          * Get all posts
          * @param options - options to retrieve a pages
-         * @returns {Post[]} array of pages
          */
         getPages: function (options) { return __awaiter(_this, void 0, void 0, function () {
             var queryString, url, response;

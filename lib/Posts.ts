@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import * as QueryString from 'querystring';
-import { DeletePost, ListPosts, Post, RetrievePost } from './interface/Posts';
+import { DeletePost, ListPosts, Post, UpdatePost, CreatePost, RetrievePost } from './interface/Posts';
 import { RequestHandler } from './interface/RequestHandler';
 
 export const Posts = (API_URL: string, makeRequest: RequestHandler) => {
@@ -10,9 +10,9 @@ export const Posts = (API_URL: string, makeRequest: RequestHandler) => {
          * Create a post
          * @param post - post to create
          */
-        createPost: async (post: Post) => {
+        createPost: async (post: CreatePost) => {
             const url = `${API_URL}/${objectEndpoint}`;
-            const response = await makeRequest({ method: 'POST', url, data: post });
+            const response = await makeRequest({ method: 'POST', url: url, data: post });
             return response.data as Post;
         },
 
@@ -21,9 +21,9 @@ export const Posts = (API_URL: string, makeRequest: RequestHandler) => {
          * @param postId - post id to remove
          * @param options - remove options
          */
-        deletePost: async (postId: number, options: DeletePost) => {
+        deletePost: async (postId: number, options: DeletePost = {}) => {
             const url = `${API_URL}/${objectEndpoint}/${postId}`;
-            const response = await makeRequest({ method: 'DELETE', url });
+            const response = await makeRequest({ method: 'DELETE', url: url });
             return response.data.deleted;
         },
 
@@ -34,7 +34,7 @@ export const Posts = (API_URL: string, makeRequest: RequestHandler) => {
          */
         getPost: async (postId: number): Promise<Post> => {
             const url = `http://${API_URL}/${objectEndpoint}/${postId}`;
-            const response = await makeRequest({ method: 'GET', url });
+            const response = await makeRequest({ method: 'GET', url: url });
             return response.data as Post;
         },
 
@@ -43,9 +43,9 @@ export const Posts = (API_URL: string, makeRequest: RequestHandler) => {
          * @param options - options to retrieve a posts
          * @returns {Post[]} array of Posts
          */
-        getPosts: async (options: RetrievePost): Promise<Post[]> => {
+        getPosts: async (options: ListPosts): Promise<Post[]> => {
             const url = `${API_URL}/${objectEndpoint}`;
-            const response = await makeRequest({ method: 'GET', url, data: options });
+            const response = await makeRequest({ method: 'GET', url: url, data: options });
             return response.data as Post[];
         },
 
@@ -54,9 +54,9 @@ export const Posts = (API_URL: string, makeRequest: RequestHandler) => {
          * @param postId - which post to update
          * @param options - options to update a post
          */
-        updatePost: async (postId: number, options: Post) => {
+        updatePost: async (postId: number, options: UpdatePost) => {
             const url = `${API_URL}/${objectEndpoint}/${postId}`;
-            const response = await makeRequest({ method: 'POST', url, data: options });
+            const response = await makeRequest({ method: 'POST', url: url, data: options });
             return response.data as Post;
         },
     };
