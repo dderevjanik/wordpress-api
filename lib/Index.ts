@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { red, underline } from 'chalk';
 import * as QueryString from 'querystring';
+import { get } from 'superagent';
 import { generateToken, validateToken } from 'wordpress-jwt-auth'; // DEV
 import { ConnectHook } from './interface/IConnectHook';
 import { DeletePost, ListPosts, Post, RetrievePost } from './interface/Posts';
@@ -19,6 +20,7 @@ import { Taxanomies } from './Taxaomies';
 import { Users } from './Users';
 
 const REST_API_PATH = '/wp-json/wp/v2';
+type RequestConfig = AxiosRequestConfig;
 
 /**
  * Connect to wordpress api
@@ -32,15 +34,19 @@ export const connect = async (host: string, hooks: ConnectHook = {}) => {
 
     // before every request, modify it if there's a hook
     const hookedRequest = beforeRequest
-        ? async (requestConfig: AxiosRequestConfig) => axios(beforeRequest(requestConfig))
+        ? async (url: string, requestConfig: RequestConfig) => axios(url, beforeRequest(requestConfig))
         : axios;
     // modify response if there's a hook
     const makeRequest = afterResponse
-        ? async (requestConfig: AxiosRequestConfig) => afterResponse(await hookedRequest(requestConfig))
+        ? async (url: string, requestConfig: RequestConfig) => afterResponse(await hookedRequest(url, requestConfig))
         : hookedRequest;
 
     try {
-        await makeRequest({ method: 'GET', url: API_URL });
+        console.log('================');
+        await axios('http://192.168.99.100:9001', { method: 'GET' });
+        console.log(API_URL);
+        console.log('---------=======');
+        await makeRequest(API_URL, { method: 'GET' });
     } catch (e) {
         const msg = red('BadHost: no response from REST API endpoint ' + underline(API_URL));
         throw new Error(msg);

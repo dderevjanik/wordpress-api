@@ -1,12 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -46,7 +38,6 @@ var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = require("axios");
 var chalk_1 = require("chalk");
-var wordpress_jwt_auth_1 = require("wordpress-jwt-auth"); // DEV
 var Categories_1 = require("./Categories");
 var Comments_1 = require("./Comments");
 var Media_1 = require("./Media");
@@ -66,7 +57,7 @@ var REST_API_PATH = '/wp-json/wp/v2';
  * @param hooks - hooks for modify requests/responses, useful for custom authentication
  * @throws {BadHost}
  */
-var connect = function (host, hooks) {
+exports.connect = function (host, hooks) {
     if (hooks === void 0) { hooks = {}; }
     return __awaiter(_this, void 0, void 0, function () {
         var _this = this;
@@ -77,32 +68,38 @@ var connect = function (host, hooks) {
                     API_URL = host + REST_API_PATH;
                     beforeRequest = hooks.beforeRequest, afterResponse = hooks.afterResponse;
                     hookedRequest = beforeRequest
-                        ? function (requestConfig) { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
-                            return [2 /*return*/, axios_1.default(beforeRequest(requestConfig))];
+                        ? function (url, requestConfig) { return __awaiter(_this, void 0, void 0, function () { return __generator(this, function (_a) {
+                            return [2 /*return*/, axios_1.default(url, beforeRequest(requestConfig))];
                         }); }); }
                         : axios_1.default;
                     makeRequest = afterResponse
-                        ? function (requestConfig) { return __awaiter(_this, void 0, void 0, function () { var _a; return __generator(this, function (_b) {
+                        ? function (url, requestConfig) { return __awaiter(_this, void 0, void 0, function () { var _a; return __generator(this, function (_b) {
                             switch (_b.label) {
                                 case 0:
                                     _a = afterResponse;
-                                    return [4 /*yield*/, hookedRequest(requestConfig)];
+                                    return [4 /*yield*/, hookedRequest(url, requestConfig)];
                                 case 1: return [2 /*return*/, _a.apply(void 0, [_b.sent()])];
                             }
                         }); }); }
                         : hookedRequest;
                     _a.label = 1;
                 case 1:
-                    _a.trys.push([1, 3, , 4]);
-                    return [4 /*yield*/, makeRequest({ method: 'GET', url: API_URL })];
+                    _a.trys.push([1, 4, , 5]);
+                    console.log('================');
+                    return [4 /*yield*/, axios_1.default('http://192.168.99.100:9001', { method: 'GET' })];
                 case 2:
                     _a.sent();
-                    return [3 /*break*/, 4];
+                    console.log(API_URL);
+                    console.log('---------=======');
+                    return [4 /*yield*/, makeRequest(API_URL, { method: 'GET' })];
                 case 3:
+                    _a.sent();
+                    return [3 /*break*/, 5];
+                case 4:
                     e_1 = _a.sent();
                     msg = chalk_1.red('BadHost: no response from REST API endpoint ' + chalk_1.underline(API_URL));
                     throw new Error(msg);
-                case 4: return [2 /*return*/, {
+                case 5: return [2 /*return*/, {
                         /**
                          * define all methods with categories
                          * http://demo.wp-api.org/wp-json/wp/v2/categories
@@ -169,24 +166,4 @@ var connect = function (host, hooks) {
         });
     });
 };
-(function () { return __awaiter(_this, void 0, void 0, function () {
-    var URL, token, authorization, wpaApi;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                URL = 'http://localhost:8080/wordpress';
-                return [4 /*yield*/, wordpress_jwt_auth_1.generateToken(URL, 'root', 'root')];
-            case 1:
-                token = (_a.sent()).token;
-                authorization = "Bearer " + token;
-                return [4 /*yield*/, connect(URL, {
-                        beforeRequest: function (r) { return (__assign({}, r, { headers: __assign({}, r.headers, { Authorization: authorization }) })); },
-                    })];
-            case 2:
-                wpaApi = _a.sent();
-                process.exit();
-                return [2 /*return*/];
-        }
-    });
-}); })();
 //# sourceMappingURL=Index.js.map

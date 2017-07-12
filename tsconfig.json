@@ -47,6 +47,6 @@
     // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
   },
   "files": [
-    "lib/**/*.ts"
+    "lib/Index.ts"
   ]
 }

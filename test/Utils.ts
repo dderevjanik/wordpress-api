@@ -15,7 +15,6 @@ export const waitMs = async (ms: number) => {
         }, ms);
     });
 };
-
 /**
  * Run wordpress container and expose his port
  * @param wpPort - wordpress port
@@ -34,7 +33,7 @@ export const runWorpdressTestContainer = async (wpPort: number, mySqlPort: numbe
         HostConfig: {
             PortBindings: {
                 '3306/tcp': [{
-                    HostIP: dockerode.modem.host.toString(),
+                    HostIP: '0.0.0.0',
                     HostPort: mySqlPort.toString(),
                 }],
             },
@@ -50,34 +49,39 @@ export const runWorpdressTestContainer = async (wpPort: number, mySqlPort: numbe
         ],
         ExposedPorts: {
             "80/tcp": {},
+            "9001/tcp": {},
         },
         HostConfig: {
             PortBindings: {
                 "80/tcp": [
                     {
-                        HostIp: dockerode.modem.host.toString(),
+                        HostIp: '0.0.0.0',
                         HostPort: wpPort.toString(),
                     },
                 ],
             },
         },
-        Image: 'wordpress:4.8',
+        Image: 'conetix/wordpress-with-wp-cli',
     });
     await wpContainer.start();
-    await waitMs(3000);
-    post(`http://${dockerode.modem.host}:${wpPort}/wp-admin/install.php?step=2`, {
+    await waitMs(8000);
+
+    console.log('making a post');
+
+    post(`http://192.168.99.100:${wpPort}/wp-admin/install.php?step=2`, {
         formData: {
-            "Submit": "Install WordPress",
-            "admin_email": "test@test.com",
-            "admin_password": "admin",
-            "admin_password2": "admin",
-            "blog_public": 0,
-            "language": "",
-            "pass1-text": "admin",
-            "user_name": "admin",
-            "weblog_title": "wordpress - rest - api",
+            Submit: "Install WordPress",
+            admin_email: "test@test.com",
+            admin_password: "admin",
+            admin_password2: "admin",
+            blog_public: 0,
+            user_name: "admin",
+            weblog_title: "wordpress - rest - api",
         },
+    }, (r) => {
+        console.log(r);
     });
-    await waitMs(1000);
-    return wpContainer;
+
+    await waitMs(5000);
+    return [wpContainer, mysqlContainer];
 };
