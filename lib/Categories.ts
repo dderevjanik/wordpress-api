@@ -15,7 +15,7 @@ export const Categories = (API_URL: string, makeRequest: RequestHandler) => {
          */
         createCategory: async (options: CreateCategory) => {
             const url = `${API_URL}/${objectEndpoint}`;
-            const response = await makeRequest({ method: 'POST', url, data: options });
+            const response = await makeRequest({ method: 'POST', url: url, data: options });
             return response.data as Category;
         },
 
@@ -26,7 +26,7 @@ export const Categories = (API_URL: string, makeRequest: RequestHandler) => {
          */
         deleteCategory: async (id: number, options: DeleteCategory = { force: true }) => {
             const url = `${API_URL}/${objectEndpoint}/${id}`;
-            const response = await makeRequest({ method: 'DELETE', url, data: options });
+            const response = await makeRequest({ method: 'DELETE', url: url, data: options });
             const deleted = response.data.deleted;
             return deleted;
         },
@@ -37,7 +37,7 @@ export const Categories = (API_URL: string, makeRequest: RequestHandler) => {
          */
         getCategories: async (options: ListCategories) => {
             const url = `${API_URL}/${objectEndpoint}`;
-            const response = await makeRequest({ method: 'GET', url, data: options });
+            const response = await makeRequest({ method: 'GET', url: url, data: options });
             return response.data as Category[];
         },
 
@@ -47,7 +47,7 @@ export const Categories = (API_URL: string, makeRequest: RequestHandler) => {
          */
         getCategory: async (id: number, options: GetCategory = { context: 'view' }) => {
             const url = `${API_URL}/${objectEndpoint}/${id}`;
-            const response = await makeRequest({ method: 'GET', url, data: options });
+            const response = await makeRequest({ method: 'GET', url: url, data: options });
             return response.data as Category;
         },
 
@@ -57,7 +57,7 @@ export const Categories = (API_URL: string, makeRequest: RequestHandler) => {
          */
         updateCategory: async (id: number, options: UpdateCategory) => {
             const url = `${API_URL}/${objectEndpoint}/${id}`;
-            const response = await makeRequest({ method: 'POST', url, data: options });
+            const response = await makeRequest({ method: 'POST', url: url, data: options });
             return response.data as Category;
         },
     };

@@ -3,7 +3,6 @@ import { red, underline } from 'chalk';
 import * as QueryString from 'querystring';
 import { generateToken, validateToken } from 'wordpress-jwt-auth'; // DEV
 import { ConnectHook } from './interface/IConnectHook';
-import { DeletePost, ListPosts, Post, RetrievePost } from './interface/Posts';
 
 import { Categories } from './Categories';
 import { Comments } from './Comments';
@@ -18,6 +17,20 @@ import { Tags } from './Tags';
 import { Taxanomies } from './Taxaomies';
 import { Users } from './Users';
 
+// imports to be able export connect
+import { ListComments, Comment, CreateComment, DeleteComment, GetComment, UpdateComment } from './interface/Comments';
+import { Category, CreateCategory, DeleteCategory, GetCategory, ListCategories, UpdateCategory } from './interface/Categories';
+import { MediaItem, CreateMedia, DeleteMedia, GetMedia, ListMedia, UpdateMedia } from './interface/Media';
+import { CreateTag, DeleteTag, GetTag, ListTags, Tag, UpdateTag } from './interface/Tags';
+import { CreatePage, DeletePage, GetPage, ListPages, Page, UpdatePage } from './interface/Pages';
+import { GetPostRevision, ListPostRevisions, PostRevision } from './interface/PostRevisions';
+import { DeletePost, ListPosts, Post, RetrievePost, CreatePost, UpdatePost } from './interface/Posts';
+import { GetStatus, ListStatuses, PostStatus } from './interface/PostStatuses';
+import { GetType, ListTypes, PostType } from './interface/PostTypes';
+import { Setting } from './interface/Settings';
+import { CreateUser, DeleteUser, ListUsers, UpdateUser, User } from './interface/Users';
+import { GetTaxaomy, ListTaxaomies, Taxanomy } from './interface/Taxanomies';
+
 const REST_API_PATH = '/wp-json/wp/v2';
 
 /**
@@ -26,7 +39,7 @@ const REST_API_PATH = '/wp-json/wp/v2';
  * @param hooks - hooks for modify requests/responses, useful for custom authentication
  * @throws {BadHost}
  */
-const connect = async (host: string, hooks: ConnectHook = {}) => {
+export const connect = async (host: string, hooks: ConnectHook = {}) => {
     const API_URL = host + REST_API_PATH;
     const { beforeRequest, afterResponse } = hooks;
 
@@ -126,10 +139,11 @@ const connect = async (host: string, hooks: ConnectHook = {}) => {
     const URL = 'http://localhost:8080/wordpress';
     const { token } = await generateToken(URL, 'root', 'root');
     const authorization = `Bearer ${token}`;
-    const wpaApi = await connect(URL, {
+    const wpApi = await connect(URL, {
         beforeRequest: (r) => ({
             ...r, headers: { ...r.headers, Authorization: authorization },
         }),
     });
     process.exit();
 })();
+

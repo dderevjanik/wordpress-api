@@ -7,6 +7,12 @@ import { CreateUser, DeleteUser, ListUsers, UpdateUser, User } from './interface
 export const Users = (API_URL: string, makeRequest: RequestHandler) => {
     const objectEndpoint = 'users';
     return {
+        isLoggegedId: async () => {
+            const url = `${API_URL}/${objectEndpoint}/me`;
+            const response = await makeRequest({ method: 'POST', url });
+            return response.data;
+        },
+
         /**
          * Create new user
          * @param options - options to create a user
@@ -44,9 +50,8 @@ export const Users = (API_URL: string, makeRequest: RequestHandler) => {
          * Get all posts
          * @param options - options to retrieve a posts
          */
-        getUsers: async (options: ListUsers) => {
-            const url = `${API_URL}/${objectEndpoint}}`;
-            const queryString = QueryString.stringify(options);
+        getUsers: async (options: ListUsers = {}) => {
+            const url = `${API_URL}/${objectEndpoint}`;
             const response = await makeRequest({ method: 'GET', url, data: options });
             return response.data as User[];
         },

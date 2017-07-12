@@ -42,7 +42,6 @@ export const Pages = (API_URL: string, makeRequest: RequestHandler) => {
         /**
          * Get all posts
          * @param options - options to retrieve a pages
-         * @returns {Post[]} array of pages
          */
         getPages: async (options: ListPages) => {
             const queryString = QueryString.stringify(options); // TODO: make sure it works

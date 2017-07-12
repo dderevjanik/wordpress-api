@@ -25,7 +25,9 @@
   "types": "dist/Index.d.ts",
   "typings": "dist/Index.d.ts",
   "scripts": {
+    "app": "node ./dist/Index.js",
     "test": "jest",
+    "testWatch": "jest --watch",
     "dev": "tsc --watch",
     "build": "tsc",
     "lint": "tslint -c tslint.json --fix 'lib/**/*.ts'"
@@ -39,7 +41,8 @@
       "ts",
       "tsx",
       "js"
-    ]
+    ],
+    "collectCoverage": false
   },
   "license": "ISC",
   "devDependencies": {

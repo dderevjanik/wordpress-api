@@ -66,7 +66,7 @@ var REST_API_PATH = '/wp-json/wp/v2';
  * @param hooks - hooks for modify requests/responses, useful for custom authentication
  * @throws {BadHost}
  */
-var connect = function (host, hooks) {
+exports.connect = function (host, hooks) {
     if (hooks === void 0) { hooks = {}; }
     return __awaiter(_this, void 0, void 0, function () {
         var _this = this;
@@ -170,7 +170,7 @@ var connect = function (host, hooks) {
     });
 };
 (function () { return __awaiter(_this, void 0, void 0, function () {
-    var URL, token, authorization, wpaApi;
+    var URL, token, authorization, wpaApi, newUser, e_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -179,11 +179,25 @@ var connect = function (host, hooks) {
             case 1:
                 token = (_a.sent()).token;
                 authorization = "Bearer " + token;
-                return [4 /*yield*/, connect(URL, {
+                return [4 /*yield*/, exports.connect(URL, {
                         beforeRequest: function (r) { return (__assign({}, r, { headers: __assign({}, r.headers, { Authorization: authorization }) })); },
                     })];
             case 2:
                 wpaApi = _a.sent();
+                console.log(token);
+                _a.label = 3;
+            case 3:
+                _a.trys.push([3, 5, , 6]);
+                return [4 /*yield*/, wpaApi.users.createUser({ email: 'testEmail1@gmail.com', password: 'password', username: 'userName1' })];
+            case 4:
+                newUser = _a.sent();
+                return [3 /*break*/, 6];
+            case 5:
+                e_2 = _a.sent();
+                console.log('err');
+                console.log(e_2);
+                return [3 /*break*/, 6];
+            case 6:
                 process.exit();
                 return [2 /*return*/];
         }
