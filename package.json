@@ -16,6 +16,7 @@
     "wordpress",
     "api",
     "wordpress-rest",
+    "wordpress-rest-api",
     "typescript"
   ],
   "typescript": {
