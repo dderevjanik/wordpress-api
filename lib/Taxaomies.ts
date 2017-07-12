@@ -1,5 +1,3 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import * as QueryString from 'querystring';
 import { RequestHandler } from './interface/RequestHandler';
 import { GetTaxaomy, ListTaxaomies, Taxanomy } from './interface/Taxanomies';
 

@@ -1,4 +1,4 @@
-import { DeletePost, ListPosts, Post, UpdatePost, CreatePost } from './interface/Posts';
+import { CreatePost, DeletePost, ListPosts, Post, UpdatePost } from './interface/Posts';
 import { RequestHandler } from './interface/RequestHandler';
 export declare const Posts: (API_URL: string, makeRequest: RequestHandler) => {
     createPost: (post: CreatePost) => Promise<Post>;

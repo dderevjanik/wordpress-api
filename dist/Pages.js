@@ -36,7 +36,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
-var QueryString = require("querystring");
 exports.Pages = function (API_URL, makeRequest) {
     var objectEndpoint = 'pages';
     return {
@@ -101,11 +100,10 @@ exports.Pages = function (API_URL, makeRequest) {
          * @param options - options to retrieve a pages
          */
         getPages: function (options) { return __awaiter(_this, void 0, void 0, function () {
-            var queryString, url, response;
+            var url, response;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        queryString = QueryString.stringify(options);
                         url = API_URL + "/" + objectEndpoint;
                         return [4 /*yield*/, makeRequest({ method: 'GET', url: url, data: options })];
                     case 1:

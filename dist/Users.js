@@ -39,19 +39,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Users = function (API_URL, makeRequest) {
     var objectEndpoint = 'users';
     return {
-        isLoggegedId: function () { return __awaiter(_this, void 0, void 0, function () {
-            var url, response;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        url = API_URL + "/" + objectEndpoint + "/me";
-                        return [4 /*yield*/, makeRequest({ method: 'POST', url: url })];
-                    case 1:
-                        response = _a.sent();
-                        return [2 /*return*/, response.data];
-                }
-            });
-        }); },
         /**
          * Create new user
          * @param options - options to create a user
@@ -129,6 +116,19 @@ exports.Users = function (API_URL, makeRequest) {
                 });
             });
         },
+        isLoggegedId: function () { return __awaiter(_this, void 0, void 0, function () {
+            var url, response;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        url = API_URL + "/" + objectEndpoint + "/me";
+                        return [4 /*yield*/, makeRequest({ method: 'POST', url: url })];
+                    case 1:
+                        response = _a.sent();
+                        return [2 /*return*/, response.data];
+                }
+            });
+        }); },
         /**
          * Update existing user
          * @param userId

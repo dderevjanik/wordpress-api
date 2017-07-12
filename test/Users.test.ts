@@ -23,7 +23,7 @@ describe('connection', async () => {
     test('try update user', async () => {
         const wpApi = await connectToWpApi(host, userName, password);
         const users = await wpApi.users.getUsers({});
-        const userId = Math.max.apply(Math, users.map((u) => { return u.id; }))
+        const userId = Math.max.apply(Math, users.map((u) => u.id))
         const user = await wpApi.users.updateUser(userId, { email: 'updateEmail@gmail.com' });
         expect(user.email).toBe('updateEmail@gmail.com');
     });
@@ -31,10 +31,8 @@ describe('connection', async () => {
     test('try remove user', async () => {
         const wpApi = await connectToWpApi(host, userName, password);
         const users = await wpApi.users.getUsers({});
-        const userId = Math.max.apply(Math, users.map((u) => { return u.id; }))
+        const userId = Math.max.apply(Math, users.map((u) => u.id))
         const deleted = await wpApi.users.deleteUser(userId);
         expect(deleted).toBe(true);
     });
 });
-
-

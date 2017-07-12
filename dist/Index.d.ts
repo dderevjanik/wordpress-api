@@ -1,16 +1,16 @@
 import { ConnectHook } from './interface/IConnectHook';
-import { ListComments, Comment, CreateComment, DeleteComment, GetComment, UpdateComment } from './interface/Comments';
 import { Category, CreateCategory, DeleteCategory, GetCategory, ListCategories, UpdateCategory } from './interface/Categories';
-import { MediaItem, CreateMedia, DeleteMedia, GetMedia, ListMedia, UpdateMedia } from './interface/Media';
-import { CreateTag, DeleteTag, GetTag, ListTags, Tag, UpdateTag } from './interface/Tags';
+import { Comment, CreateComment, DeleteComment, GetComment, ListComments, UpdateComment } from './interface/Comments';
+import { CreateMedia, DeleteMedia, GetMedia, ListMedia, MediaItem, UpdateMedia } from './interface/Media';
 import { CreatePage, DeletePage, ListPages, Page, UpdatePage } from './interface/Pages';
 import { GetPostRevision, ListPostRevisions, PostRevision } from './interface/PostRevisions';
-import { DeletePost, ListPosts, Post, CreatePost, UpdatePost } from './interface/Posts';
+import { CreatePost, DeletePost, ListPosts, Post, UpdatePost } from './interface/Posts';
 import { GetStatus, ListStatuses, PostStatus } from './interface/PostStatuses';
 import { GetType, ListTypes, PostType } from './interface/PostTypes';
 import { Setting } from './interface/Settings';
-import { CreateUser, DeleteUser, ListUsers, UpdateUser, User } from './interface/Users';
+import { CreateTag, DeleteTag, GetTag, ListTags, Tag, UpdateTag } from './interface/Tags';
 import { GetTaxaomy, ListTaxaomies, Taxanomy } from './interface/Taxanomies';
+import { CreateUser, DeleteUser, ListUsers, UpdateUser, User } from './interface/Users';
 /**
  * Connect to wordpress api
  * @param host - url to wordpress

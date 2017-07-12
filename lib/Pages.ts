@@ -1,6 +1,3 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import * as QueryString from 'querystring';
-import * as authenicate from 'wordpress-jwt-auth';
 import { CreatePage, DeletePage, ListPages, Page, UpdatePage } from './interface/Pages';
 import { RequestHandler } from './interface/RequestHandler';
 
@@ -44,7 +41,6 @@ export const Pages = (API_URL: string, makeRequest: RequestHandler) => {
          * @param options - options to retrieve a pages
          */
         getPages: async (options: ListPages) => {
-            const queryString = QueryString.stringify(options); // TODO: make sure it works
             const url = `${API_URL}/${objectEndpoint}`;
             const response = await makeRequest({ method: 'GET', url, data: options });
             return response.data as Page[];

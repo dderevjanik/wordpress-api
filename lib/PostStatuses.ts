@@ -1,5 +1,3 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import * as QueryString from 'querystring';
 import { GetStatus, ListStatuses, PostStatus } from './interface/PostStatuses';
 import { RequestHandler } from './interface/RequestHandler';
 

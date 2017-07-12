@@ -1,6 +1,6 @@
 {
   "name": "wordpress-api",
-  "version": "1.0.4",
+  "version": "0.0.5",
   "description": "Wordpress API",
   "main": "dist/Index.js",
   "homepage": "https://github.com/dderevjanik/wordpress-api",

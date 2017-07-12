@@ -1,12 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -46,7 +38,6 @@ var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = require("axios");
 var chalk_1 = require("chalk");
-var wordpress_jwt_auth_1 = require("wordpress-jwt-auth"); // DEV
 var Categories_1 = require("./Categories");
 var Comments_1 = require("./Comments");
 var Media_1 = require("./Media");
@@ -59,6 +50,7 @@ var Settings_1 = require("./Settings");
 var Tags_1 = require("./Tags");
 var Taxaomies_1 = require("./Taxaomies");
 var Users_1 = require("./Users");
+// imports to be able export connect
 var REST_API_PATH = '/wp-json/wp/v2';
 /**
  * Connect to wordpress api
@@ -100,7 +92,7 @@ exports.connect = function (host, hooks) {
                     return [3 /*break*/, 4];
                 case 3:
                     e_1 = _a.sent();
-                    msg = chalk_1.red('BadHost: no response from REST API endpoint ' + chalk_1.underline(API_URL));
+                    msg = chalk_1.red('BadResponse: ' + e_1.response.status + ' from ' + chalk_1.underline(API_URL));
                     throw new Error(msg);
                 case 4: return [2 /*return*/, {
                         /**
@@ -169,24 +161,4 @@ exports.connect = function (host, hooks) {
         });
     });
 };
-(function () { return __awaiter(_this, void 0, void 0, function () {
-    var URL, token, authorization, wpApi;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                URL = 'http://localhost:8080/wordpress';
-                return [4 /*yield*/, wordpress_jwt_auth_1.generateToken(URL, 'root', 'root')];
-            case 1:
-                token = (_a.sent()).token;
-                authorization = "Bearer " + token;
-                return [4 /*yield*/, exports.connect(URL, {
-                        beforeRequest: function (r) { return (__assign({}, r, { headers: __assign({}, r.headers, { Authorization: authorization }) })); },
-                    })];
-            case 2:
-                wpApi = _a.sent();
-                process.exit();
-                return [2 /*return*/];
-        }
-    });
-}); })();
 //# sourceMappingURL=Index.js.map
