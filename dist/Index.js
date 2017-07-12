@@ -1,4 +1,12 @@
 "use strict";
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -38,6 +46,7 @@ var _this = this;
 Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = require("axios");
 var chalk_1 = require("chalk");
+var wordpress_jwt_auth_1 = require("wordpress-jwt-auth"); // DEV
 var Categories_1 = require("./Categories");
 var Comments_1 = require("./Comments");
 var Media_1 = require("./Media");
@@ -160,25 +169,24 @@ exports.connect = function (host, hooks) {
         });
     });
 };
-// (async () => {
-//     const URL = 'http://localhost:8080/wordpress';
-//     const { token } = await generateToken(URL, 'root', 'root');
-//     const authorization = `Bearer ${token}`;
-//     const wpApi = await connect(URL, {
-//         beforeRequest: (r) => ({
-//             ...r, headers: { ...r.headers, Authorization: authorization },
-//         }),
-//     });
-//     try {
-//         const comment = await wpApi.comments.createComment({ content: 'testContent1', post: 1, status: '1' });
-//         const comments = await wpApi.comments.getComments();
-//         const commentId = Math.max.apply(Math, comments.map((c) => { return c.id; }));
-//         const deleted = await wpApi.comments.deleteComment(commentId);
-//     }
-//     catch (e) {
-//         console.log('err');
-//         console.log(e)
-//     }
-//     process.exit();
-// })();
+(function () { return __awaiter(_this, void 0, void 0, function () {
+    var URL, token, authorization, wpApi;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                URL = 'http://localhost:8080/wordpress';
+                return [4 /*yield*/, wordpress_jwt_auth_1.generateToken(URL, 'root', 'root')];
+            case 1:
+                token = (_a.sent()).token;
+                authorization = "Bearer " + token;
+                return [4 /*yield*/, exports.connect(URL, {
+                        beforeRequest: function (r) { return (__assign({}, r, { headers: __assign({}, r.headers, { Authorization: authorization }) })); },
+                    })];
+            case 2:
+                wpApi = _a.sent();
+                process.exit();
+                return [2 /*return*/];
+        }
+    });
+}); })();
 //# sourceMappingURL=Index.js.map

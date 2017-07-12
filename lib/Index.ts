@@ -135,25 +135,15 @@ export const connect = async (host: string, hooks: ConnectHook = {}) => {
     };
 };
 
-// (async () => {
-//     const URL = 'http://localhost:8080/wordpress';
-//     const { token } = await generateToken(URL, 'root', 'root');
-//     const authorization = `Bearer ${token}`;
-//     const wpApi = await connect(URL, {
-//         beforeRequest: (r) => ({
-//             ...r, headers: { ...r.headers, Authorization: authorization },
-//         }),
-//     });
-//     try {
-//         const comment = await wpApi.comments.createComment({ content: 'testContent1', post: 1, status: '1' });
-//         const comments = await wpApi.comments.getComments();
-//         const commentId = Math.max.apply(Math, comments.map((c) => { return c.id; }));
-//         const deleted = await wpApi.comments.deleteComment(commentId);
-//     }
-//     catch (e) {
-//         console.log('err');
-//         console.log(e)
-//     }
-//     process.exit();
-// })();
+(async () => {
+    const URL = 'http://localhost:8080/wordpress';
+    const { token } = await generateToken(URL, 'root', 'root');
+    const authorization = `Bearer ${token}`;
+    const wpApi = await connect(URL, {
+        beforeRequest: (r) => ({
+            ...r, headers: { ...r.headers, Authorization: authorization },
+        }),
+    });
+    process.exit();
+})();
 
