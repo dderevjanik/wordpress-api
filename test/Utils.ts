@@ -39,7 +39,7 @@ export const runWorpdressTestContainer = async (portToExpose: number) => {
         Image: 'appcontainers/wordpress',
     });
     await container.start();
-    await waitMs(2000);
+    await waitMs(3000);
     post(`http://${dockerode.modem.host}:${portToExpose}/wp-admin/install.php?step=2`, {
         formData: {
             "Submit": "Install WordPress",
@@ -53,6 +53,7 @@ export const runWorpdressTestContainer = async (portToExpose: number) => {
             "weblog_title": "wordpress - rest - api",
         },
     });
-    await waitMs(1000);
+    console.log('tu sa nedostane a vyppne sa test');
+    await waitMs(2000);
     return container;
 };

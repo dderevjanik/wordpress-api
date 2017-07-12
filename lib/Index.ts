@@ -3,7 +3,6 @@ import { red, underline } from 'chalk';
 import * as QueryString from 'querystring';
 import { generateToken, validateToken } from 'wordpress-jwt-auth'; // DEV
 import { ConnectHook } from './interface/IConnectHook';
-import { DeletePost, ListPosts, Post, RetrievePost } from './interface/Posts';
 
 import { Categories } from './Categories';
 import { Comments } from './Comments';
@@ -17,6 +16,20 @@ import { Settings } from './Settings';
 import { Tags } from './Tags';
 import { Taxanomies } from './Taxaomies';
 import { Users } from './Users';
+
+// imports to be able export connect
+import { ListComments, Comment, CreateComment, DeleteComment, GetComment, UpdateComment } from './interface/Comments';
+import { DeletePost, ListPosts, Post, RetrievePost } from './interface/Posts';
+import { Category, CreateCategory, DeleteCategory, GetCategory, ListCategories, UpdateCategory } from './interface/Categories';
+import { MediaItem, CreateMedia, DeleteMedia, GetMedia, ListMedia, UpdateMedia } from './interface/Media';
+import { CreateTag, DeleteTag, GetTag, ListTags, Tag, UpdateTag } from './interface/Tags';
+import { CreatePage, DeletePage, GetPage, ListPages, Page, UpdatePage } from './interface/Pages';
+import { GetPostRevision, ListPostRevisions, PostRevision } from './interface/PostRevisions';
+import { GetStatus, ListStatuses, PostStatus } from './interface/PostStatuses';
+import { GetType, ListTypes, PostType } from './interface/PostTypes';
+import { Setting } from './interface/Settings';
+import { CreateUser, DeleteUser, ListUsers, UpdateUser, User } from './interface/Users';
+import { GetTaxaomy, ListTaxaomies, Taxanomy } from './interface/Taxanomies';
 
 const REST_API_PATH = '/wp-json/wp/v2';
 
