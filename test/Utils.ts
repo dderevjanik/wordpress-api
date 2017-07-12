@@ -49,7 +49,6 @@ export const runWorpdressTestContainer = async (wpPort: number, mySqlPort: numbe
         ],
         ExposedPorts: {
             "80/tcp": {},
-            "9001/tcp": {},
         },
         HostConfig: {
             PortBindings: {
@@ -65,8 +64,6 @@ export const runWorpdressTestContainer = async (wpPort: number, mySqlPort: numbe
     });
     await wpContainer.start();
     await waitMs(8000);
-
-    console.log('making a post');
 
     post(`http://192.168.99.100:${wpPort}/wp-admin/install.php?step=2`, {
         formData: {

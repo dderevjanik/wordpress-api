@@ -39,14 +39,11 @@ export const connect = async (host: string, hooks: ConnectHook = {}) => {
         : hookedRequest;
 
     try {
-        console.log('================');
-        await axios('http://192.168.99.100:9001', { method: 'GET' });
-        console.log(API_URL);
-        console.log('---------=======');
         await makeRequest(API_URL, { method: 'GET' });
     } catch (e) {
-        console.log(e);
-        const msg = red('BadResponse: ' + e.response.status + ' from ' + underline(API_URL));
+        const msg = (e && e.response && e.response.status)
+            ? red('BadResponse: ' + e.response.status + ' from ' + underline(API_URL))
+            : e;
         throw new Error(msg);
     }
 

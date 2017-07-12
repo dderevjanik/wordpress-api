@@ -85,23 +85,18 @@ exports.connect = function (host, hooks) {
                         : hookedRequest;
                     _a.label = 1;
                 case 1:
-                    _a.trys.push([1, 4, , 5]);
-                    console.log('================');
-                    return [4 /*yield*/, axios_1.default('http://192.168.99.100:9001', { method: 'GET' })];
+                    _a.trys.push([1, 3, , 4]);
+                    return [4 /*yield*/, makeRequest(API_URL, { method: 'GET' })];
                 case 2:
                     _a.sent();
-                    console.log(API_URL);
-                    console.log('---------=======');
-                    return [4 /*yield*/, makeRequest(API_URL, { method: 'GET' })];
+                    return [3 /*break*/, 4];
                 case 3:
-                    _a.sent();
-                    return [3 /*break*/, 5];
-                case 4:
                     e_1 = _a.sent();
-                    console.log(e_1);
-                    msg = chalk_1.red('BadResponse: ' + e_1.response.status + ' from ' + chalk_1.underline(API_URL));
+                    msg = (e_1 && e_1.response && e_1.response.status)
+                        ? chalk_1.red('BadResponse: ' + e_1.response.status + ' from ' + chalk_1.underline(API_URL))
+                        : e_1;
                     throw new Error(msg);
-                case 5: return [2 /*return*/, {
+                case 4: return [2 /*return*/, {
                         /**
                          * define all methods with categories
                          * http://demo.wp-api.org/wp-json/wp/v2/categories
