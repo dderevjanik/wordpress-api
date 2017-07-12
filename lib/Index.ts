@@ -1,13 +1,8 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { red, underline } from 'chalk';
-import * as QueryString from 'querystring';
-import { get } from 'superagent';
-import { generateToken, validateToken } from 'wordpress-jwt-auth'; // DEV
-import { ConnectHook } from './interface/IConnectHook';
-import { DeletePost, ListPosts, Post, RetrievePost } from './interface/Posts';
-
 import { Categories } from './Categories';
 import { Comments } from './Comments';
+import { ConnectHook } from './interface/IConnectHook';
 import { Media } from './Media';
 import { Pages } from './Pages';
 import { PostRevisions } from './PostRevisions';
@@ -18,6 +13,8 @@ import { Settings } from './Settings';
 import { Tags } from './Tags';
 import { Taxanomies } from './Taxaomies';
 import { Users } from './Users';
+
+// imports to be able export connect
 
 const REST_API_PATH = '/wp-json/wp/v2';
 type RequestConfig = AxiosRequestConfig;
@@ -48,7 +45,8 @@ export const connect = async (host: string, hooks: ConnectHook = {}) => {
         console.log('---------=======');
         await makeRequest(API_URL, { method: 'GET' });
     } catch (e) {
-        const msg = red('BadHost: no response from REST API endpoint ' + underline(API_URL));
+        console.log(e);
+        const msg = red('BadResponse: ' + e.response.status + ' from ' + underline(API_URL));
         throw new Error(msg);
     }
 

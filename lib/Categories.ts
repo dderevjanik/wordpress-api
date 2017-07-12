@@ -1,9 +1,4 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import * as QueryString from 'querystring';
-import * as authenicate from 'wordpress-jwt-auth';
-import
-{ Category, CreateCategory, DeleteCategory, GetCategory, ListCategories, UpdateCategory }
-    from './interface/Categories';
+import { Category, CreateCategory, DeleteCategory, GetCategory, ListCategories, UpdateCategory } from './interface/Categories';
 import { RequestHandler } from './interface/RequestHandler';
 
 export const Categories = (API_URL: string, makeRequest: RequestHandler) => {

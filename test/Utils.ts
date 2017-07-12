@@ -82,6 +82,6 @@ export const runWorpdressTestContainer = async (wpPort: number, mySqlPort: numbe
         console.log(r);
     });
 
-    await waitMs(5000);
+    await waitMs(6000);
     return [wpContainer, mysqlContainer];
 };

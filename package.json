@@ -1,6 +1,6 @@
 {
   "name": "wordpress-api",
-  "version": "1.0.4",
+  "version": "0.0.5",
   "description": "Wordpress API",
   "main": "dist/Index.js",
   "homepage": "https://github.com/dderevjanik/wordpress-api",
@@ -16,6 +16,7 @@
     "wordpress",
     "api",
     "wordpress-rest",
+    "wordpress-rest-api",
     "typescript"
   ],
   "typescript": {
@@ -24,7 +25,9 @@
   "types": "dist/Index.d.ts",
   "typings": "dist/Index.d.ts",
   "scripts": {
+    "app": "node ./dist/Index.js",
     "test": "jest",
+    "testWatch": "jest --watch",
     "dev": "tsc --watch",
     "build": "tsc",
     "lint": "tslint -c tslint.json --fix 'lib/**/*.ts'"
@@ -38,7 +41,9 @@
       "ts",
       "tsx",
       "js"
-    ]
+    ],
+    "collectCoverage": false,
+    "testEnvironment": "node"
   },
   "license": "ISC",
   "devDependencies": {

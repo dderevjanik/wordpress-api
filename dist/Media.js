@@ -50,7 +50,7 @@ exports.Media = function (API_URL, makeRequest) {
                     case 0:
                         header = { 'Content-Disposition': 'attachment; filename="example.jpg"' };
                         url = API_URL + "/" + objectEndpoint;
-                        return [4 /*yield*/, makeRequest({ method: 'POST', url: url, data: options, headers: header })];
+                        return [4 /*yield*/, makeRequest({ method: 'POST', url: url, data: options })];
                     case 1:
                         response = _a.sent();
                         return [2 /*return*/, response.data];

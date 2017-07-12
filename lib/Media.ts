@@ -1,5 +1,3 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import * as QueryString from 'querystring';
 import { CreateMedia, DeleteMedia, GetMedia, ListMedia, MediaItem, UpdateMedia } from './interface/Media';
 import { RequestHandler } from './interface/RequestHandler';
 
@@ -13,7 +11,7 @@ export const Media = (API_URL: string, makeRequest: RequestHandler) => {
         createMedia: async (options: CreateMedia) => {
             const header = { 'Content-Disposition': 'attachment; filename="example.jpg"' };
             const url = `${API_URL}/${objectEndpoint}`;
-            const response = await makeRequest({ method: 'POST', url, data: options, headers: header });
+            const response = await makeRequest({ method: 'POST', url, data: options });
             return response.data as MediaItem;
         },
 

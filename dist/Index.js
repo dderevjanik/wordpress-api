@@ -50,6 +50,7 @@ var Settings_1 = require("./Settings");
 var Tags_1 = require("./Tags");
 var Taxaomies_1 = require("./Taxaomies");
 var Users_1 = require("./Users");
+// imports to be able export connect
 var REST_API_PATH = '/wp-json/wp/v2';
 /**
  * Connect to wordpress api
@@ -97,7 +98,8 @@ exports.connect = function (host, hooks) {
                     return [3 /*break*/, 5];
                 case 4:
                     e_1 = _a.sent();
-                    msg = chalk_1.red('BadHost: no response from REST API endpoint ' + chalk_1.underline(API_URL));
+                    console.log(e_1);
+                    msg = chalk_1.red('BadResponse: ' + e_1.response.status + ' from ' + chalk_1.underline(API_URL));
                     throw new Error(msg);
                 case 5: return [2 /*return*/, {
                         /**

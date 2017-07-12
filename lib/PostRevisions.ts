@@ -1,5 +1,3 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import * as QueryString from 'querystring';
 import { GetPostRevision, ListPostRevisions, PostRevision } from './interface/PostRevisions';
 import { RequestHandler } from './interface/RequestHandler';
 

@@ -1,8 +1,4 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import * as QueryString from 'querystring';
-import
-{ Comment, CreateComment, DeleteComment, GetComment, ListComments, UpdateComment }
-    from './interface/Comments';
+import { Comment, CreateComment, DeleteComment, GetComment, ListComments, UpdateComment } from './interface/Comments';
 import { RequestHandler } from './interface/RequestHandler';
 
 export const Comments = (API_URL: string, makeRequest: RequestHandler) => {
