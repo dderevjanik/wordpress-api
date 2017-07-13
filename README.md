@@ -1,5 +1,7 @@
 # Wordpress API
 
+Wrapper for [Wordpress Rest API](https://developer.wordpress.org/rest-api/)
+
 ## Installation
 
 `npm install wordpress-api`
