@@ -11,7 +11,7 @@ export const Taxanomies = (API_URL: string, makeRequest: RequestHandler) => {
          */
         getTaxanomies: async (options: ListTaxaomies = {}) => {
             const url = `${API_URL}/${objectEndpoint}`;
-            const response = await makeRequest({ method: 'GET', url, data: options });
+            const response = await makeRequest(url, { method: 'GET', data: options });
             return response.data as {};
         },
 
@@ -23,7 +23,7 @@ export const Taxanomies = (API_URL: string, makeRequest: RequestHandler) => {
          */
         getTaxanomy: async (key: string, options: GetTaxaomy = { context: 'view' }) => {
             const url = `${API_URL}/${objectEndpoint}/${key}`;
-            const response = await makeRequest({ method: 'GET', url, data: options });
+            const response = await makeRequest(url, { method: 'GET', data: options });
             return response.data as Taxanomy;
         },
     };

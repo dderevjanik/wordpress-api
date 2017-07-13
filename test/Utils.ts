@@ -75,8 +75,6 @@ export const runWorpdressTestContainer = async (wpPort: number, mySqlPort: numbe
             user_name: "admin",
             weblog_title: "wordpress - rest - api",
         },
-    }, (r) => {
-        console.log(r);
     });
 
     await waitMs(6000);

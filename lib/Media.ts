@@ -9,9 +9,9 @@ export const Media = (API_URL: string, makeRequest: RequestHandler) => {
          * @param options - options to create a media
          */
         createMedia: async (options: CreateMedia) => {
-            const header = { 'Content-Disposition': 'attachment; filename="example.jpg"' };
+            // const header = { 'Content-Disposition': 'attachment; filename="example.jpg"' };
             const url = `${API_URL}/${objectEndpoint}`;
-            const response = await makeRequest({ method: 'POST', url, data: options });
+            const response = await makeRequest(url, { method: 'POST', data: options });
             return response.data as MediaItem;
         },
 
@@ -23,7 +23,7 @@ export const Media = (API_URL: string, makeRequest: RequestHandler) => {
          */
         deleteMedia: async (id: number, options: DeleteMedia = { force: true }) => {
             const url = `${API_URL}/${objectEndpoint}/${id}`;
-            const response = await makeRequest({ method: 'DELETE', url, data: options });
+            const response = await makeRequest(url, { method: 'DELETE', data: options });
             return response.data.deleted;
         },
 
@@ -34,7 +34,7 @@ export const Media = (API_URL: string, makeRequest: RequestHandler) => {
          */
         getAllMedia: async (options: ListMedia = {}) => {
             const url = `${API_URL}/${objectEndpoint}`;
-            const response = await makeRequest({ method: 'GET', url, data: options });
+            const response = await makeRequest(url, { method: 'GET', data: options });
             return response.data as MediaItem[];
         },
 
@@ -46,7 +46,7 @@ export const Media = (API_URL: string, makeRequest: RequestHandler) => {
          */
         getMedia: async (id: number, options: GetMedia = { context: 'view' }) => {
             const url = `${API_URL}/${objectEndpoint}/${id}`;
-            const response = await makeRequest({ method: 'GET', url, data: options });
+            const response = await makeRequest(url, { method: 'GET', data: options });
             return response.data as MediaItem;
         },
 
@@ -57,7 +57,7 @@ export const Media = (API_URL: string, makeRequest: RequestHandler) => {
          */
         updateMedia: async (id: number, options: UpdateMedia) => {
             const url = `${API_URL}/${objectEndpoint}/${id}`;
-            const response = await makeRequest({ method: 'POST', url, data: options });
+            const response = await makeRequest(url, { method: 'POST', data: options });
             return response.data as MediaItem;
         },
     };

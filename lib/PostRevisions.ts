@@ -11,7 +11,7 @@ export const PostRevisions = (API_URL: string, makeRequest: RequestHandler) => {
          */
         deletePostRevision: async (parentId: number, id: number): Promise<void> => {
             const url = `${API_URL}/posts/${parentId}/revisions/${id}`;
-            await makeRequest({ method: 'DELETE', url });
+            await makeRequest(url, { method: 'DELETE' });
         },
 
         /**
@@ -23,20 +23,20 @@ export const PostRevisions = (API_URL: string, makeRequest: RequestHandler) => {
          */
         getPostRevision: async (parentId: number, id: number, options: GetPostRevision = { context: 'view' }) => {
             const url = `${API_URL}/posts/${parentId}/revisions/${id}`;
-            const response = await makeRequest({ method: 'GET', url, data: options });
+            const response = await makeRequest(url, { method: 'GET', data: options });
             return response.data as PostRevision;
         },
 
         /**
          * Get all posts
-         * @param parentId
-         * @param id
+         * @param parentId - parent id
+         * @param id - revision id
          * @param options - options to retrieve all post revisions
          * @default: { context: 'view' }
          */
         getPostRevisions: async (parentId: number, id: number, options: ListPostRevisions = { context: 'view' }) => {
             const url = `${API_URL}/posts/${parentId}/revisions/${id}`;
-            const response = await makeRequest({ method: 'GET', url, data: options });
+            const response = await makeRequest(url, { method: 'GET', data: options });
             return response.data as PostRevision[];
         },
     };

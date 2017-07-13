@@ -9,7 +9,7 @@ export const Settings = (API_URL: string, makeRequest: RequestHandler) => {
          */
         getAllSettings: async () => {
             const url = `${API_URL}/${objectEndpoint}`;
-            const response = await makeRequest({ method: 'POST', url });
+            const response = await makeRequest(url, { method: 'POST' });
             return response.data as Setting;
         },
 
@@ -18,7 +18,7 @@ export const Settings = (API_URL: string, makeRequest: RequestHandler) => {
          */
         updateSettings: async (options: Setting) => {
             const url = `${API_URL}/${objectEndpoint}`;
-            const response = await makeRequest({ method: 'POST', url });
+            const response = await makeRequest(url, { method: 'POST' });
             return response.data as Setting;
         },
     };

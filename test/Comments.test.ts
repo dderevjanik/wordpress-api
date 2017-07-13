@@ -10,8 +10,7 @@ describe('connection', async () => {
             const wpApi = await connectToWpApi(host, userName, password);
             const comment = await wpApi.comments.createComment({ content: 'testContent2', post: 1, status: '1' });
             expect(comment.status).toBe('approved');
-        }
-        catch (e) {
+        } catch (e) {
             console.log(e);
         }
     });
@@ -25,7 +24,7 @@ describe('connection', async () => {
     await test('try update comment', async () => {
         const wpApi = await connectToWpApi(host, userName, password);
         const comments = await wpApi.comments.getComments({ status: '1' });
-        const commentId = Math.max.apply(Math, comments.map((c) => { return c.id; }));
+        const commentId = Math.max.apply(Math, comments.map((c) => c.id));
         const comment = await wpApi.comments.updateComment(commentId, { status: '0' });
         expect(comment.status).toBe('hold');
     });
@@ -33,10 +32,8 @@ describe('connection', async () => {
     await test('try remove comment', async () => {
         const wpApi = await connectToWpApi(host, userName, password);
         const comments = await wpApi.comments.getComments({ status: '0' });
-        const commentId = Math.max.apply(Math, comments.map((c) => { return c.id; }));
+        const commentId = Math.max.apply(Math, comments.map((c) => c.id));
         const deleted = await wpApi.comments.deleteComment(commentId);
         expect(deleted).toBe(true);
     });
 });
-
-

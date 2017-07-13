@@ -1,3 +1,3 @@
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 
-export type RequestHandler = (options: AxiosRequestConfig) => Promise<AxiosResponse>;
+export type RequestHandler = (url: string, options: AxiosRequestConfig) => Promise<AxiosResponse>;

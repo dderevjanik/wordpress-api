@@ -10,7 +10,7 @@ export const Pages = (API_URL: string, makeRequest: RequestHandler) => {
          */
         createPage: async (options: CreatePage) => {
             const url = `${API_URL}/${objectEndpoint}`;
-            const response = await makeRequest({ method: 'POST', url, data: options });
+            const response = await makeRequest(url, { method: 'POST', data: options });
             return response.data as Page;
         },
 
@@ -21,7 +21,7 @@ export const Pages = (API_URL: string, makeRequest: RequestHandler) => {
          */
         deletePage: async (pageId: number, options: DeletePage = { force: true }) => {
             const url = `${API_URL}/${objectEndpoint}/${pageId}`;
-            const response = await makeRequest({ method: 'DELETE', url, data: options });
+            const response = await makeRequest(url, { method: 'DELETE', data: options });
             const deleted = response.data.deleted;
             return deleted;
         },
@@ -32,7 +32,7 @@ export const Pages = (API_URL: string, makeRequest: RequestHandler) => {
          */
         getPage: async (pageId: number) => {
             const url = `${API_URL}/${objectEndpoint}/${pageId}`;
-            const response = await makeRequest({ method: 'GET', url });
+            const response = await makeRequest(url, { method: 'GET' });
             return response.data as Page;
         },
 
@@ -42,7 +42,7 @@ export const Pages = (API_URL: string, makeRequest: RequestHandler) => {
          */
         getPages: async (options: ListPages) => {
             const url = `${API_URL}/${objectEndpoint}`;
-            const response = await makeRequest({ method: 'GET', url, data: options });
+            const response = await makeRequest(url, { method: 'GET', data: options });
             return response.data as Page[];
         },
 
@@ -53,7 +53,7 @@ export const Pages = (API_URL: string, makeRequest: RequestHandler) => {
          */
         updatePage: async (pageId: number, options: UpdatePage) => {
             const url = `${API_URL}/${objectEndpoint}/${pageId}`;
-            const response = await makeRequest({ method: 'POST', url, data: options });
+            const response = await makeRequest(url, { method: 'POST', data: options });
             return response.data as Page;
         },
 

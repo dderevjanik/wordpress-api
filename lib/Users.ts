@@ -11,7 +11,7 @@ export const Users = (API_URL: string, makeRequest: RequestHandler) => {
          */
         createUser: async (options: CreateUser) => {
             const url = `${API_URL}/${objectEndpoint}`;
-            const response = await makeRequest({ method: 'POST', url, data: options });
+            const response = await makeRequest(url, { method: 'POST', data: options });
             return response.data as User;
         },
 
@@ -23,7 +23,7 @@ export const Users = (API_URL: string, makeRequest: RequestHandler) => {
          */
         deleteUser: async (userId: number, options: DeleteUser = { force: true, reassign: {} }) => {
             const url = `${API_URL}/${objectEndpoint}/${userId}`;
-            const response = await makeRequest({ method: 'DELETE', url, data: options });
+            const response = await makeRequest(url, { method: 'DELETE', data: options });
             const deleted = response.data.deleted;
             return deleted;
         },
@@ -34,7 +34,7 @@ export const Users = (API_URL: string, makeRequest: RequestHandler) => {
          */
         getUser: async (userId: number) => {
             const url = `${API_URL}/${objectEndpoint}/${userId}`;
-            const response = await makeRequest({ method: 'GET', url });
+            const response = await makeRequest(url, { method: 'GET' });
             return response.data as User;
         },
 
@@ -44,13 +44,13 @@ export const Users = (API_URL: string, makeRequest: RequestHandler) => {
          */
         getUsers: async (options: ListUsers = {}) => {
             const url = `${API_URL}/${objectEndpoint}`;
-            const response = await makeRequest({ method: 'GET', url, data: options });
+            const response = await makeRequest(url, { method: 'GET', data: options });
             return response.data as User[];
         },
 
         isLoggegedId: async () => {
             const url = `${API_URL}/${objectEndpoint}/me`;
-            const response = await makeRequest({ method: 'POST', url });
+            const response = await makeRequest(url, { method: 'POST' });
             return response.data;
         },
 
@@ -61,7 +61,7 @@ export const Users = (API_URL: string, makeRequest: RequestHandler) => {
          */
         updateUser: async (userId: number, options: UpdateUser) => {
             const url = `${API_URL}/${objectEndpoint}/${userId}`;
-            const response = await makeRequest({ method: 'POST', url, data: options });
+            const response = await makeRequest(url, { method: 'POST', data: options });
             return response.data as User;
         },
 

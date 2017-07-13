@@ -5,11 +5,11 @@ describe('connection', async () => {
     const userName = 'root';
     const password = 'root';
 
-    test('try host', () => {
+    test('should host', () => {
         expect(host).toBe('http://localhost:8080/wordpress');
     });
 
-    // test('try create media', async () => {
+    // test('should create media', async () => {
     //     try {
     //         const wpApi = await connectToWpApi(host, userName, password);
     //         const media = await wpApi.media.createMedia({ author: 1, alt_text: 'altText' });
@@ -20,13 +20,13 @@ describe('connection', async () => {
     //     }
     // });
 
-    // test('try get medias', async () => {
+    // test('should get medias', async () => {
     //     const wpApi = await connectToWpApi(host, userName, password);
     //     const medias = await wpApi.media.getAllMedia({});
     //     expect(medias.length).not.toBe(0);
     // });
 
-    // test('try update media', async () => {
+    // test('should update media', async () => {
     //     const wpApi = await connectToWpApi(host, userName, password);
     //     const medias = await wpApi.media.getAllMedia({});
     //     const mediaId = Math.max.apply(Math, medias.map((c) => { return c.id; }));
@@ -34,7 +34,7 @@ describe('connection', async () => {
     //     expect(media.alt_text).toBe('updatedText');
     // });
 
-    // test('try remove media', async () => {
+    // test('should remove media', async () => {
     //     const wpApi = await connectToWpApi(host, userName, password);
     //     const medias = await wpApi.media.getAllMedia({});
     //     const mediaId = Math.max.apply(Math, medias.map((c) => { return c.id; }))
@@ -42,5 +42,3 @@ describe('connection', async () => {
     //     expect(deleted).toBe(true);
     // });
 });
-
-

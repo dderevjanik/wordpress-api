@@ -93,7 +93,7 @@ export interface ListCategories {
     /**
      * Order sort attribute ascending or descending.
      * One of: asc, desc
-     * @default: asc
+     * @default: "asc"
      */
     order?: 'asc' | 'desc';
 

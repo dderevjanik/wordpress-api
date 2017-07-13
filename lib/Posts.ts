@@ -10,7 +10,7 @@ export const Posts = (API_URL: string, makeRequest: RequestHandler) => {
          */
         createPost: async (post: CreatePost) => {
             const url = `${API_URL}/${objectEndpoint}`;
-            const response = await makeRequest({ method: 'POST', url, data: post });
+            const response = await makeRequest(url, { method: 'POST', data: post });
             return response.data as Post;
         },
 
@@ -21,7 +21,7 @@ export const Posts = (API_URL: string, makeRequest: RequestHandler) => {
          */
         deletePost: async (postId: number, options: DeletePost = {}) => {
             const url = `${API_URL}/${objectEndpoint}/${postId}`;
-            const response = await makeRequest({ method: 'DELETE', url });
+            const response = await makeRequest(url, { method: 'DELETE' });
             return response.data.deleted;
         },
 
@@ -32,7 +32,7 @@ export const Posts = (API_URL: string, makeRequest: RequestHandler) => {
          */
         getPost: async (postId: number): Promise<Post> => {
             const url = `http://${API_URL}/${objectEndpoint}/${postId}`;
-            const response = await makeRequest({ method: 'GET', url });
+            const response = await makeRequest(url, { method: 'GET' });
             return response.data as Post;
         },
 

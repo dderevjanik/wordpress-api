@@ -12,7 +12,7 @@ export const PostStatuses = (API_URL: string, makeRequest: RequestHandler) => {
          */
         getStatus: async (key: string, options: GetStatus = { context: 'view' }) => {
             const url = `${API_URL}/${objectEndpoint}/${key}`;
-            const response = await makeRequest({ method: 'GET', url, data: options });
+            const response = await makeRequest(url, { method: 'GET', data: options });
             return response.data as PostStatus;
         },
 
@@ -23,7 +23,7 @@ export const PostStatuses = (API_URL: string, makeRequest: RequestHandler) => {
          */
         getStatuses: async (options: ListStatuses = {}) => {
             const url = `${API_URL}/${objectEndpoint}`;
-            const response = await makeRequest({ method: 'GET', url, data: options });
+            const response = await makeRequest(url, { method: 'GET', data: options });
             return response.data as {};
         },
     };

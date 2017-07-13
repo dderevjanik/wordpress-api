@@ -3,7 +3,7 @@ const { post } = require("request");
 const log = console.log;
 const Docker = require("dockerode");
 
-const wordpressImage = "wordpress:4.8.0";
+const wordpressImage = "conetix/wordpress-with-wp-cli";
 const mysqlImage = "mysql:5.7";
 const dockerode = new Docker();
 

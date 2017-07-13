@@ -5,19 +5,19 @@ describe('connection', async () => {
     const userName = 'root';
     const password = 'root';
 
-    test('try create page', async () => {
+    test('should create page', async () => {
         const wpApi = await connectToWpApi(host, userName, password);
         const page = await wpApi.pages.createPage({ comment_status: 'closed' });
         expect(page.comment_status).toBe('closed');
     });
 
-    // test('try get pages', async () => {
+    // test('should get pages', async () => {
     //     const wpApi = await connectToWpApi(host, userName, password);
     //     const pages = await wpApi.pages.getPages({});
     //     expect(pages.length).not.toBe(0);
     // });
 
-    // test('try update page', async () => {
+    // test('should update page', async () => {
     //     const wpApi = await connectToWpApi(host, userName, password);
     //     const pages = await wpApi.pages.getPages({});
     //     const pageId = pages[pages.length - 1].id;
@@ -25,7 +25,7 @@ describe('connection', async () => {
     //     expect(page.content).toBe('updateContet');
     // });
 
-    // test('try remove page', async () => {
+    // test('should remove page', async () => {
     //     const wpApi = await connectToWpApi(host, userName, password);
     //     const pages = await wpApi.pages.getPages({});
     //     const pageId = pages[pages.length - 1].id;
@@ -33,5 +33,3 @@ describe('connection', async () => {
     //     expect(deleted).toBe(true);
     // });
 });
-
-
